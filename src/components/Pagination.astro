@@ -1,0 +1,30 @@
+---
+import { relativeUrl } from "../utils/relativeUrl";
+
+export interface Props {
+	pageContext?: any;
+}
+
+const { pageContext } = Astro.props;
+
+---
+<nav class="pagination" role="navigation">
+    <div>
+        {pageContext.url.prev && (
+
+            <a href={pageContext.url.prev} rel="prev" class="button is-primary text-sm font-medium hidden md:flex gh-portal-close">
+                    ← Newer_Posts
+            </a>
+
+        )}
+    </div>
+    {pageContext.total > 1 && <span class="page-number">Page {pageContext.currentPage} of {pageContext.lastPage}</span>}
+    <div>
+        {pageContext.url.next && (
+
+            <a href={pageContext.url.next} rel="next" class="button is-primary text-sm font-medium hidden md:flex gh-portal-close">
+                Older_Posts →
+            </a>
+        )}
+    </div>
+</nav>

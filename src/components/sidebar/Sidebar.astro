@@ -1,0 +1,12 @@
+---
+import SidebarPostCard from "./SidebarPostCard.astro";
+import { getPosts } from "../../lib/api";
+
+const featuredPosts = await getPosts({filter: 'visibility:public+featured:true+tag:-portfolio+tag:-podcast', limit: "5"});
+
+---
+<aside class="sidebar col s12 l4 flex flex-col justify-start mt-12 lg:mt-0">
+    <div class="flex flex-col flex-1">
+        <SidebarPostCard widgetTitle="Featured Articles" widgetPosts={featuredPosts} />
+    </div>
+</aside>

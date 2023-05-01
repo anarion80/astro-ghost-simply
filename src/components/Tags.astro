@@ -1,0 +1,27 @@
+---
+import { relativeUrl } from "../utils/relativeUrl";
+
+export interface Props {
+	tags?: any;
+}
+
+const { tags } = Astro.props;
+
+
+---
+<div class="post-tags mb-8">
+    <div class="buttons">
+        {tags.map(tag => (
+            (tag.visibility === `public` &&
+                <a
+                    href={relativeUrl(tag.url)}
+                    class="button is-light font-medium text-sm capitalize godo-tracking"
+                    data-event-category="Article"
+                    data-event-action="Tags"
+                    data-event-label={tag.name}
+                    data-event-non-interaction="true">{tag.name}
+                </a>
+            )
+        ))}
+    </div>
+</div>

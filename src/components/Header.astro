@@ -1,25 +1,88 @@
 ---
-import HeaderLink from './HeaderLink.astro';
-import { SITE_TITLE } from '../consts';
+import Navigation from "./Navigation.astro";
+import NavigationDropDown from "./NavigationDropDown.astro";
+import { Image, Picture } from "@astrojs/image/components";
+import SideNav from "./SideNav.astro";
+import SearchWidget from "./SearchWidget";
+import { relativeUrl } from "../utils/relativeUrl";
+
+export interface Props {
+    site?: any;
+    hasDropDown?: boolean;
+}
+
+const { site, hasDropDown } = Astro.props;
 ---
 
-<header>
-	<h2>
-		{SITE_TITLE}
-	</h2>
-	<nav>
-		<HeaderLink href="/">Home</HeaderLink>
-		<HeaderLink href="/blog">Blog</HeaderLink>
-		<HeaderLink href="/about">About</HeaderLink>
-		<HeaderLink href="https://twitter.com/astrodotbuild" target="_blank">Twitter</HeaderLink>
-		<HeaderLink href="https://github.com/withastro/astro" target="_blank">GitHub</HeaderLink>
-	</nav>
-</header>
-<style>
-	header {
-		margin: 0em 0 2em;
-	}
-	h2 {
-		margin: 0.5em 0;
-	}
-</style>
+<>
+    <header
+    class="header bg-header w-full text-sm flex items-center sticky top-0 z-20"
+    >
+    <div
+        class="header-wrap mx-auto flex items-center flex-auto px-4 w-full max-w-extreme"
+    >
+        <div class="header-left mr-5 flex flex-none items-center">
+        <a
+            href={relativeUrl(site.url)}
+            class="header-logo inline-block leading-none godo-tracking"
+            data-event-category="Header"
+            data-event-action="Logo"
+            data-event-label="Click"
+            data-event-non-interaction="true"
+        >
+            {
+            site.logo ? (
+                <Image
+                    src={site.logo}
+                    class="header-logo-img max-h-8 logo-default"
+                    alt={site.title}
+                    width={36}
+                    height={36}
+                    fit="cover"
+                />
+            ) : (
+                <Image
+                    src="../../images/ghost-icon.png"
+                    class="header-logo-img max-h-8 logo-default"
+                    alt={site.title}
+                    width={36}
+                    height={36}
+                    fit="cover"
+                />
+            )
+            }
+        </a>
+        </div>
+
+        {
+        site.navigation ? (
+            <nav class="header-center mainMenu relative flex items-center pr-5 flex-grow overflow-auto lg:overflow-visible">
+            <ul
+                item-scope=""
+                item-type="http://www.schema.org/SiteNavigationElement"
+                class="nav whitespace-no-wrap hidden lg:flex"
+            >
+                <Navigation
+                site={site}
+                navClass="mainMenu-link godo-tracking hover:text-primary font-medium"
+                />
+                <NavigationDropDown site={site} hasDropDown={hasDropDown} />
+            </ul>
+            </nav>
+        ) : null
+        }
+
+        <div
+        class="header-right flex-none flex justify-end items-center u-menu-color"
+        >
+        <!-- <SearchWidget client:load/> -->
+        <div
+            class="js-menu-toggle menu-burger button is-white relative ml-2 lg:hidden"
+        >
+            <span></span><span></span><span></span>
+        </div>
+        </div>
+    </div>
+    </header>
+    <SideNav site={site} />
+</>

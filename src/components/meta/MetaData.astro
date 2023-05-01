@@ -1,0 +1,59 @@
+---
+import WebsiteMeta from './WebsiteMeta.astro';
+import ArticleMeta from './ArticleMeta.astro';
+import AuthorMeta from './AuthorMeta.astro';
+import _ from 'lodash'
+import { getSettings } from '../../lib/api';
+import siteConfig from '../../utils/siteConfig';
+
+export interface Props {
+    data?: any,
+	canonical?: string,
+    title?: string,
+    description?: string,
+    image?: any,
+    location?: string,
+}
+
+const { data, canonical, title, description, image, location } = Astro.props;
+const settings = await getSettings();
+const c = new URL(location, siteConfig.siteUrl).toString();
+let t = title;
+let i = image
+let d = description;
+// const { currentPost, ghostTag, ghostAuthor, ghostPage } = data;
+
+// let showCurrentPost, showGhostTag, showGhostAuthor, showGhostPage = false;
+
+// if (currentPost) {
+//         showCurrentPost = true
+//     } else if (ghostTag) {
+//         showGhostTag = true
+//     } else if (ghostAuthor) {
+//         showGhostAuthor = true
+//     } else if (ghostPage) {
+//         showGhostPage = true
+//     } else {
+//         t = title || siteConfig.siteTitleMeta || settings.title
+//         d = description || siteConfig.siteDescriptionMeta || settings.description
+//         i = image || settings.cover_image || null
+
+//         i = image ? new URL(siteConfig.siteUrl, image).toString() : null
+
+//     }
+
+---
+<!-- {showCurrentPost && <ArticleMeta data={currentPost} canonical={c} />}
+{showGhostTag && <WebsiteMeta data={ghostTag} canonical={c} type="Series" />}
+{showGhostAuthor && <AuthorMeta data={ghostAuthor} canonical={c} />}
+{showGhostPage && <WebsiteMeta data={ghostPage} canonical={c} type="WebSite" />} -->
+<!-- { !showCurrentPost && !showGhostTag && !showGhostAuthor && !showGhostPage && -->
+    <WebsiteMeta
+        data={{}}
+        canonical={c}
+        title={t}
+        description={d}
+        image={i}
+        type="WebSite"
+    />
+<!-- } -->

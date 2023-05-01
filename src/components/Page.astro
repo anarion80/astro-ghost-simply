@@ -1,0 +1,11 @@
+---
+//import StoryblokComponents from '../components/StoryblokComponents.astro';
+
+const { post } = Astro.props
+import { Debug } from 'astro/components';
+---
+
+<main>
+  <!-- <StoryblokComponents story={story} /> -->
+  <Debug {post} />
+</main>

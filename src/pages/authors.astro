@@ -1,0 +1,61 @@
+---
+import Layout from '../layouts/Layout.astro'
+import ArticleHeader from '../components/article/ArticleHeader.astro'
+import ArticleBody from '../components/article/ArticleBody.astro'
+import ArticleFeaturedImage from '../components/article/ArticleFeaturedImage.astro'
+import ArticleRelated from '../components/article/ArticleRelated.astro'
+import { getAuthors } from '../lib/api'
+import { map } from 'astro/zod'
+import { formatDate } from '../utils/dateConvert'
+import { relativeUrl } from '../utils/relativeUrl'
+import { useLang, getTranslation } from '../utils/use-lang'
+
+
+const authors = await getAuthors({})
+console.log("🚀 ~ file: authors.astro:15 ~ authors:", authors)
+const t = getTranslation(useLang())
+---
+
+<Layout footer={true} isPost={false} bodyClass="archive-author bg-gray-150">
+    <header class="author-header">
+        <div class="px-4 py-12 md:py-vw6 mx-auto max-w-3xl text-center">
+            <h1 class="text-4xl lg:text-5xl text-title">Autorzy</h1>
+            <div class="mt-5 text-lg text-gray-500">Nasi autorzy</div>
+        </div>
+    </header>
+    <div class="container px-4 mx-auto pb-12">
+        <section class="row flex-row justify-center">
+
+            {authors.map((author) => {
+                const twitterUrl = author.twitter ? `https://twitter.com/${author.twitter.replace(/^@/, ``)}` : null
+                const facebookUrl = author.facebook ? `https://www.facebook.com/${author.facebook.replace(/^\//, ``)}` : null
+
+                return (
+                    <div class="col s12 m6 l4 flex flex-col">
+                        <article class="author-card mb-8 relative flex flex-col p-5 bg-blank shadow-lg rounded-lg flex-1" >
+                            <header class="flex-1">
+                                <h2 class="author-card-name capitalize text-2xl font-semibold underscore"><a href={relativeUrl(author.url)}>{author.name}</a></h2>
+                                {author.bio && <p class="author-card-bio text-gray-600">{author.bio}</p>}
+                            </header>
+
+                            <footer class="relative text-center pt-5 flex items-center justify-between">
+                                <div class="author-card-media u-flex1">
+                                    {author.facebook && <a href={facebookUrl} class="p-2 hover:text-facebook" title="Facebook" target="_blank" rel="noopener noreferrer"><svg class="icon"><use xlink:href="#icon-facebook"></use></svg></a>}
+                                    {author.twitter && <a href={twitterUrl} class="p-2 hover:text-twitter" title={author.twitter} target="_blank" rel="noopener noreferrer"><svg class="icon"><use xlink:href="#icon-twitter"></use></svg></a>}
+                                    {author.website && <a href={author.website} class="p-2" title="{{website}}" target="_blank" rel="noopener noreferrer"><svg class="icon is-stroke"><use xlink:href="#icon-link"></use></svg></a>}
+                                </div>
+
+                                <a href={relativeUrl(author.url)}>
+                                    {author.profile_image ?
+                                        <img src={author.profile_image} class="author-card-avatar u-image rounded-full w-20 h-20" alt={`Hello, I'm  ` + author.name}/>
+                                        : <img src="/images/avatar.png" class="avatar is-100x100 rounded-full object-cover" alt={`Hello I'm ` + author.name} />
+                                    }
+                                </a>
+                            </footer>
+                        </article>
+                    </div>
+                )
+            })}
+        </section>
+    </div>
+</Layout>

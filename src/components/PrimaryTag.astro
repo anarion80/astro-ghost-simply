@@ -1,0 +1,16 @@
+---
+import { relativeUrl } from "../utils/relativeUrl";
+
+export interface Props {
+	tag?: any;
+    tagClass?: string;
+}
+
+const { tag, tagClass } = Astro.props;
+
+---
+<a href={relativeUrl(tag.url)} //TODO to be removed
+    title={`Go_to ` + tag.name}
+    class={`button is-x-small is-dark-blue ` + (tagClass ? tagClass : `mt-3 mr-3`)}
+    style= { tag.accent_color && { backgroundColor: tag.accent_color } }>{tag.name}
+</a>

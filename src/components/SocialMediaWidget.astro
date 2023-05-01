@@ -1,0 +1,64 @@
+---
+import PrimaryTag from "./PrimaryTag.astro";
+import Author from "./Author.astro";
+import { relativeUrl } from "../utils/relativeUrl";
+import siteConfig from "../utils/siteConfig";
+
+export interface Props {
+    site?: any,
+	divClass?: string;
+}
+
+const { site, divClass } = Astro.props;
+
+const twitterUrl = site.twitter ? `https://twitter.com/${site.twitter.replace(/^@/, ``)}` : null
+const facebookUrl = site.facebook ? `https://www.facebook.com/${site.facebook.replace(/^\//, ``)}` : null
+const socialMedia = siteConfig.followSocialMedia
+
+
+---
+<div class={ divClass ? `js-social-media social-media ` + divClass : `js-social-media social-media`}>
+    {/* Facebook and Twitter straight from Ghost settings */}
+    {site.facebook &&
+    <a class="godo-tracking p-2 inline-block hover:text-facebook"
+        data-event-category="Header"
+        data-event-action="Social"
+        data-event-label="Facebook"
+        data-event-non-interaction="true"
+        title={`Facebook ` + site.facebook}
+        aria-label={`Facebook ` + site.facebook}
+        href={facebookUrl}
+        target="_blank"
+        rel="noopener noreferrer">
+        <svg class="icon icon--facebook"><use xlink:href="#icon-facebook"></use></svg>
+    </a>}
+
+    {siteConfig.twitter &&
+    <a class="godo-tracking p-2 inline-block hover:text-twitter"
+        data-event-category="Header"
+        data-event-action="Social"
+        data-event-label="Twitter"
+        data-event-non-interaction="true"
+        title={`Twitter ` + siteConfig.twitter}
+        aria-label={`Twitter ` + siteConfig.twitter}
+        href={twitterUrl}
+        target="_blank"
+        rel="noopener noreferrer">
+        <svg class="icon icon--twitter"><use xlink:href="#icon-twitter"></use></svg>
+    </a>}
+    {/* Other services from our own settings */}
+    {socialMedia.map(item => (
+        <a class="godo-tracking p-2 inline-block hover:text-twitter"
+            data-event-category="Header"
+            data-event-action="Social"
+            data-event-label={item.service}
+            data-event-non-interaction="true"
+            title={item.service + `: ` + item.title}
+            aria-label={item.service + `: ` + item.title}
+            href={item.url}
+            target="_blank"
+            rel="noopener noreferrer">
+            <svg class={`icon icon-` + item.service}><use xlink:href={`#icon-` + item.service}></use></svg>
+        </a>
+    ))}
+</div>

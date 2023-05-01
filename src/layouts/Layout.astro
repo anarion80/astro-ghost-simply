@@ -1,0 +1,89 @@
+---
+import { getSettings } from '../lib/api';
+import siteConfig from '../utils/siteConfig';
+import Header from '../components/Header.astro';
+import FooterDark from '../components/FooterDark.astro';
+import SvgIcons from '../components/SvgIcons';
+import '../styles/main.css'
+import '../styles/ghost.css'
+import '../styles/cards/audio.css'
+import '../styles/cards/before-after.css'
+import '../styles/cards/blockquote.css'
+import '../styles/cards/bookmark.css'
+import '../styles/cards/button.css'
+import '../styles/cards/callout.css'
+import '../styles/cards/file.css'
+import '../styles/cards/gallery.css'
+import '../styles/cards/header.css'
+import '../styles/cards/nft.css'
+import '../styles/cards/product.css'
+import '../styles/cards/toggle.css'
+import '../styles/cards/video.css'
+import '../styles/react-medium-image-zoom.css'
+import '@fontsource/pt-serif'
+import '@fontsource/inter'
+//import "../styles/global.css"
+//import "../css/global.css"
+
+export interface Props {
+	children?: any;
+	bodyClass?: string;
+	footer?: boolean;
+	isPost?: boolean;
+	isHome?: boolean;
+	title?: string;
+}
+
+const { bodyClass, footer, isPost, isHome } = Astro.props;
+
+// const { id, title } = Astro.props;
+
+const site = await getSettings();
+//console.log(site);
+
+const accentColor = site.accent_color;
+const hasDropDown = siteConfig.menuDropdown ? true : false
+
+/* to turn the Header transparent when hero picture is used (and back to normal when srolled down) */
+    const scrollEventListener = () => {
+        const lastScrollY = window.scrollY
+        lastScrollY >= 60 ?
+            document.body.closest(`.has-cover`) && document.body.classList.remove(`is-head-transparent`)
+            :
+            document.body.closest(`.has-cover`) && document.body.classList.add(`is-head-transparent`)
+    }
+---
+
+<!DOCTYPE html>
+<html lang={site.lang}>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css" />
+		<meta name="generator" content={Astro.generator} />
+		<!-- <style type="text/css">{`${site.codeinjection_styles}`}</style>
+		<style type="text/css">{`${site.codeinjection_head}`}</style> -->
+		<title>{site.title}</title>
+	</head>
+	<body class={bodyClass}>
+		<div class="simply-viewport flexColumnTop">
+			<Header site={site} hasDropDown={hasDropDown} />
+
+			<main class="simply-main relative min-h-lg"><slot /></main>
+
+			{footer &&
+				//<Footer site={site} isPost={isPost}/>
+				<FooterDark site={site}/>
+				//<FooterNotMenu site={site} isPost={false}/>
+			}
+
+		</div>
+		<div class="loadingBar top-0 fixed right-0 left-0 hidden"></div>
+		<SvgIcons />
+		<script>
+			import "../scripts/menu.js";
+		</script>
+	</body>
+</html>
+<style set:text={`:root {--ghost-accent-color: ${accentColor};}`}></style>

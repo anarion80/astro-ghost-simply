@@ -1,0 +1,42 @@
+.footer {
+  background-color: $footer-bg-color;
+  color: $footer-color;
+
+  --input-color: $footer-color-input;
+  --input-bg: $footer-bg-input-color;
+  --input-border-color: transparent;
+  --placeholder-color: $footer-color-input;
+
+  a:hover:not(.button) {
+    color: #fff;
+  }
+
+  &-bottom {
+    border-top: 1px solid rgba(255, 255, 255 , .1);
+  }
+
+  &-arrow {
+    border: 4px solid transparent;
+    border-left-color: #fff;
+    height: 0;
+    width: 0;
+  }
+}
+
+.simply-form {
+  &.error .message-error,
+  &.success .message-success {
+    display: block;
+  }
+
+
+  &.loanding {
+    .button-content {
+      display: none;
+    }
+
+    .button-loader {
+      display: inline-block;
+    }
+  }
+}

@@ -1,0 +1,36 @@
+---
+import Author from '../Author.astro';
+import IconListen from '../IconListen';
+import { relativeUrl } from '../../utils/relativeUrl';
+export interface Props {
+	post?: any;
+    storyTitle?: string,
+    divClass?: string,
+}
+
+const { post, storyTitle, divClass } = Astro.props;
+const image = post.feature_image ? post.localFeatureImage : null
+---
+<article class="podcast-card flex flex-col md:flex-row w-full relative overflow-hidden mb-12">
+    <header class="podcast-card-header md:ml-4 p-5 order-2">
+        <Author post={post} />
+
+        <h2 class="spc-c-title my-5 text-2xl text-title font-sans"><a href={relativeUrl(post.url)} class="relative z-3">{post.title}</a></h2>
+        <p class="spc-c-excerpt mb-5">{post.excerpt.split(` `).splice(0,30).join(` `)}</p>
+        <a href={relativeUrl(post.url)} class="listen-btn button is-primary relative z-3">
+        <IconListen />
+        <span class="uppercase">Listen</span></a>
+    </header>
+
+    <a href={relativeUrl(post.url)} class="spc-c-img relative w-full md:w-1/3 flex-none bg-gray-200 story-image md:h-auto">
+        {post.feature_image &&
+            <img src={image} alt={post.title} style={{
+                position: `absolute`,
+                height: `100%`,
+                width: `100%`,
+                inset: 0,
+                objectFit: `cover`,
+            }} class="absolute u-image block blur-up lazyloaded rounded-2xl"/>
+        }
+    </a>
+</article>

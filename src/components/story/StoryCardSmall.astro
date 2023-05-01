@@ -1,0 +1,44 @@
+---
+import DateTimeComponent from '../DateTimeComponent.astro';
+import { relativeUrl } from '../../utils/relativeUrl';
+export interface Props {
+	post?: any;
+}
+
+const { post } = Astro.props;
+//console.log(post)
+const internal = `Ghost Post`
+const image = post.feature_image
+
+---
+<div class={`storySmall overflow-hidden flex flex-col relative mb-8 w-full shadow ` + (internal && `godo-tracking`)}
+    data-event-category={internal && `Article`}
+    data-event-action={internal && `Related Posts`}
+    data-event-label={relativeUrl(post.url)}
+    data-event-non-interaction="true">
+
+    {image &&
+            <a href={relativeUrl(post.url)} class="storySmall-img-link">
+                <img src={image} alt={post.title} class="storySmall-img object-cover w-full h-40 blur-up lazyloaded"/>
+            </a>
+    }
+
+    <div class="storySmall-inner p-4 flex flex-col justify-between flex-grow">
+        <div class="storySmall-body">
+            {post.feature_image ?
+                <h2 class="text-22 lineClamp-2 text-title mb-2 leading-tight"><a href={relativeUrl(post.url)}>{post.title}</a></h2>
+                :
+                <>
+                    <h2 class="text-22 text-title leading-tight">
+                        <a href={relativeUrl(post.url)}>{post.title}</a>
+                    </h2>
+                    <p class="pt-4 mb-2">{post.excerpt && post.excerpt.split(` `).splice(0,20).join(` `)}</p>
+                </>
+            }
+        </div>
+
+        <DateTimeComponent post={post} />
+    </div>
+
+    <a href={relativeUrl(post.url)} class="absolute inset-0 z-3" aria-label={post.title}></a>
+</div>

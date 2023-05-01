@@ -1,5 +1,5 @@
 {
-  "name": "certain-chroma",
+  "name": "astro-ghost-simply",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -10,9 +10,20 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^2.3.2",
+    "@astrojs/image": "^0.16.6",
     "@astrojs/mdx": "^0.19.0",
+    "@astrojs/react": "^2.1.1",
     "@astrojs/rss": "^2.4.0",
-    "@astrojs/sitemap": "^1.2.2"
+    "@astrojs/sitemap": "^1.2.2",
+    "@fontsource/inter": "^4.5.15",
+    "@fontsource/pt-serif": "^4.5.11",
+    "@tryghost/content-api": "^1.11.9",
+    "@tryghost/helpers": "^1.1.78",
+    "astro": "^2.3.2",
+    "fuzzysort": "^2.0.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-medium-image-zoom": "^5.1.5",
+    "sharp": "^0.31.3"
   }
 }

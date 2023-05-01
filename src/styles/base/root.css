@@ -1,0 +1,143 @@
+/* Root
+/* ---------------------------------------------------------- */
+
+:root {
+  --ghost-accent-color: $primary-color;
+  --color-primary: var(--ghost-accent-color);
+  --blank: #fff;
+
+  /* Global Color */
+  --bg-base: #fff;
+  --text-base: $primary-text-color;
+
+  /* Header */
+  --header-text-link: $primary-text-color;
+  --header-bg: #fff;
+
+  /* story */
+  --story-small-bg: #fff;
+  --card-bg: #fff;
+
+  /* Drop Down */
+  --dropdown-text: $primary-text-color;
+  --dropdown-bg: #fff;
+
+  /* title */
+  --title-color: $gray-900;
+
+  /* link */
+  --color-link: var(--ghost-accent-color);
+
+  --border-color: #e2ecec;
+
+  /* gray */
+  --gray-100: $gray-100;
+  --gray-150: $gray-150;
+  --gray-200: $gray-200;
+  --gray-300: $gray-300;
+  --gray-400: $gray-400;
+  --gray-500: $gray-500;
+  --gray-600: $gray-600;
+  --gray-700: $gray-700;
+  --gray-800: $gray-800;
+  --gray-900: $gray-900;
+
+  /* Button */
+  --button-color: #292929;
+  --button-bg: #f2f2f2;
+  --button-hover-color: rgba(0,0,0,.7);
+  --button-hover-bg: #ececec;
+
+  /* Button white */
+  --button-white-color: #191919;
+  --button-white-bg: #fff;
+  --button-white-hover-color: #757575;
+  --button-white-hover-bg: #f9f9f9;
+
+  /* form */
+  --input-color: hsl(0, 0%, 21%);
+  --input-bg: #fff;
+  --input-border-color: #ced4da;
+  --input-hover-border-color: #80bdff;
+  --input-focus-border-color: #80bdff;
+  --placeholder-color: rgba(54, 54, 54, 0.8);
+
+  /* cta */
+  --bg-cta: rgb(255, 255, 255);
+}
+
+/* Dark mode
+/* ---------------------------------------------------------- */
+
+.dark {
+  --blank: #111;
+
+  /* Global */
+  --bg-base: #111;
+  --text-base: #acacac;
+
+  /* Header */
+  --header-text-link: #fff;
+  --header-bg: #000;
+
+  /* story */
+  --story-small-bg: #131212;
+  --card-bg: #131212;
+
+  /* Drop Down */
+  --dropdown-text: #fff;
+  --dropdown-bg: #191b1f;
+
+  /* title */
+  --title-color: hsla(0, 0%, 100%, .9);
+
+  /* Gray */
+  --gray-100: #141414;
+  --gray-150: #141414;
+  --gray-200: #141414;
+  --gray-300: #1b1a1a;
+  --gray-500: #747E86;
+  --gray-600: #A1A1AA;
+  --gray-700: #9e9a9a;
+  --gray-900: hsla(0, 0%, 100%, .9);
+
+  --border-color: #2e2e2e;
+
+  /* Button */
+  --button-color: hsla(0, 0%, 100%, .9);
+  --button-bg: #2b2b2b;
+  --button-hover-color: #fff;
+  --button-hover-bg: #2b2b2b;
+
+  /* BUtton white */
+  --button-white-color: hsla(0, 0%, 100%, .9);
+  --button-white-bg: transparent;
+  --button-white-hover-color: hsla(0, 0%, 100%, .9);
+  --button-white-hover-bg: transparent;
+
+  /* form */
+  --input-color: #fff;
+  --input-bg: rgba(97, 97, 97, .25);
+  --input-border-color: #444;
+  --placeholder-color: #aaa;
+
+  /* cta */
+  --bg-cta: rgb(17 17 17);
+
+  /* Table */
+  table th,
+  table td,
+  table tr:last-child td {
+    border-color: rgb(148 163 184 / 20%);
+  }
+
+  .medium-zoom-overlay {
+    background: rgba(0, 0, 0, 0.5) !important;
+  }
+
+  :not(pre) > code {
+    background: #363f44;
+    color: #a8bcc5;
+  }
+
+}

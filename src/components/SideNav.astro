@@ -1,0 +1,32 @@
+---
+import Navigation from "./Navigation.astro";
+import siteConfig from "../utils/siteConfig";
+import { relativeUrl } from "../utils/relativeUrl";
+const menuDropdown = siteConfig.menuDropdown;
+
+export interface Props {
+	site?: any;
+}
+
+const { site } = Astro.props;
+
+---
+<div class="nav-mob fixed inset-0 pt-16 bg-header h-screen z-10 w-full text-center overflow-y-auto lg:hidden">
+    <div class="nav-mob-wrap absolute inset-0 top-16 pt-5 flex flex-col">
+
+        {/*                 {{#unless @member}}
+        <div class="py-4 flex justify-center md:hidden">
+            <a data-portal="signin" class="button mr-2 is-black text-sm font-medium" href="#">{t(`Log_in`)}</a>
+            <a data-portal="account/plans" class="button is-primary text-sm font-medium" href="#">{t(`Subscribe`)}</a>
+        </div>
+        {{/unless}} */}
+
+        {/* {!-- Light and Dark Mode --} */}
+
+        {/* {!-- Navigation for Mobile --} */}
+        {site.navigation && <div class="py-4 flex-auto"><Navigation site={site} navClass="mainMenu-link godo-tracking hover:text-primary font-medium" mobile={true}/></div>}
+
+        {/* {!-- Social Media - partilas/widget/social-media.hbs --} */}
+        <!-- <SocialMediaWidget site={site} divClass="nav-mob-social-media social-media is-inline py-4" /> -->
+    </div>
+</div>
