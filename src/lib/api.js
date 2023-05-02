@@ -20,6 +20,19 @@ export const getPosts = async ({filter = "", include = "tags,authors", limit = "
     });
 }
 
+export const getPages = async ({ filter = "", include = "tags,authors", limit = "all", order = "published_at DESC" }) => {
+  return await api.pages
+    .browse({
+      limit: limit,
+      include: include,
+      filter: filter,
+      order: order,
+    })
+    .catch(err => {
+      console.error(err);
+    });
+}
+
 export async function getSinglePost(postSlug) {
   return await api.posts
     .read({
