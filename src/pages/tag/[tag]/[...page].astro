@@ -1,0 +1,61 @@
+---
+import type { InferGetStaticPropsType } from 'astro'
+import Layout from '../../../layouts/Layout.astro';
+import StoryGrid from '../../../components/story/StoryGrid.astro';
+import Pagination from '../../../components/Pagination.astro';
+import siteConfig from '../../../utils/siteConfig';
+import MetaData from '../../../components/meta/MetaData.astro';
+import { getPosts, getTags } from '../../../lib/api';
+import { map } from 'astro/zod'
+
+export async function getStaticPaths({paginate}) {
+    const tags = await getTags({filter: 'visibility:public+slug:-hash-portfolio+slug:-hash-podcast+slug:-hash-custom-kusi-doc', include: "tags,authors,count.posts"})
+	const posts = await getPosts({filter: `visibility:public+tag:-hash-portfolio+tag:-hash-podcast+tag:-hash-custom-kusi-doc`});
+
+    return tags.map((tag) => {
+        const filteredPosts = posts.filter((post) => post.primary_tag.slug === tag.slug);
+        return paginate(filteredPosts, {
+            params: { tag: tag.slug },
+            props: { tag },
+            pageSize: siteConfig.postsPerPage
+        });
+    });
+}
+
+export type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { page, tag } = Astro.props;
+const params = Astro.params;
+
+---
+<!-- <MetaData location={Astro.url.pathname} /> -->
+<Layout footer={true} isPost={false} bodyClass="is-tag">
+    <>
+        <section class="tag py-12 md:py-vw6 bg-gray-150">
+            <div class="mx-auto px-4 max-w-1000 text-center">
+                <h1 class="capitalize text-4xl text-title lg:text-5xl">{tag.name}</h1>
+
+                <div class="text-center font-medium mt-8">
+                    <a class="hover:text-primary" href={siteConfig.siteUrl}>Home</a>
+                    <svg class="icon h-3 w-3"><use xlink:href="#icon-arrow-forward"></use></svg>
+                    <span class="text-gray-500">{`Posts_Tagged '${tag.name}'`}</span>
+                </div>
+
+                {tag.description && <p class="text-xl mt-5 font-serif max-w-xl mx-auto">{tag.description}</p>}
+            </div>
+        </section>
+        <div class="site-post feed-entry-content py-12 px-4">
+            <div class="mx-auto max-w-1100 feed-entry-wrap">
+                <div class="row">
+                    {page.data.map((item) => {
+                        return <div class="col s12 m6 l4">
+                            <StoryGrid post={item} />
+                        </div>
+
+                    })}
+                </div>
+                <Pagination pageContext={page} />
+            </div>
+        </div>
+    </>
+</Layout>
