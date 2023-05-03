@@ -1,6 +1,6 @@
 ---
-import Author from '../Author.astro';
-import { relativeUrl } from '../../utils/relativeUrl';
+import Author from '@components/Author.astro';
+import { relativeUrl } from '@utils/relativeUrl';
 export interface Props {
 	post?: any;
     storyTitle?: string,
@@ -8,7 +8,7 @@ export interface Props {
 }
 
 const { post, storyTitle, divClass } = Astro.props;
-const image = post.feature_image ? post.localFeatureImage : null
+const image = post.feature_image
 ---
 <article class="portfolio-card relative overflow-hidden mb-8 rounded-sm flex items-center justify-center h-90 has-overlay">
     <a href={relativeUrl(post.url)} >

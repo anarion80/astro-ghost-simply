@@ -1,0 +1,31 @@
+---
+import type { InferGetStaticPropsType, GetStaticPaths } from 'astro'
+import Layout from '@layouts/Layout.astro'
+import Post from '@components/Post.astro'
+import { getPosts, getPages, getSettings } from '../../lib/api'
+import { formatDate } from '@utils/dateConvert'
+
+export const getStaticPaths = (async () => {
+	const posts = await getPosts({filter: `visibility:public+tag:hash-portfolio+tag:-hash-podcast+tag:-hash-custom-kusi-doc`});
+
+	return posts.map((post) => ({
+		params: { slug: post.slug },
+		props: { post },
+	}));
+}) satisfies GetStaticPaths;
+
+export type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const {post} = Astro.props as Props;
+
+const prevPost = (await getPosts({filter: `published_at:<='${formatDate(post.published_at)}'+slug:-${post.slug}+tag:hash-portfolio+tag:-hash-podcast+tag:-hash-custom-kusi-doc`, limit: "1", order: "published_at DESC"}))[0]
+const nextPost = (await getPosts({filter: `published_at:>'${formatDate(post.published_at)}'+slug:-${post.slug}+tag:hash-portfolio+tag:-hash-podcast+tag:-hash-custom-kusi-doc`, limit: "1", order: "published_at ASC"}))[0]
+---
+
+<Layout footer={true} bodyClass="is-article" isPost={true}>
+    <Post
+        post={post}
+        nextPost={nextPost}
+        prevPost={prevPost}
+    />
+</Layout>

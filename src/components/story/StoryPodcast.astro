@@ -1,15 +1,15 @@
 ---
-import Author from '../Author.astro';
-import IconListen from '../IconListen';
-import { relativeUrl } from '../../utils/relativeUrl';
+import Author from '@components/Author.astro';
+import IconListen from '@components/IconListen';
+import { relativeUrl } from '@utils/relativeUrl';
 export interface Props {
 	post?: any;
     storyTitle?: string,
     divClass?: string,
 }
 
-const { post, storyTitle, divClass } = Astro.props;
-const image = post.feature_image ? post.localFeatureImage : null
+const { post } = Astro.props;
+const image = post.feature_image
 ---
 <article class="podcast-card flex flex-col md:flex-row w-full relative overflow-hidden mb-12">
     <header class="podcast-card-header md:ml-4 p-5 order-2">
