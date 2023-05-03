@@ -20,7 +20,7 @@ const { post, storyTitle, divClass } = Astro.props;
 
     <a href={relativeUrl(post.url)} class="prev-next-image-link relative w-4/12 bg-gray-200 flex-none border border-gray-100" aria-label={post.title}>
         {post.feature_image &&
-            <img src={post.feature_image} alt={post.title} class="absolute rounded u-image blur-up lazyloaded"/>}
+            <img src={post.feature_image} alt={post.title} class="absolute rounded inset-image blur-up lazyloaded"/>}
     </a>
 
     <div class="prev-next-body pl-6 flex-auto">
