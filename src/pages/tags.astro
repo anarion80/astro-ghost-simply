@@ -1,18 +1,10 @@
 ---
-import Layout from '../layouts/Layout.astro'
-import ArticleHeader from '../components/article/ArticleHeader.astro'
-import ArticleBody from '../components/article/ArticleBody.astro'
-import ArticleFeaturedImage from '../components/article/ArticleFeaturedImage.astro'
-import ArticleRelated from '../components/article/ArticleRelated.astro'
+import Layout from '@layouts/Layout.astro'
 import { getTags } from '../lib/api'
-import { map } from 'astro/zod'
-import { formatDate } from '../utils/dateConvert'
 import { relativeUrl } from '../utils/relativeUrl'
 import { useLang, getTranslation } from '../utils/use-lang'
 
-
 const tags = await getTags({filter: 'visibility:public+slug:-hash-portfolio+slug:-hash-podcast+slug:-hash-custom-kusi-doc', include: "tags,authors,count.posts"})
-// console.log("🚀 ~ file: tags.astro:13 ~ getStaticPaths ~ tags:", tags)
 const t = getTranslation(useLang())
 ---
 

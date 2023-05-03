@@ -1,18 +1,10 @@
 ---
-import Layout from '../layouts/Layout.astro'
-import ArticleHeader from '../components/article/ArticleHeader.astro'
-import ArticleBody from '../components/article/ArticleBody.astro'
-import ArticleFeaturedImage from '../components/article/ArticleFeaturedImage.astro'
-import ArticleRelated from '../components/article/ArticleRelated.astro'
+import Layout from '@layouts/Layout.astro'
 import { getAuthors } from '../lib/api'
-import { map } from 'astro/zod'
-import { formatDate } from '../utils/dateConvert'
 import { relativeUrl } from '../utils/relativeUrl'
 import { useLang, getTranslation } from '../utils/use-lang'
 
-
 const authors = await getAuthors({})
-console.log("🚀 ~ file: authors.astro:15 ~ authors:", authors)
 const t = getTranslation(useLang())
 ---
 

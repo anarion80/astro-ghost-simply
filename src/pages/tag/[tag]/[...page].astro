@@ -1,12 +1,11 @@
 ---
 import type { InferGetStaticPropsType } from 'astro'
-import Layout from '../../../layouts/Layout.astro';
-import StoryGrid from '../../../components/story/StoryGrid.astro';
-import Pagination from '../../../components/Pagination.astro';
-import siteConfig from '../../../utils/siteConfig';
-import MetaData from '../../../components/meta/MetaData.astro';
+import Layout from '@layouts/Layout.astro';
+import StoryGrid from '@components/story/StoryGrid.astro';
+import Pagination from '@components/Pagination.astro';
+import siteConfig from '@utils/siteConfig';
+import MetaData from '@components/meta/MetaData.astro';
 import { getPosts, getTags } from '../../../lib/api';
-import { map } from 'astro/zod'
 
 export async function getStaticPaths({paginate}) {
     const tags = await getTags({filter: 'visibility:public+slug:-hash-portfolio+slug:-hash-podcast+slug:-hash-custom-kusi-doc', include: "tags,authors,count.posts"})

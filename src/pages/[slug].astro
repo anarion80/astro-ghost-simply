@@ -1,17 +1,13 @@
 ---
-import type { InferGetStaticPropsType } from 'astro'
-import Layout from '../layouts/Layout.astro'
-import ArticleHeader from '../components/article/ArticleHeader.astro'
-import ArticleBody from '../components/article/ArticleBody.astro'
-import ArticleFeaturedImage from '../components/article/ArticleFeaturedImage.astro'
-import ArticleRelated from '../components/article/ArticleRelated.astro'
-import Post from '../components/Post.astro'
-import Page from '../components/Page.astro'
+import type { InferGetStaticPropsType, GetStaticPaths } from 'astro'
+import Layout from '@layouts/Layout.astro'
+import Post from '@components/Post.astro'
+import Page from '@components/Page.astro'
 import { getPosts, getPages, getSettings } from '../lib/api'
 import { map } from 'astro/zod'
 import { formatDate } from '../utils/dateConvert'
 
-export async function getStaticPaths(){
+export const getStaticPaths = (async () => {
 	const [posts, pages, settings] = await Promise.all([getPosts({}), await getPages({}), await getSettings()]);
 	posts.forEach(post => {
 		post.type = "post"; // add a string value to the "type" field
@@ -26,7 +22,7 @@ export async function getStaticPaths(){
 		params: { slug: post.slug },
 		props: { post, posts, settings },
 	}));
-}
+}) satisfies GetStaticPaths;
 
 export type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 

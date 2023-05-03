@@ -1,31 +1,20 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import StoryGrid from '../components/story/StoryGrid.astro';
-import Pagination from '../components/Pagination.astro';
-import siteConfig from '../utils/siteConfig';
-import MetaData from '../components/meta/MetaData.astro';
+import Layout from '@layouts/Layout.astro';
+import StoryGrid from '@components/story/StoryGrid.astro';
+import Pagination from '@components/Pagination.astro';
+import siteConfig from '@utils/siteConfig';
+import MetaData from '@components/meta/MetaData.astro';
 import { getPosts } from '../lib/api';
+import type { GetStaticPaths, InferGetStaticPropsType } from 'astro';
 
-//const posts = await getPosts();
-
-export async function getStaticPaths({paginate}) {
+export const getStaticPaths = (async ({paginate}) => {
 	const posts = await getPosts({filter: 'visibility:public+tag:-hash-portfolio+tag:-hash-podcast+tag:-hash-custom-kusi-doc'});
-
 	return paginate(posts, {pageSize: siteConfig.postsPerPage});
-}
+}) satisfies GetStaticPaths;
 
-export interface Props {
-	page?: any,
-}
+export type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 const { page } = Astro.props;
-console.log("🚀 ~ file: index.astro:22 ~ page:", page)
-
-console.log(Astro.url)
-console.log(Astro.url.pathname)
-console.log(Astro.url.origin)
-
-
 
 ---
 <!-- <MetaData location={Astro.url.pathname} /> -->
