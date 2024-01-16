@@ -1,5 +1,6 @@
 ---
 import Author from '../Author.astro';
+import { Image } from 'astro:assets';
 import { relativeUrl } from '../../utils/relativeUrl';
 export interface Props {
 	post?: any;
@@ -20,7 +21,15 @@ const image = post.feature_image ? post.localFeatureImage : null
     {post.feature_image &&
         <figure class="story-post-media relative overflow-hidden rounded-lg shadow-3xl has-overlay h-56">
             <a href={relativeUrl(post.url)}>
-                <img src={image} alt={post.title} class="story-img absolute image-inset block blur-up lazyload"/>
+                <Image
+                    src={image}
+                    alt={post.title}
+                    class="story-img absolute image-inset block blur-up lazyload"
+                    widths={[300, 600, 1000]}
+                    sizes="auto"
+                    width="630"
+                    height="225"
+                />
                 <span class="story-post-overlay inset-0 bg-primary absolute flex items-center justify-center overlay-toggle">
                     <svg class="icon h-10 w-10 text-white"><use xlink:href="#icon-arrow"></use></svg>
                 </span>

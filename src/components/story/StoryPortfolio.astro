@@ -1,5 +1,6 @@
 ---
 import Author from '@components/Author.astro';
+import { Image } from 'astro:assets';
 import { relativeUrl } from '@utils/relativeUrl';
 export interface Props {
 	post?: any;
@@ -13,13 +14,21 @@ const image = post.feature_image
 <article class="portfolio-card relative overflow-hidden mb-8 rounded-sm flex items-center justify-center h-90 has-overlay">
     <a href={relativeUrl(post.url)} >
         {post.feature_image &&
-            <img src={image} alt={post.title} style={{
-                position: `absolute`,
-                height: `100%`,
-                width: `100%`,
-                inset: 0,
-                objectFit: `cover`,
-            }} class="image-inset"/>
+            <Image
+                src={image}
+                alt={post.title}
+                style={{
+                    position: `absolute`,
+                    height: `100%`,
+                    width: `100%`,
+                    inset: 0,
+                    objectFit: `cover`,
+                }} class="image-inset"
+                widths={[300, 600, 1000]}
+                sizes={`(max-width: 1000px) 400px, 800px`}
+                width="300"
+                height="280"
+            />
         }
 
         <div class="portfolio-card-body relative text-white z-4 text-center px-4 py-16 overlay-toggle">

@@ -1,5 +1,6 @@
 ---
 import Layout from '@layouts/Layout.astro'
+import { Image } from 'astro:assets';
 import { getTags } from '../lib/api'
 import { relativeUrl } from '../utils/relativeUrl'
 import { useLang, getTranslation } from '../utils/use-lang'
@@ -24,10 +25,13 @@ const t = getTranslation(useLang())
                         <>
                             <a href={tag.url}>
 
-                                <img class="inset-image blur-up lazyloaded"
+                                <Image class="inset-image blur-up lazyloaded"
                                     src={tag.feature_image}
-                                    sizes="(max-width: 1000px) 400px, 600px"
-                                    alt="{{name}}"
+                                    widths={[300, 600]}
+                                    sizes={`(max-width: 1000px) 400px, 600px`}
+                                    alt={tag.name}
+                                    width="600"
+                                    height="400"
                                 />
                             </Link>
                             <div class="absolute inset-0 z-2" style={{ background: `linear-gradient(135deg,rgb(6 10 25 / 70%),rgb(5 17 19 / 60%))` }}></div>

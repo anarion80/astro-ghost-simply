@@ -1,5 +1,6 @@
 ---
 import { relativeUrl } from '../../utils/relativeUrl';
+import { Image } from 'astro:assets';
 
 export interface Props {
 	widgetTitle?: string;
@@ -22,7 +23,13 @@ const { widgetTitle, widgetPosts } = Astro.props;
             <a href={relativeUrl(item.node.url)} class="flex">
                 {item.node.feature_image &&
                     <figure class="w-32 h-20 relative overflow-hidden rounded">
-                        <img class="block w-full object-cover object-center inset-0 absolute h-full" src={item.node.feature_image} alt={item.node.title} width="128" height="80"/>
+                        <Image
+                            class="block w-full object-cover object-center inset-0 absolute h-full"
+                            src={item.node.feature_image}
+                            alt={item.node.title}
+                            width="128"
+                            height="80"
+                        />
                         <span class="inset-0 bg-primary absolute flex items-center justify-center overlay-toggle">
                             <svg class="icon h-6 w-6 text-white"><use xlink:href="#icon-arrow"></use></svg>
                         </span>

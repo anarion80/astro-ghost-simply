@@ -14,9 +14,25 @@ const image = article.feature_image
 <figure class={`post-image ` + figureClass}>
     {zoomable ?
         <div>
-            <Image src={image} alt={article.title} class={divClass} img-class={imgClass} fit="cover" width={2000}/>
+            <Image
+                src={image}
+                alt={article.title}
+                class={divClass}
+                img-class={imgClass}
+                width="1200"
+                height="628"
+                widths={[300, 600, 1000, 2000]}
+                sizes={`(max-width: 400px) 300px,(max-width: 730px) 600px, (max-width: 1600px) 100vw`}
+            />
         </div>
         :
-        <Image src={image} alt={article.title} class={divClass} img-class={imgClass} fit="cover" width={2000}/>
+        <Image
+            src={image}
+            alt={article.title}
+            class={divClass}
+            img-class={imgClass}
+            width="1200"
+            height="628"
+        />
     }
 </figure>

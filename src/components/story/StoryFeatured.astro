@@ -1,6 +1,7 @@
 ---
 import DateTimeComponent from '../DateTimeComponent.astro';
 import { relativeUrl } from '../../utils/relativeUrl';
+import { Image } from 'astro:assets';
 export interface Props {
 	post?: any;
 }
@@ -26,13 +27,22 @@ const image = post.feature_image ? post.localFeatureImage : null
         </div>
     </div>
     {post.feature_image &&
-        <img src={image} alt={post.title} class="u-image absolute inset-0" style={{
-            position: `absolute`,
-            height: `100%`,
-            width: `100%`,
-            inset: 0,
-            objectFit: `cover`,
-        }}/>
+        <Image
+            src={image}
+            alt={post.title}
+            class="u-image absolute inset-0"
+            style={{
+                position: `absolute`,
+                height: `100%`,
+                width: `100%`,
+                inset: 0,
+                objectFit: `cover`,
+            }}
+            widths={[300, 600, 1000, 2000]}
+            sizes="auto"
+            width="1200"
+            height="628"
+        />
     }
 
     <div class="u-primaryGradient absolute inset-0 z-2 opacity-70"></div>

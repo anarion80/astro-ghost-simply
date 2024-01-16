@@ -8,4 +8,7 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
 	site: 'http://localhost/',
 	integrations: [react(), sitemap()],
+	image: {
+		remotePatterns: [{ protocol: "https" }],
+	}
 });

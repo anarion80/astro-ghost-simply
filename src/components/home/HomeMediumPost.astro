@@ -1,5 +1,6 @@
 ---
 import Author from '../Author.astro';
+import { Image } from 'astro:assets';
 import { relativeUrl } from '../../utils/relativeUrl';
 
 export interface Props {
@@ -14,7 +15,15 @@ const image = post.feature_image ? post.localFeatureImage : null
     <a href={relativeUrl(post.url)} class="hhp-image" aria-label={post.title}>
         <div class="hhp-img relative h-40 mb-4">
             {post.feature_image &&
-                <img src={image} alt={post.title} class="u-image inset-0 absolute"/>
+                <Image
+                    src={image}
+                    alt={post.title}
+                    class="u-image inset-0 absolute"
+                    widths={[300, 600]}
+                    sizes={`(max-width: 1000px) 600px, 300px`}
+                    width="320"
+                    height="160"
+                />
             }
         </div>
     </a>

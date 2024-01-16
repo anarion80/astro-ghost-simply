@@ -1,5 +1,7 @@
 ---
 import Layout from '@layouts/Layout.astro'
+import { Image } from 'astro:assets';
+import avatarImage from '../../src/images/avatar.png';
 import { getAuthors } from '../lib/api'
 import { relativeUrl } from '../utils/relativeUrl'
 import { useLang, getTranslation } from '../utils/use-lang'
@@ -39,8 +41,24 @@ const t = getTranslation(useLang())
 
                                 <a href={relativeUrl(author.url)}>
                                     {author.profile_image ?
-                                        <img src={author.profile_image} class="author-card-avatar u-image rounded-full w-20 h-20" alt={`Hello, I'm  ` + author.name}/>
-                                        : <img src="/images/avatar.png" class="avatar is-100x100 rounded-full object-cover" alt={`Hello I'm ` + author.name} />
+                                        <Image
+                                            src={author.profile_image}
+                                            class="author-card-avatar u-image rounded-full w-20 h-20"
+                                            alt={`Hello, I'm  ` + author.name}
+                                            widths={[50, 80, 100]}
+                                            sizes={`(max-width: 1000px) 100px, 80px`}
+                                            width="80"
+                                            height="80"
+                                        />
+                                        : <Image
+                                            src={avatarImage}
+                                            class="avatar is-100x100 rounded-full object-cover"
+                                            alt={`Hello I'm ` + author.name}
+                                            widths={[50, 80, 100]}
+                                            sizes={`(max-width: 1000px) 100px, 80px`}
+                                            width="80"
+                                            height="80"
+                                        />
                                     }
                                 </a>
                             </footer>

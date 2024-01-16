@@ -5,11 +5,15 @@ import Pagination from '@components/Pagination.astro';
 import siteConfig from '@utils/siteConfig';
 import MetaData from '@components/meta/MetaData.astro';
 import StoryPodcast from '@components/story/StoryPodcast.astro'
+import { Image } from 'astro:assets';
+import itunesImage from '../../images/icon-itunes.png';
+import pocketcastsImage from '../../images/icon-pocketcasts.png';
+import rssImage from '../../images/icon-rss.png';
 import { getPosts } from '../../lib/api';
 import { resolveUrl } from '@utils/relativeUrl'
 
 export const getStaticPaths = (async ({paginate}) => {
-	const posts = await getPosts({filter: `visibility:public+tag:hash-portfolio+tag:-hash-podcast+tag:-hash-custom-kusi-doc`});
+	const posts = await getPosts({filter: `visibility:public+tag:hash-podcast+tag:-hash-portfolio+tag:-hash-custom-kusi-doc`});
 
     return paginate(posts, {pageSize: siteConfig.postsPerPage});
 }) satisfies GetStaticPaths;
@@ -31,17 +35,17 @@ const { page } = Astro.props;
             <div class="spc-buttons">
 
                 <a href="https://itunes.apple.com/" class="button">
-                    <img src="/images/icon-itunes.png" alt="iTunes Logo" rel="presentation" height={20} style={{ margin: `0 0.5rem 0 0` }}/>
+                    <Image src={itunesImage} alt="iTunes Logo" height="20" height="20" style={{ margin: `0 0.5rem 0 0` }}/>
                     <span>iTunes</span>
                 </a>&nbsp;
 
                 <a href="https://www.pocketcasts.com/" class="button">
-                    <img src="/images/icon-pocketcasts.png" alt="Pocket Casts Logo" rel="presentation" height={20} style={{ margin: `0 0.5rem 0 0` }}/>
+                    <Image src={pocketcastsImage} alt="Pocket Casts Logo" height="20" height="20" style={{ margin: `0 0.5rem 0 0` }}/>
                     <span>Pocket Casts</span>
                 </a>&nbsp;
 
                 <a href="https://anchor.fm/" class="button">
-                    <img src="/images/icon-rss.png" alt="RSS Icon" rel="presentation" height={20} style={{ margin: `0 0.5rem 0 0` }}/>
+                    <Image src={rssImage} alt="RSS Icon" height="20" height="20" style={{ margin: `0 0.5rem 0 0` }}/>
                     <span>RSS</span>
                 </a>
 

@@ -20,13 +20,19 @@ const image = featureImage
     <figure class="story-image relative border border-gray-300 bg-gray-200 block overflow-hidden">
         {featureImage ?
             <a href={url} class="block">
-                <Image src={image} alt={post.title} fit="cover" width={720} height={480} style={{
-                    position: `absolute`,
-                    height: `100%`,
-                    width: `100%`,
-                    inset: 0,
-                    objectFit: `cover`,
-                }} class="story-img absolute u-image block blur-up lazyloaded"/>
+                <Image
+                    src={image}
+                    alt={post.title}
+                    width="720"
+                    height="480"
+                    style={{
+                        position: `absolute`,
+                        height: `100%`,
+                        width: `100%`,
+                        inset: 0,
+                        objectFit: `cover`,
+                    }}
+                    class="story-img absolute u-image block blur-up lazyloaded"/>
             </a>
             :
             <a href={url} class="block" aria-label={post.title}></a>

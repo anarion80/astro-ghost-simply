@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets';
+import avatarImage from '../../src/images/avatar.png';
 import Authors from "./Authors.astro";
 import DateTimeComponent from "./DateTimeComponent.astro";
 import { relativeUrl } from "../utils/relativeUrl";
@@ -20,12 +21,27 @@ const authors = post.authors
                 <li class="hh-author-item realtive">
                     <a
                         class="relative block avatar is-45x45"
-                        href={relativeUrl(author.url)} //TODO to be removed
+                        href={relativeUrl(author.url)} /* TODO to be removed */
                         title={`Go_to_the_profile_of ` + author.name}>
                         {author.profile_image ?
-                            <Image src={author.profile_image} class="object-cover rounded-full" alt={`Go_to_the_profile_of ` + author.name} width={36} height={36} fit="cover"/>
+                            <Image
+                                src={author.profile_image}
+                                class="object-cover rounded-full"
+                                alt={`Go_to_the_profile_of ` + author.name}
+                                widths={[50, 80, 100]}
+                                sizes={`(max-width: 1000px) 80px, 50px`}
+                                width="36"
+                                height="36"
+                            />
                             :
-                            <Image src="/images/avatar.png" class="object-cover rounded-full" alt={`Go_to_the_profile_of ` + author.name} width={36} height={36} fit="cover"/>
+                            <Image src={avatarImage}
+                                class="object-cover rounded-full"
+                                alt={`Go_to_the_profile_of ` + author.name}
+                                widths={[50, 80, 100]}
+                                sizes={`(max-width: 1000px) 80px, 50px`}
+                                width="36"
+                                height="36"
+                            />
                         }
                     </a>
                 </li>

@@ -1,6 +1,7 @@
 ---
 import DateTimeComponent from '../DateTimeComponent.astro';
 import { relativeUrl } from '../../utils/relativeUrl';
+import { Image } from 'astro:assets';
 export interface Props {
 	post?: any;
 }
@@ -19,7 +20,15 @@ const image = post.feature_image
 
     {image &&
             <a href={relativeUrl(post.url)} class="storySmall-img-link">
-                <img src={image} alt={post.title} class="storySmall-img object-cover w-full h-40 blur-up lazyloaded"/>
+                <Image
+                    src={image}
+                    alt={post.title}
+                    class="storySmall-img object-cover w-full h-40 blur-up lazyloaded"
+                    widths={[300, 600]}
+                    sizes={`(max-width: 1000px) 400px, 600px`}
+                    width="350"
+                    height="192"
+                />
             </a>
     }
 

@@ -2,6 +2,7 @@
 import Navigation from "./Navigation.astro";
 import NavigationDropDown from "./NavigationDropDown.astro";
 import { Image } from 'astro:assets';
+import ghostIconImage from '../../src/images/avatar.png';
 import SideNav from "./SideNav.astro";
 import SearchWidget from "./SearchWidget";
 import { relativeUrl } from "../utils/relativeUrl";
@@ -36,18 +37,16 @@ const { site, hasDropDown } = Astro.props;
                     src={site.logo}
                     class="header-logo-img max-h-8 logo-default"
                     alt={site.title}
-                    width={36}
-                    height={36}
-                    fit="cover"
+                    width="115"
+                    height="36"
                 />
             ) : (
                 <Image
-                    src="/images/ghost-icon.png"
+                    src={ghostIconImage}
                     class="header-logo-img max-h-8 logo-default"
                     alt={site.title}
-                    width={36}
-                    height={36}
-                    fit="cover"
+                    width="115"
+                    height="36"
                 />
             )
             }

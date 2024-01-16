@@ -1,5 +1,6 @@
 ---
 import Navigation from "./Navigation.astro";
+import { Image } from 'astro:assets';
 import SocialMediaWidget from "./SocialMediaWidget.astro";
 import siteConfig from "../utils/siteConfig";
 export interface Props {
@@ -18,7 +19,15 @@ const siteUrl = siteConfig.siteUrl
                 <div class="footer-logo leading-none">
                     <a href={siteUrl} class="inline-block">
                         {site.logo ?
-                            <img src={image} class="max-h-8" alt={site.title} />
+                            <Image
+                                src={image}
+                                class="max-h-8"
+                                alt={site.title}
+                                widths={[50, 80, 100]}
+                                sizes={`(max-width: 1000px) 400px, 200px`}
+                                width="190"
+                                height="30"
+                            />
                             :
                             <span class="font-bold text-title text-3xl">{site.title}</span>
                         }
