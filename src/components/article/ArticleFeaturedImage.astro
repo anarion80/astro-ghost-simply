@@ -1,5 +1,5 @@
 ---
-import { Image, Picture } from '@astrojs/image/components';
+import { Image } from 'astro:assets';
 export interface Props {
 	article?: any;
     figureClass?: string,
@@ -14,9 +14,9 @@ const image = article.feature_image
 <figure class={`post-image ` + figureClass}>
     {zoomable ?
         <div>
-            <Image src={image} alt={article.title} class={divClass} img-class={imgClass} fit="cover" width={2000} aspectRatio="16/9"/>
+            <Image src={image} alt={article.title} class={divClass} img-class={imgClass} fit="cover" width={2000}/>
         </div>
         :
-        <Image src={image} alt={article.title} class={divClass} img-class={imgClass} fit="cover" width={2000} aspectRatio="16/9"/>
+        <Image src={image} alt={article.title} class={divClass} img-class={imgClass} fit="cover" width={2000}/>
     }
 </figure>

@@ -72,10 +72,11 @@ const hasDropDown = siteConfig.menuDropdown ? true : false
 
 			<main class="simply-main relative min-h-lg"><slot /></main>
 
-			{footer &&
-				//<Footer site={site} isPost={isPost}/>
+			{
+				footer &&
+				/* <Footer site={site} isPost={isPost}/> */
 				<FooterDark site={site}/>
-				//<FooterNotMenu site={site} isPost={false}/>
+				/* <FooterNotMenu site={site} isPost={false}/> */
 			}
 
 		</div>
