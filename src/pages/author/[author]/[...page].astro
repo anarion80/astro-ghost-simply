@@ -12,7 +12,7 @@ export async function getStaticPaths({paginate}) {
     const authors = await getAuthors({include: "count.posts"})
 	const posts = await getPosts({filter: `visibility:public+tag:-hash-portfolio+tag:-hash-podcast+tag:-hash-custom-kusi-doc`});
 
-    return authors.map((author) => {
+    return authors.flatMap((author) => {
         const filteredPosts = posts.filter((post) => post.primary_author.slug === author.slug);
         return paginate(filteredPosts, {
             params: { author: author.slug },

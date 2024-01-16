@@ -11,7 +11,7 @@ export const getStaticPaths = (async ({paginate}) => {
     const tags = await getTags({filter: 'visibility:public+slug:-hash-portfolio+slug:-hash-podcast+slug:-hash-custom-kusi-doc', include: "tags,authors,count.posts"})
 	const posts = await getPosts({filter: `visibility:public+tag:-hash-portfolio+tag:-hash-podcast+tag:-hash-custom-kusi-doc`});
 
-    return tags.map((tag) => {
+    return tags.flatMap((tag) => {
         const filteredPosts = posts.filter((post) => post.primary_tag.slug === tag.slug);
         return paginate(filteredPosts, {
             params: { tag: tag.slug },
