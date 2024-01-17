@@ -16,7 +16,7 @@ const pathname = new URL(Astro.request.url).pathname;
 ---
 { isSecondary ?
     <nav class="menu-secondary">
-        <ul itemscope item-type="http://www.schema.org/SiteNavigationElement" role="menu">
+        <ul itemscope itemtype="http://www.schema.org/SiteNavigationElement" role="menu">
             {site.secondary_navigation.map((navItem, i) => (
                 <li itemprop="name" role="menuitem" class={ i !== site.secondary_navigation.length - 1 ? `inline-block separator` : `inline-block` } >
                     <a
