@@ -76,9 +76,9 @@ const hasDropDown = siteConfig.menuDropdown ? true : false
 					const lastScrollY = window.scrollY
 
 					if (lastScrollY > 5) {
-						$jsHeader.classList.add('shadow-header', 'header-bg')
+						$jsHeader && $jsHeader.classList.add('shadow-header', 'header-bg')
 					} else {
-						$jsHeader.classList.remove('shadow-header', 'header-bg')
+						$jsHeader && $jsHeader.classList.remove('shadow-header', 'header-bg')
 					}
 
 					if (!hasCover) return
