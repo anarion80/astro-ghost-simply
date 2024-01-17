@@ -11,17 +11,17 @@ export interface Props {
 }
 
 const { site, navClass, isSecondary, mobile } = Astro.props;
+const pathname = new URL(Astro.request.url).pathname;
 
 ---
 { isSecondary ?
     <nav class="menu-secondary">
-        <ul item-scope item-type="http://www.schema.org/SiteNavigationElement" role="menu">
+        <ul itemscope item-type="http://www.schema.org/SiteNavigationElement" role="menu">
             {site.secondary_navigation.map((navItem, i) => (
-                <li item-rop="name" role="menuitem" class={ i !== site.secondary_navigation.length - 1 ? `inline-block separator` : `inline-block` } >
+                <li itemprop="name" role="menuitem" class={ i !== site.secondary_navigation.length - 1 ? `inline-block separator` : `inline-block` } >
                     <a
                         class="godo-tracking hover:text-primary font-medium p-2 inline-block"
                         href={relativeUrl(navItem.url)}
-                        partially-active={true}
                         data-event-category="Footer"
                         data-event-action="Menu"
                         data-event-label={navItem.label}
@@ -48,12 +48,11 @@ const { site, navClass, isSecondary, mobile } = Astro.props;
         :
         (site.navigation.map((navItem, i) => {
             if (navItem.url.match(/^\s?http(s?)/gi)) {
-                return <li item-prop="name" class={ i === 0 ? `ml-0` : `ml-5` } >
+                return <li itemprop="name" class={ i === 0 ? `ml-0` : `ml-5` } >
                     <a
-                        class={navClass}
+                        itemprop="url"
+                        class={pathname === relativeUrl(navItem.url) ? navClass + " active text-primary font-semibold" : navClass}
                         href={relativeUrl(navItem.url)}
-                        active-class="active text-primary font-semibold"
-                        /*partiallyActive={true}*/
                         target="_self"
                         rel="noopener noreferrer"
                         data-event-category="Header"
@@ -63,12 +62,11 @@ const { site, navClass, isSecondary, mobile } = Astro.props;
                     </a>
                 </li>
             } else {
-                return <li item-prop="name" class={ i === 0 ? `ml-0` : `ml-5` } >
+                return <li itemprop="name" class={ i === 0 ? `ml-0` : `ml-5` } >
                     <a
-                        class={navClass}
+                        itemprop="url"
+                        class={pathname === relativeUrl(navItem.url) ? navClass + " active text-primary font-semibold" : navClass}
                         href={relativeUrl(navItem.url)}
-                        active-class="active text-primary font-semibold"
-                        /*partiallyActive={true}*/
                         data-event-category="Header"
                         data-event-action="Menu"
                         data-event-label={navItem.label}
