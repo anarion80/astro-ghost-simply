@@ -1,11 +1,14 @@
 # Astro Starter Ghost with Simply Theme
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/c56f0ee6-d093-4f14-8a30-c998f416ec62/deploy-status)](https://gatsby-ghost-simply.netlify.app)
+
+## :construction: This is still a work in progress :exclamation:
+
+Netlify Status TBD
 
 A starter template to build lightning fast websites with [Ghost](https://ghost.org) (as headless CMS in this case) & [Astro](https://astro.build), using the excellent [Simply Ghost Theme](https://github.com/godofredoninja/simply).
 Rewritten from Handlebars theme to Astro/React.
 
-**Demo:** <https://astro-ghost-simply.netlify.app/>
+**Demo:** TBD
 
 &nbsp;
 
@@ -13,6 +16,22 @@ Rewritten from Handlebars theme to Astro/React.
 &nbsp;
 
 ## 🚀 What is working
+
+- Basic posts
+- Related Articles
+- Social share buttons support for posts
+- Previous and next Post
+- Responsive Video
+  - YouTube
+  - Vimeo
+  - kickstarter
+  - Dailymotion
+- New Ghost cards (GIF, buttons, NFT, callouts, toggles, quotes, products, audio, video, files, headers)
+- Archive (:warning: use internal tags and not `custom_template` field!)
+  - [Authors Page](https://godofredo.ninja/ghost-theme/simply/authors-and-tags-page/#authors-page)
+  - [Tags Page](https://godofredo.ninja/ghost-theme/simply/authors-and-tags-page/#tags-page)
+
+## ❌ What is not yet working
 
 - Light Mode / Dark Mode
 - [Fast search](https://godofredo.ninja/ghost-theme/simply/settings/#search/) functionality
@@ -35,41 +54,26 @@ Rewritten from Handlebars theme to Astro/React.
     - Footer Default
     - Footer Dark
     - Footer Not Menu Secondary
-- Archive (:warning: use internal tags and not `custom_template` field!)
-  - [Authors Page](https://godofredo.ninja/ghost-theme/simply/authors-and-tags-page/#authors-page)
-  - [Tags Page](https://godofredo.ninja/ghost-theme/simply/authors-and-tags-page/#tags-page)
 - Page
   - [Contact](https://godofredo.ninja/ghost-theme/simply/contact-page/) (:warning: use internal tags and not `custom_template` field!)
   - [Kusi Doc](https://godofredo.ninja/ghost-theme/simply/kusi-doc/) for the documentation of your project (:warning: use internal tags and not `custom_template` field!)
   - 404
   - [Podcasts Page](https://godofredo.ninja/ghost-theme/simply/podcasts-page/) (:warning: no need to create the page, just use internal tags on the post)
   - [Portfolio Page](https://godofredo.ninja/ghost-theme/simply/portfolio-page/) (:warning: no need to create the page, just use internal tags on the post)
-- Support for [different Languages](https://godofredo.ninja/ghost-theme/simply/languages)
-- Related Articles
-- Social share buttons support for posts
-- Previous and next Post
 - Hamburger navigation menu
 - Header Transparency
 - Lazy Loading for feature-images (using gatsby-plugin-image)
-- Responsive Video
-  - YouTube
-  - Vimeo
-  - kickstarter
-  - Dailymotion
 - Resize Image Galleries
 - Medium style image zoom
-- [GDPR Cookie Consent and Google/Facebook tracking](https://github.com/andrezimpel/gatsby-plugin-gdpr-cookies)
-- New Ghost cards (GIF, buttons, NFT, callouts, toggles, quotes, products, audio, video, files, headers)
 - Members subscribing via email
-
-## ❌ What is not yet working
-
+- Support for [different Languages](https://godofredo.ninja/ghost-theme/simply/languages)
 - [Logo Light / Dark Mode](https://godofredo.ninja/ghost-theme/simply/settings/#logolightdarkmode)
 - Different Home Page variants and Post formats
   - [AMP](https://github.com/godofredoninja/Hodor-AMP-Ghost) Template
 - Pagination Infinite Scroll - not for static sites
 - Comments
 - All Membership features
+- [GDPR Cookie Consent and Google/Facebook tracking](https://github.com/andrezimpel/gatsby-plugin-gdpr-cookies)
 
 ## ✏ What could be improved
 
@@ -108,15 +112,14 @@ npm run dev
 
 By default, the starter will populate content from a default Ghost install located at <https://gatsby.ghost.io>.
 
-To use your own install, you will need to edit the `.ghost.json` config file with your credentials. Change the `apiUrl` value to the URL of your Ghost site. For Ghost(Pro) customers, this is the Ghost URL ending in `.ghost.io`, and for people using the self-hosted version of Ghost, it's the same URL used to access your site.
+To use your own install, you will need to edit the `.env` config file with your credentials. Change the `GHOST_API_URL` value to the URL of your Ghost site. For Ghost(Pro) customers, this is the Ghost URL ending in `.ghost.io`, and for people using the self-hosted version of Ghost, it's the same URL used to access your site.
 
-Next, update the `contentApiKey` value to a key associated with the Ghost site. A key can be provided by creating an integration within Ghost Admin. Navigate to Integrations and click "Add new integration". Name the integration appropriately and click create.
+Next, update the `GHOST_API_KEY` value to a key associated with the Ghost site. A key can be provided by creating an integration within Ghost Admin. Navigate to Integrations and click "Add new integration". Name the integration appropriately and click create.
 
-```json
-{
-    "apiUrl": "https://gatsby.ghost.io",
-    "contentApiKey": "9cc5c67c358edfdd81455149d0"
-}
+```shell
+GHOST_API_KEY="secret_api_key"
+GHOST_API_URL="https://gatsby.ghost.io"
+
 ```
 
 Finally, configure your desired URL in `siteConfig.js`, so links (e. g. canonical links) are generated correctly. You should also update other values in there needed for menu, social sharing and search.
@@ -196,16 +199,14 @@ You can disable the default Ghost Handlebars Theme front-end by enabling the `Ma
 
 ```bash
 # Run a production build, locally
-gatsby build
+npm run build
 
-# Serve a production build, locally
-gatsby serve
+# Preview a production build, locally
+npm run preview
 ```
-
-Gatsby `develop` uses the `development` config in `.ghost.json` - while Gatsby `build` uses the `production` config.
 
 &nbsp;
 
 ## 📝 Copyright & License
 
-Copyright (c) 2023 anarion80 - Released under the [GPLv3 license](LICENSE).
+Copyright (c) 2023-2024 anarion80 - Released under the [GPLv3 license](LICENSE).
