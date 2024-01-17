@@ -50,15 +50,6 @@ const site = await getSettings();
 
 const accentColor = site.accent_color;
 const hasDropDown = siteConfig.menuDropdown ? true : false
-
-/* to turn the Header transparent when hero picture is used (and back to normal when srolled down) */
-    const scrollEventListener = () => {
-        const lastScrollY = window.scrollY
-        lastScrollY >= 60 ?
-            document.body.closest(`.has-cover`) && document.body.classList.remove(`is-head-transparent`)
-            :
-            document.body.closest(`.has-cover`) && document.body.classList.add(`is-head-transparent`)
-    }
 ---
 
 <!DOCTYPE html>
@@ -75,6 +66,29 @@ const hasDropDown = siteConfig.menuDropdown ? true : false
 	</head>
 	<body class={bodyClass}>
 		<div class="simply-viewport flexColumnTop">
+			<script>
+				/* to turn the Header transparent when hero picture is used (and back to normal when srolled down) */
+				const headerTransparency = () => {
+				const hasCover = document.body.closest('.has-cover')
+				const $jsHeader = document.querySelector('.js-header')
+
+				window.addEventListener('scroll', () => {
+					const lastScrollY = window.scrollY
+
+					if (lastScrollY > 5) {
+						$jsHeader.classList.add('shadow-header', 'header-bg')
+					} else {
+						$jsHeader.classList.remove('shadow-header', 'header-bg')
+					}
+
+					if (!hasCover) return
+
+					lastScrollY >= 20 ? document.body.classList.remove('is-head-transparent') : document.body.classList.add('is-head-transparent')
+				}, { passive: true })
+			}
+
+			headerTransparency()
+			</script>
 			<Header site={site} hasDropDown={hasDropDown} />
 
 			<main class="simply-main relative min-h-lg"><slot /></main>
