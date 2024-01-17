@@ -1,6 +1,5 @@
 # Astro Starter Ghost with Simply Theme
 
-
 ## :construction: This is still a work in progress :exclamation:
 
 Netlify Status TBD
