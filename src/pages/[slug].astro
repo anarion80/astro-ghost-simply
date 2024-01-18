@@ -1,10 +1,13 @@
 ---
 import type { InferGetStaticPropsType, GetStaticPaths } from 'astro'
+import url from 'url'
+import dynamic from "astro:import"
 import Layout from '@layouts/Layout.astro'
 import Post from '@components/Post.astro'
 import Page from '@components/Page.astro'
 import { getPosts, getPages, getSettings } from '../lib/api'
 import { map } from 'astro/zod'
+import { getCustomTemplate } from '@utils/customTemplate'
 import { formatDate } from '../utils/dateConvert'
 
 export const getStaticPaths = (async () => {
@@ -27,8 +30,13 @@ export const getStaticPaths = (async () => {
 export type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 const {post, posts, settings} = Astro.props as Props;
+
 const isPost = post.type === `post`
 let prevPost, nextPost, relatedPosts = {}
+
+const toImport = `/components/${getCustomTemplate(post)}.astro`
+const CustomPage = await dynamic(toImport)
+console.log("🚀 ~ toImport:", toImport)
 
 if (isPost) {
 	prevPost = (await getPosts({filter: `published_at:<='${formatDate(post.published_at)}'+slug:-${post.slug}+tag:-hash-portfolio+tag:-hash-podcast+tag:-hash-custom-kusi-doc`, limit: "1", order: "published_at DESC"}))[0]
@@ -38,17 +46,16 @@ if (isPost) {
 
 ---
 
-<Layout footer={true} bodyClass="is-article" isPost={isPost}>
+<>
 	{
-    	isPost ? (
-    		<Post
-        		post={post}
-        		nextPost={nextPost}
-        		prevPost={prevPost}
-        		relatedPosts={relatedPosts}
-      		/>
-    	) : (
-    		<Page page={post} />
-    	)
+		isPost ? (
+			<CustomPage
+				post={post}
+				nextPost={nextPost}
+				prevPost={prevPost}
+				relatedPosts={relatedPosts}
+			/>
+		) :	<CustomPage page={post} />
+
 	}
-</Layout>
+</>

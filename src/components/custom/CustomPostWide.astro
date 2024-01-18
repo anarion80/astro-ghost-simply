@@ -1,0 +1,20 @@
+---
+import ArticleRelated from "../article/ArticleRelated.astro";
+import Layout from "@layouts/Layout.astro";
+import ArticleFeaturedImage from "@components/article/ArticleFeaturedImage.astro";
+import ArticleHeader from "@components/article/ArticleHeader.astro";
+import ArticleBody from "@components/article/ArticleBody.astro";
+
+const { post, nextPost, prevPost, relatedPosts } = Astro.props;
+
+const tags = post.tags?.map((item) => item.name);
+
+---
+<Layout footer={true} bodyClass="is-article is-article-wide" isPost={true}>
+    <article class="post mb-10 pt-8 lg:pt-10 relative">
+        <ArticleHeader post={post} />
+        { post.feature_image && <ArticleFeaturedImage article={post} figureClass="block mx-auto mt-12 max-w-1000" divClass="mx-auto w-full simply-zoom" zoomable={true} /> }
+        <ArticleBody post={post} nextPost={nextPost} prevPost={prevPost} />
+    </article>
+    {(!tags.includes(`#podcast`) && !tags.includes(`#portfolio`)) && <ArticleRelated relatedPosts={relatedPosts} />}
+</Layout>

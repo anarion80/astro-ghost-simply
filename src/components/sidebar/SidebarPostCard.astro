@@ -17,16 +17,16 @@ const { widgetTitle, widgetPosts } = Astro.props;
         <div class={`sp-small relative ` + (i < widgetPosts.length - 1 ? `mb-5` : ``) + ` has-overlay godo-tracking`}
             data-event-category="Sidebar"
             data-event-action="Post"
-            data-event-label={item.node.url}
+            data-event-label={item.url}
             data-event-non-interaction="true">
             {/* {!-- <div class="sp-n flex-none u-fontSizeLarger u-lineHeight1">0{{@number}}</div> --} */}
-            <a href={relativeUrl(item.node.url)} class="flex">
-                {item.node.feature_image &&
+            <a href={relativeUrl(item.url)} class="flex">
+                {item.feature_image &&
                     <figure class="w-32 h-20 relative overflow-hidden rounded">
                         <Image
                             class="block w-full object-cover object-center inset-0 absolute h-full"
-                            src={item.node.feature_image}
-                            alt={item.node.title}
+                            src={item.feature_image}
+                            alt={item.title}
                             width="128"
                             height="80"
                         />
@@ -37,10 +37,10 @@ const { widgetTitle, widgetPosts } = Astro.props;
                 }
 
                 <div class="pl-4 flex-1 overflow-hidden flex flex-col justify-center">
-                    <h3 class="sp-small-title text-base font-semibold mb-1 leading-tight text-title">{item.node.title}</h3>
+                    <h3 class="sp-small-title text-base font-semibold mb-1 leading-tight text-title">{item.title}</h3>
 
                     <div class="hh-date flex items-center text-gray-500 text-sm">
-                        <time class="datetime capitalize" date-time={item.node.published_at} title={item.node.updated_at && `Updated ` + item.node.updated_at} >{item.node.published_at_pretty}</time>
+                        <time class="datetime capitalize" date-time={item.published_at} title={item.updated_at && `Updated ` + item.updated_at} >{item.published_at_pretty}</time>
                     </div>
                 </div>
             </a>

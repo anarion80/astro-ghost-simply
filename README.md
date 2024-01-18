@@ -20,22 +20,6 @@ Rewritten from Handlebars theme to Astro/React.
 - Related Articles
 - Social share buttons support for posts
 - Previous and next Post
-- Responsive Video
-  - YouTube
-  - Vimeo
-  - kickstarter
-  - Dailymotion
-- New Ghost cards (GIF, buttons, NFT, callouts, toggles, quotes, products, audio, video, files, headers)
-- Archive (:warning: use internal tags and not `custom_template` field!)
-  - [Authors Page](https://godofredo.ninja/ghost-theme/simply/authors-and-tags-page/#authors-page)
-  - [Tags Page](https://godofredo.ninja/ghost-theme/simply/authors-and-tags-page/#tags-page)
-
-## ❌ What is not yet working
-
-- Light Mode / Dark Mode
-- [Fast search](https://godofredo.ninja/ghost-theme/simply/settings/#search/) functionality
-- [Social accounts link](https://godofredo.ninja/ghost-theme/simply/settings/#socialmedia)
-- [PrismJS syntax highlighting](https://prismjs.com/index.html#supported-languages) - basic only
 - Different Home Page variants and Post formats
   - Post Format (:warning: use internal tags and not `custom_template` field!)
     - [Post Default](https://godofredo.ninja/ghost-theme/simply/post-format/#post-default)
@@ -53,6 +37,22 @@ Rewritten from Handlebars theme to Astro/React.
     - Footer Default
     - Footer Dark
     - Footer Not Menu Secondary
+- Responsive Video
+  - YouTube
+  - Vimeo
+  - kickstarter
+  - Dailymotion
+- New Ghost cards (GIF, buttons, NFT, callouts, toggles, quotes, products, audio, video, files, headers)
+- Archive (:warning: use internal tags and not `custom_template` field!)
+  - [Authors Page](https://godofredo.ninja/ghost-theme/simply/authors-and-tags-page/#authors-page)
+  - [Tags Page](https://godofredo.ninja/ghost-theme/simply/authors-and-tags-page/#tags-page)
+
+## ❌ What is not yet working
+
+- Light Mode / Dark Mode
+- [Fast search](https://godofredo.ninja/ghost-theme/simply/settings/#search/) functionality
+- [Social accounts link](https://godofredo.ninja/ghost-theme/simply/settings/#socialmedia)
+- [PrismJS syntax highlighting](https://prismjs.com/index.html#supported-languages) - basic only
 - Page
   - [Contact](https://godofredo.ninja/ghost-theme/simply/contact-page/) (:warning: use internal tags and not `custom_template` field!)
   - [Kusi Doc](https://godofredo.ninja/ghost-theme/simply/kusi-doc/) for the documentation of your project (:warning: use internal tags and not `custom_template` field!)
