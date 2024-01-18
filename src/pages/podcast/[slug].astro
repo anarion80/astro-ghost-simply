@@ -1,10 +1,7 @@
 ---
 import type { InferGetStaticPropsType, GetStaticPaths } from 'astro'
-import Layout from '@layouts/Layout.astro'
 import Post from '@components/Post.astro'
-import Page from '@components/Page.astro'
-import { getPosts, getPages, getSettings } from '../../lib/api'
-import { map } from 'astro/zod'
+import { getPosts } from '../../lib/api'
 import { formatDate } from '@utils/dateConvert'
 
 export const getStaticPaths = (async () => {
@@ -25,10 +22,8 @@ const nextPost = (await getPosts({filter: `published_at:>'${formatDate(post.publ
 
 ---
 
-<Layout footer={true} bodyClass="is-article" isPost={true}>
-    <Post
-        post={post}
-        nextPost={nextPost}
-        prevPost={prevPost}
-    />
-</Layout>
+<Post
+    post={post}
+    nextPost={nextPost}
+    prevPost={prevPost}
+/>
