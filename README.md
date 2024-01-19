@@ -46,6 +46,12 @@ Rewritten from Handlebars theme to Astro/React.
 - Archive (:warning: use internal tags and not `custom_template` field!)
   - [Authors Page](https://godofredo.ninja/ghost-theme/simply/authors-and-tags-page/#authors-page)
   - [Tags Page](https://godofredo.ninja/ghost-theme/simply/authors-and-tags-page/#tags-page)
+- Page
+  - 404
+  - [Podcasts Page](https://godofredo.ninja/ghost-theme/simply/podcasts-page/) (:warning: no need to create the page, just use internal tags on the post)
+  - [Portfolio Page](https://godofredo.ninja/ghost-theme/simply/portfolio-page/) (:warning: no need to create the page, just use internal tags on the post)
+- Hamburger navigation menu
+- Header Transparency
 
 ## ❌ What is not yet working
 
@@ -56,11 +62,6 @@ Rewritten from Handlebars theme to Astro/React.
 - Page
   - [Contact](https://godofredo.ninja/ghost-theme/simply/contact-page/) (:warning: use internal tags and not `custom_template` field!)
   - [Kusi Doc](https://godofredo.ninja/ghost-theme/simply/kusi-doc/) for the documentation of your project (:warning: use internal tags and not `custom_template` field!)
-  - 404
-  - [Podcasts Page](https://godofredo.ninja/ghost-theme/simply/podcasts-page/) (:warning: no need to create the page, just use internal tags on the post)
-  - [Portfolio Page](https://godofredo.ninja/ghost-theme/simply/portfolio-page/) (:warning: no need to create the page, just use internal tags on the post)
-- Hamburger navigation menu
-- Header Transparency
 - Lazy Loading for feature-images (using gatsby-plugin-image)
 - Resize Image Galleries
 - Medium style image zoom
