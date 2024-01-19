@@ -8,7 +8,6 @@ import Layout from "@layouts/Layout.astro";
 const { post, nextPost, prevPost, relatedPosts } = Astro.props;
 
 const tags = post.tags?.map((item) => item.name);
-console.log(post.feature_image)
 ---
 <Layout footer={true} bodyClass="is-article is-article-header-image" isPost={true}>
     <article class="post mb-10 relative">
