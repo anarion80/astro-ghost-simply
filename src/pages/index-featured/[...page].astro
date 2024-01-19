@@ -1,0 +1,55 @@
+---
+import Layout from '@layouts/Layout.astro';
+import Pagination from "@components/Pagination.astro";
+import siteConfig from "@utils/siteConfig";
+import MetaData from "@components/meta/MetaData.astro";
+import { getPosts } from "../../lib/api";
+import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
+import StoryGrid from '@components/story/StoryGrid.astro';
+import StoryFeatured from '@components/story/StoryFeatured.astro';
+import { relativeUrl } from "@utils/relativeUrl";
+
+export const getStaticPaths = (async ({ paginate }) => {
+    const posts = await getPosts({
+    filter:
+        "visibility:public+tag:-hash-portfolio+tag:-hash-podcast+tag:-hash-custom-kusi-doc",
+    });
+    return paginate(posts, { pageSize: siteConfig.postsPerPage });
+}) satisfies GetStaticPaths;
+
+export type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { page } = Astro.props;
+
+---
+
+<!-- <MetaData location={Astro.url.pathname} /> -->
+<Layout isHome={true} footer={true} isPost={false} bodyClass={`is-frontpage has-cover` + (page.currentPage === 1 && ` is-head-transparent`)}>
+
+    {/* {!-- Featured Story --} */}
+    {page.data.filter(item => item.featured).length > 0 && <StoryFeatured post={page.data.filter(item => item.featured)[0]} />}
+
+    <div class="site-post feed-entry-content container mx-auto pt-10">
+        <div class="feed-entry-wrap max-w-1100 mx-auto">
+            <div class="row">
+                {page.data.map((item, i) => {
+                    if (i === 0) {
+                        return <div class="col s12 m6 l12 ss1">
+                            <StoryGrid post={item} />
+                        </div>
+                    } else if (i === 4 || i === 5) {
+                        return <div class="col s12 m6 ss2">
+                            <StoryGrid post={item} />
+                        </div>
+                    } else {
+                        return <div class="col s12 m6 l4">
+                            <StoryGrid post={item} />
+                        </div>
+                    }
+                })}
+
+                <Pagination pageContext={page} />
+            </div>
+        </div>
+    </div>
+</Layout>

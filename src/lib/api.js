@@ -43,6 +43,16 @@ export async function getSinglePost(postSlug) {
     });
 }
 
+export async function getSinglePage(pageSlug) {
+  return await api.pages
+    .read({
+      slug: pageSlug
+    })
+    .catch(err => {
+      console.error(err);
+    });
+}
+
 export const getAuthors = async ({ filter = "", include = "count.posts", limit = "all", order = "slug ASC" }) => {
   return await api.authors
     .browse({

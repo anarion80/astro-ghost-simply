@@ -1,0 +1,50 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Pagination from "@components/Pagination.astro";
+import siteConfig from "@utils/siteConfig";
+import MetaData from "@components/meta/MetaData.astro";
+import { getPosts } from "../../lib/api";
+import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
+import DateTimeComponent from "@components/DateTimeComponent.astro";
+import { relativeUrl } from "@utils/relativeUrl";
+
+export const getStaticPaths = (async ({ paginate }) => {
+const posts = await getPosts({
+	filter:
+		"visibility:public+tag:-hash-portfolio+tag:-hash-podcast+tag:-hash-custom-kusi-doc",
+	});
+	return paginate(posts, { pageSize: siteConfig.postsPerPage });
+}) satisfies GetStaticPaths;
+
+export type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { page } = Astro.props;
+const locale = siteConfig.locale || `en`
+---
+
+<!-- <MetaData location={Astro.url.pathname} /> -->
+<Layout isHome={true} footer={true} isPost={false} bodyClass="is-frontpage">
+	<header class="author-header">
+		<div class="px-4 py-12 md:py-vw6 mx-auto max-w-3xl text-center">
+			<h1 class="text-3xl md:text-4xl text-title">"The_full_archive"</h1>
+			<div class="mt-5 text-lg text-gray-500">{`Total_number_of_posts: ${page.total}`}</div>
+		</div>
+	</header>
+	<div class="site-post feed-entry-content container mx-auto pb-10">
+		<div class="feed-entry-wrap max-w-740 mx-auto">
+
+			{page.data.map(item => (
+				<article class={`archive-post archive-date-` + new Date(item.published_at).toLocaleString(locale, { month: '2-digit' })}>
+					<div class="archive-label text-primary px-6 mt-4 mb-2 text-2xl font-bold capitalize">{new Date(item.published_at).toLocaleString(locale, { month: 'long', year: 'numeric' })}</div>
+					<a class="archive-link px-6 block text-title hover:text-dark hover:bg-amber-300 rounded" href={relativeUrl(item.url)}>
+						<div class="border-t border-gray-200 py-6">
+							<h2 class="archive-title text-xl md:text-2xl font-bold">{item.title}</h2>
+							<DateTimeComponent post={item} dateTimeClass="mt-2 text-gray-500 text-sm" />
+						</div>
+					</a>
+				</article>
+			))}
+			<Pagination pageContext={page} />
+		</div>
+	</div>
+</Layout>

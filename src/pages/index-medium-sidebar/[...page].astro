@@ -1,0 +1,132 @@
+---
+import Layout from '@layouts/Layout.astro';
+import Pagination from "@components/Pagination.astro";
+import siteConfig from "@utils/siteConfig";
+import MetaData from "@components/meta/MetaData.astro";
+import { getPosts } from "../../lib/api";
+import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
+import { Image } from 'astro:assets';
+import DateTimeComponent from '@components/DateTimeComponent.astro';
+import Sidebar from '@components/sidebar/Sidebar.astro';
+import { relativeUrl } from "@utils/relativeUrl";
+
+export const getStaticPaths = (async ({ paginate }) => {
+    const posts = await getPosts({
+    filter:
+        "visibility:public+tag:-hash-portfolio+tag:-hash-podcast+tag:-hash-custom-kusi-doc",
+    });
+    return paginate(posts, { pageSize: siteConfig.postsPerPage });
+}) satisfies GetStaticPaths;
+
+export type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { page } = Astro.props;
+const featuredPosts = await getPosts({filter:"visibility:public+tag:-hash-portfolio+tag:-hash-podcast+tag:-hash-custom-kusi-doc+featured:true", limit: "1"});
+const featuredPost = featuredPosts[0]
+const image = featuredPost.feature_image || undefined
+---
+
+<!-- <MetaData location={Astro.url.pathname} /> -->
+<Layout isHome={true} footer={true} isPost={false} bodyClass="medium-sidebar has-cover is-head-transparent">
+    {featuredPost &&
+        <div class="simply-hero-cover u-primaryGradient overflow-hidden pt-16">
+            <div class="mx-auto container py-12 relative flex justify-between flex-col items-center md:flex-row md:py-vw4 md:px-5">
+                <div class="text-white md:pr-5 flex-none text-center md:text-left md:max-w-md lg:max-w-xl">
+                    <h1 class="text-5xl pt-5 font-serif lg:text-6xl">{featuredPost.title}</h1>
+                    {featuredPost.custom_excerpt &&
+                        <p class="mt-6 text-22">{featuredPost.custom_excerpt}</p>
+                    }
+                    <a class="button is-medium is-primary gh-portal-close mt-12" href={relativeUrl(featuredPost.url)}>`Read_more`</a>
+                </div>
+
+                {featuredPost.feature_image &&
+                <figure class="relative max-w-lg w-full mt-10 hidden md:flex md:mt-0">
+                    <Image
+                        src={image}
+                        alt={featuredPost.title}
+                        class="blur-up lazyloaded object-cover object-center w-full max-h-96 animated bounceIn"
+                        widths={[300, 600, 1000, 2000]}
+                        sizes="auto"
+                        width="512"
+                        height="384"
+                        />
+                </figure>
+
+                }
+            </div>
+        </div>
+    }
+
+    <div class="mx-auto container mt-12 lg:px-5">
+        <div class="row">
+            <div class="col s12 l7 feed-entry-content">
+                <div class="feed-entry-wrap">
+                    {page.data.map(item => (
+                        <article class="mb-12 flex justify-between items-center">
+                            <header class="mr-5 w-full">
+                                <div class="mb-2 flex flex-row items-center">
+                                    <a href={relativeUrl(item.primary_author.url)} title={`Go_to_the_profile_of` + item.primary_author.name}>
+                                        <img
+                                            class="w-5 h-5 object-cover rounded-full"
+                                            src={ item.primary_author.profile_image ? item.primary_author.profile_image : `images/avatar.png`}
+                                            alt={`Go_to_the_profile_of` + item.primary_author.name}
+                                            width="20"
+                                            height="20"
+                                        />
+                                    </a>
+
+                                    <div class="ml-2 text-sm">
+                                        <a href={relativeUrl(item.primary_author.url)} title={`Go_to_the_profile_of` + item.primary_author.name}>{item.primary_author.name}</a>
+                                        {item.primary_tag &&
+                                            <><span className="text-gray-500"> {`in`} </span><a href={relativeUrl(item.primary_tag.url)}>{item.primary_tag.name}</a></>
+                                        }
+                                    </div>
+                                </div>
+
+                                <a href={relativeUrl(item.url)} >
+                                    <h2 class="text-2xl lineClamp-2 text-title leading-tight">{item.title}</h2>
+                                    {item.excerpt && <p class="mt-2 text-gray-500 text-base lineClamp-2">{item.excerpt.split(``).splice(0,150).join(``)}</p>}
+                                </a>
+
+                                {/* {!-- Date Time and reading Time - ./partials/components/datetime.hbs --} */}
+                                <DateTimeComponent post={item} dateTimeClass="mt-3 text-gray-500 text-sm" />
+                            </header>
+
+                            {item.feature_image &&
+                                <a href={relativeUrl(item.url)} class="flex-none" >
+                                    <Image
+                                        src={item.feature_image}
+                                        alt={item.title}
+                                        class="block lazyload h-32 object-cover w-52"
+                                        widths={[400, 750, 960]}
+                                        sizes={`(max-width: 1000px) 400px, 600px`}
+                                        width="208"
+                                        height="128"
+                                        />
+                                </a>
+                            }
+                        </article>
+                    )
+                    )}
+
+                    <Pagination pageContext={page} />
+                </div>
+            </div>
+
+            <div class="col s12 l1"></div>
+
+            {/* {!-- sidebar --} */}
+            <Sidebar posts={page.data.filter(item => item.featured)}/>
+            {/* <aside className="sidebar col s12 l4 flex flex-col flex-1 justify-start mt-12 lg:mt-0">
+                <div className="lg:sticky lg:top-28">
+                    <h3 className="uppercase text-sm mb-4">{t(`Discover_more_of_what_matters_to_you`)}</h3>
+                    <div className="buttons">
+                        {tags.map(item => <Link to={relativeUrl(item.node.url)} key={item.node.id} className="button is-light font-medium text-sm capitalize">{item.node.name}</Link>)}
+                    </div>
+                    <hr />
+                </div>
+
+            </aside> */}
+        </div>
+    </div>
+</Layout>

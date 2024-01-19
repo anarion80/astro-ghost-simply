@@ -15,6 +15,8 @@ export default {
     themeColor: `#15171A`, // Used for Offline Manifest
     fontStrategy: `selfHosted`, // Used for specifying where fonts should come from ('selfHosted' || 'base64' || 'cdn')
 
+    locale: `en`,
+
     menuDropdown: [
         {
             label: `About`,
