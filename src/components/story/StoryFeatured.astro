@@ -7,11 +7,10 @@ export interface Props {
 }
 
 const { post } = Astro.props;
-const internal = post.internal.type === `Ghost Post`
-const image = post.feature_image ? post.localFeatureImage : null
+const image = post.feature_image
 
 ---
-<article class="godo-f-story relative px-4 overflow-hidden py-vw8 bg-dark w-full flex-none">
+<article class="godo-f-story relative px-4 overflow-hidden py-vw8 bg-dark w-full flex-none simply-hero-cover">
     <div class="max-w-1100 mx-auto relative z-3">
         <div class="row">
             <div class="col s12 m10 l8">

@@ -9,9 +9,9 @@ const tags = await getTags({filter: 'visibility:public+slug:-hash-portfolio+slug
 const t = getTranslation(useLang())
 ---
 
-<Layout footer={true} isPost={false} bodyClass="topic">
+<Layout footer={true} isPost={false} bodyClass="topic has-cover is-head-transparent">
     <header style={{ background: `url("/images/bg-setup.svg") bottom no-repeat, linear-gradient(60deg,#2e2ea2,#138395)` }}>
-        <div class="px-4 py-12 mx-auto max-w-3xl text-center text-white md:py-vw6">
+        <div class="px-4 py-12 mx-auto max-w-3xl text-center text-white md:py-vw6 simply-hero-cover">
             <h1 class="capitalize text-4xl lg:text-5xl font-semibold">Tags</h1>
             <div class="mt-8 text-xl">List of all our tags</div>
         </div>
