@@ -1,4 +1,4 @@
-{
+export default {
   "Back": "Orqaga",
   "Newer Posts": "Yangi postlar",
   "of": "dan",
@@ -73,5 +73,9 @@
   "Listen": "Tinglash",
   "Related <span class='text-primary'>Articles</span>": "O'xshash <span class='text-primary'>Maqolalar</span>",
   "Please enter a valid email address!": "Iltimos emailni to'g'ri kiriting!",
-  "<strong>Great!</strong> Check your inbox and click the link to confirm your subscription": "<strong>Ajoyib!</strong> Biz obunani faollashtirish uchun xat yubordik, pochtangizni tekshiring"
+  "<strong>Great!</strong> Check your inbox and click the link to confirm your subscription": "<strong>Ajoyib!</strong> Biz obunani faollashtirish uchun xat yubordik, pochtangizni tekshiring",
+  "All rights reserved.": "All rights reserved.",
+  "List of all our tags": "List of all our tags",
+  "Authors": "Authors",
+  "Our writers": "Our writers"
 }

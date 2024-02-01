@@ -1,4 +1,4 @@
-{
+export default {
   "Back": "Trở lại",
   "Newer Posts": "Các bài mới hơn",
   "of": "của",
@@ -53,5 +53,9 @@
   "Listen": "Nghe",
   "Related <span class='text-success'>Articles</span>": "<span class='text-success'>Các bài viết</span> liên quan",
   "Please enter a valid email address!": "Vui lòng nhập một địa chỉ email hợp lệ!",
-  "<strong>Great!</strong> Check your inbox and click the link to confirm your subscription": "<strong>Thành công!</strong> Kiểm tra hòm thư của bạn và click vào link xác nhận"
+  "<strong>Great!</strong> Check your inbox and click the link to confirm your subscription": "<strong>Thành công!</strong> Kiểm tra hòm thư của bạn và click vào link xác nhận",
+  "All rights reserved.": "All rights reserved.",
+  "List of all our tags": "List of all our tags",
+  "Authors": "Authors",
+  "Our writers": "Our writers"
 }

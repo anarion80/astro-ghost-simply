@@ -1,6 +1,8 @@
 ---
 import { relativeUrl } from '../../utils/relativeUrl';
 import { Image } from 'astro:assets';
+import { getTags } from 'src/lib/api';
+import { t } from "@utils/use-lang";
 
 export interface Props {
 	widgetTitle?: string;
@@ -8,13 +10,14 @@ export interface Props {
 }
 
 const { widgetTitle, widgetPosts } = Astro.props;
+const tags = await getTags({filter: 'visibility:public', limit: "10", order: "postCount DESC"})
 
 ---
 <div class="sidebar-items mb-8 lg:sticky lg:top-32">
     <h3 class="sidebar-title underscore is-center text-lg text-center font-medium text-title"><span>{widgetTitle}</span></h3>
 
     {widgetPosts.map((item, i) => (
-        <div class={`sp-small relative ` + (i < widgetPosts.length - 1 ? `mb-5` : ``) + ` has-overlay godo-tracking`}
+        <div class={`sp-small relative ` + (i < widgetPosts.length - 1 ? `mb-5` : `mb-10`) + ` has-overlay godo-tracking`}
             data-event-category="Sidebar"
             data-event-action="Post"
             data-event-label={item.url}
@@ -47,4 +50,9 @@ const { widgetTitle, widgetPosts } = Astro.props;
         </div>
     ))
     }
+    <h3 class="uppercase text-sm mb-4 is-center text-center">{t(`Discover more of what matters to you`)}</h3>
+    <div class="buttons">
+        {tags.map(item => <a href={relativeUrl(item.url)} class="button is-light font-medium text-sm capitalize">{item.name}</a>)}
+    </div>
+    <hr />
 </div>

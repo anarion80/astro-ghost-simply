@@ -1,13 +1,11 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import { getSinglePage } from "../lib/api";
-import { useLang, getTranslation } from "../utils/use-lang";
+import { t } from "@utils/use-lang";
 
 const page = await getSinglePage("contact");
-const t = getTranslation(useLang());
 
 const errors = { name: "", email: "", message: "" };
-
 
 if (Astro.request.method === "POST") {
     try {
@@ -58,15 +56,15 @@ if (Astro.request.method === "POST") {
 
             <div class="row">
                 <div class="col s12 m6 mb-8">
-                    <input name="name" id="name" placeholder="Name" required />
+                    <input name="name" id="name" placeholder={t(`Name`,`Name`)} required />
                 </div>
                 <div class="col s12 m6 mb-8">
-                    <input name="email" id="email" placeholder="Email Address" required />
+                    <input name="email" id="email" placeholder={t(`Email Address`,`Email Address`)} required />
                     {/* <input name="_replyto" type="email" id="email" placeholder={t(`Email_Address`,`Email Address`)} required />
                     <input type="text" name="_gotcha" style="display:none" />  use this for Formspree */}
                 </div>
 
-                <div class="col s12 mb-8"><textarea id="message" placeholder="Message" required></textarea></div>
+                <div class="col s12 mb-8"><textarea id="message" placeholder={t(`Message`,`Message`)} required></textarea></div>
                 <div class="col s12 mb-8" id="response"></div>
                 <div class="col s12 text-center mb-10"><button type="submit" class="button is-primary">Send</button></div>
             </div>
@@ -77,7 +75,7 @@ if (Astro.request.method === "POST") {
                 <div class="pae-icon">
                     <svg viewBox="0 0 24 24" width="64" height="64" stroke="currentColor" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12" y2="18"></line></svg>
                 </div>
-                <h4 class="pae-title">PHONE</h4>
+                <h4 class="pae-title">{t(`PHONE`,`PHONE`)}</h4>
                 <div class="pae-des">
                     <p>123 456 789</p>
                 </div>
@@ -87,7 +85,7 @@ if (Astro.request.method === "POST") {
                 <div class="pae-icon">
                     <svg viewBox="0 0 24 24" width="64" height="64" stroke="currentColor" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
                 </div>
-                <h4 class="pae-title">ADDRESS</h4>
+                <h4 class="pae-title">{t(`ADDRESS`,`ADDRESS`)}</h4>
                 <div class="pae-des">
                     <p>Beverly Hills 90210</p>
                 </div>
@@ -97,7 +95,7 @@ if (Astro.request.method === "POST") {
                 <div class="pae-icon">
                     <svg viewBox="0 0 24 24" width="64" height="64" stroke="currentColor" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
                 </div>
-                <h4 class="pae-title">EMAIL</h4>
+                <h4 class="pae-title">{t(`EMAIL`,`EMAIL`)}</h4>
                 <div class="pae-des">
                     <p>example@email.com</p>
                 </div>

@@ -1,12 +1,13 @@
 ---
 import SidebarPostCard from './SidebarPostCard.astro';
 import { getPosts } from '../../lib/api';
+import { t } from "@utils/use-lang";
 
 const latestPosts = await getPosts({filter: 'visibility:public+featured:true+tag:-portfolio+tag:-podcast+tag:-custom-kusi-doc', limit: "5"})
 
 ---
 <aside class="sidebar col s12 l4 flex flex-col justify-start mt-12 lg:mt-0">
     <div class="flex flex-col flex-1">
-        <SidebarPostCard widgetTitle="Latest Posts" widgetPosts={latestPosts} />
+        <SidebarPostCard widgetTitle={await t(`Latest Posts`)} widgetPosts={latestPosts} />
     </div>
 </aside>

@@ -9,6 +9,7 @@ import { Image } from 'astro:assets';
 import DateTimeComponent from '@components/DateTimeComponent.astro';
 import Sidebar from '@components/sidebar/Sidebar.astro';
 import { relativeUrl } from "@utils/relativeUrl";
+import { t } from "@utils/use-lang";
 
 export const getStaticPaths = (async ({ paginate }) => {
     const posts = await getPosts({
@@ -36,7 +37,7 @@ const image = featuredPost.feature_image || undefined
                     {featuredPost.custom_excerpt &&
                         <p class="mt-6 text-22">{featuredPost.custom_excerpt}</p>
                     }
-                    <a class="button is-medium is-primary gh-portal-close mt-12" href={relativeUrl(featuredPost.url)}>`Read_more`</a>
+                    <a class="button is-medium is-primary gh-portal-close mt-12" href={relativeUrl(featuredPost.url)}>{t(`Read more`)}</a>
                 </div>
 
                 {featuredPost.feature_image &&
@@ -65,20 +66,20 @@ const image = featuredPost.feature_image || undefined
                         <article class="mb-12 flex justify-between items-center">
                             <header class="mr-5 w-full">
                                 <div class="mb-2 flex flex-row items-center">
-                                    <a href={relativeUrl(item.primary_author.url)} title={`Go_to_the_profile_of` + item.primary_author.name}>
+                                    <a href={relativeUrl(item.primary_author.url)} title={t(`Go to the profile of`) + ' ' + item.primary_author.name}>
                                         <img
                                             class="w-5 h-5 object-cover rounded-full"
                                             src={ item.primary_author.profile_image ? item.primary_author.profile_image : `images/avatar.png`}
-                                            alt={`Go_to_the_profile_of` + item.primary_author.name}
+                                            alt={t(`Go to the profile of`) + item.primary_author.name}
                                             width="20"
                                             height="20"
                                         />
                                     </a>
 
                                     <div class="ml-2 text-sm">
-                                        <a href={relativeUrl(item.primary_author.url)} title={`Go_to_the_profile_of` + item.primary_author.name}>{item.primary_author.name}</a>
+                                        <a href={relativeUrl(item.primary_author.url)} title={t(`Go to the profile of`) + ' ' + item.primary_author.name}>{item.primary_author.name}</a>
                                         {item.primary_tag &&
-                                            <><span className="text-gray-500"> {`in`} </span><a href={relativeUrl(item.primary_tag.url)}>{item.primary_tag.name}</a></>
+                                            <><span className="text-gray-500"> {t(`in`)} </span><a href={relativeUrl(item.primary_tag.url)}>{item.primary_tag.name}</a></>
                                         }
                                     </div>
                                 </div>

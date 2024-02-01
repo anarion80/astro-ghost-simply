@@ -1,5 +1,6 @@
 ---
 import Navigation from "./Navigation.astro";
+import { t } from "@utils/use-lang";
 
 export interface Props {
 	site?: any;
@@ -13,7 +14,7 @@ const { site, isPost } = Astro.props;
         <div class="flex flex-col lg:flex-row justify-between">
             {/* {{!-- Copy Right --}} */}
             <div class="footer-copy text-sm order-3 mt-8 flex-none lg:text-left lg:order-none lg:mt-0">
-                &copy; {new Date().getFullYear()} {site.title}. All rights reserved.<br />
+                &copy; {new Date().getFullYear()} {site.title}. {t(`All rights reserved.`, `All rights reserved.`)}<br />
                 <a href="https://github.com/anarion80/astro-ghost-simply" title="Astro-Ghost-Simply">Created</a> with <a href="https://www.astro.build/" title="Astro"><svg class="icon icon-astro"><use xlink:href="#icon-astro"></use></svg></a><a href="https://reactjs.org/" title="ReactJS"><svg class="icon icon-react"><use xlink:href="#icon-react"></use></svg></a>and <a href="https://godofredo.ninja" title="Developer FullStack.">@GodoFredoNinja</a> styling.
             </div>
 

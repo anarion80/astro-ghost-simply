@@ -1,21 +1,30 @@
 import { getSettings } from "../lib/api"
+const settings = await getSettings()
+const modules = import.meta.glob('../i18n/*.js', { eager: true, import: 'default' })
 
-const useLang = async() => {
-    const settings = await getSettings()
+const languages = {};
 
-    return settings.locale || `en`
+for (const [path, lang] of Object.entries(modules)) {
+    const name = path.split('/').pop().replace(/\.\w+$/, '')
+    languages[name] = lang;
 }
 
-const getTranslation = text => (name, fallback) => {
-    if (text.content[name] === undefined && fallback === null) {
+const useLang = () => {
+    return languages[settings.locale.replace(/-/g, "_")]
+}
+
+const t = (name, fallback) => {
+    const lang = useLang()
+    if (lang[name] === undefined && fallback === null) {
         console.log(`Cannot find ${name} in lang file.`)
     }
 
-    if (text.content[name] === undefined || text.content[name] === null) {
+    if (lang[name] === undefined || lang[name] === null) {
         return fallback
     }
 
-    return text.content[name]
+    return lang[name]
+
 }
 
-export { useLang, getTranslation }
+export { useLang, t }

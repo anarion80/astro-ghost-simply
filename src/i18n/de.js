@@ -1,4 +1,4 @@
-{
+export default {
   "Back": "Zurück",
   "Newer Posts": "Neuere Beiträge",
   "of": "von",
@@ -42,5 +42,9 @@
   "Unfortunately, this page doesn't exist": "Leider existiert diese Seite nicht",
   "Want more stuff like this?": "Möchtest du mehr solcher Inhalte?",
   "Get the best viral stories straight into your inbox!": "Hol dir die besten viralen Geschichten direkt in deinen Posteingang!",
-  "Listen": "Hör mal zu"
+  "Listen": "Hör mal zu",
+  "All rights reserved.": "All rights reserved.",
+  "List of all our tags": "List of all our tags",
+  "Authors": "Authors",
+  "Our writers": "Our writers"
 }

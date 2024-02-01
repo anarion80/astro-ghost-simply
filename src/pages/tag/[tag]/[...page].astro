@@ -6,6 +6,7 @@ import Pagination from '@components/Pagination.astro';
 import siteConfig from '@utils/siteConfig';
 import MetaData from '@components/meta/MetaData.astro';
 import { getPosts, getTags } from '../../../lib/api';
+import { t } from "@utils/use-lang";
 
 export const getStaticPaths = (async ({paginate}) => {
     const tags = await getTags({filter: 'visibility:public+slug:-hash-portfolio+slug:-hash-podcast+slug:-hash-custom-kusi-doc', include: "tags,authors,count.posts"})
@@ -35,9 +36,9 @@ const params = Astro.params;
                 <h1 class="capitalize text-4xl text-title lg:text-5xl">{tag.name}</h1>
 
                 <div class="text-center font-medium mt-8">
-                    <a class="hover:text-primary" href={siteConfig.siteUrl}>Home</a>
+                    <a class="hover:text-primary" href={siteConfig.siteUrl}>{t(`Home`)}</a>
                     <svg class="icon h-3 w-3"><use xlink:href="#icon-arrow-forward"></use></svg>
-                    <span class="text-gray-500">{`Posts_Tagged '${tag.name}'`}</span>
+                    <span class="text-gray-500">{t(`Posts Tagged`)}{': '}{tag.name}</span>
                 </div>
 
                 {tag.description && <p class="text-xl mt-5 font-serif max-w-xl mx-auto">{tag.description}</p>}

@@ -1,4 +1,4 @@
-{
+export default {
   "Back": "Geri",
   "Newer Posts": "En Yeni Gönderiler",
   "of": "arasında",
@@ -77,5 +77,9 @@
   "Related <span class='text-success'>Articles</span>": "Buna Benzer <span class='text-success'>Makaleler</span>",
   "Related <span class='text-primary'>Articles</span>": "Buna Benzer <span class='text-primary'>Makaleler</span>",
   "Please enter a valid email address!": "Lütfen geçerli bir e-posta adresi girin!",
-  "<strong>Great!</strong> Check your inbox and click the link to confirm your subscription": "<strong>Harika!</strong> Gelen kutunuzu kontrol edin ve aboneliğinizi onaylayın"
+  "<strong>Great!</strong> Check your inbox and click the link to confirm your subscription": "<strong>Harika!</strong> Gelen kutunuzu kontrol edin ve aboneliğinizi onaylayın",
+  "All rights reserved.": "All rights reserved.",
+  "List of all our tags": "List of all our tags",
+  "Authors": "Authors",
+  "Our writers": "Our writers"
 }

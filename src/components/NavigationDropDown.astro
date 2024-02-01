@@ -1,7 +1,9 @@
 ---
 import Navigation from "./Navigation.astro";
+import SocialMediaWidget from "./SocialMediaWidget.astro";
 import siteConfig from "../utils/siteConfig";
 import { relativeUrl } from "../utils/relativeUrl";
+import { t } from "@utils/use-lang";
 const menuDropdown = siteConfig.menuDropdown;
 
 export interface Props {
@@ -15,7 +17,7 @@ const { site, hasDropDown } = Astro.props;
 {hasDropDown &&
     <li class={`dropdown is-hoverable ml-5 ` + (!(site.facebook || site.twitter) && `hidden`)}>
         <a href="#" class="mainMenu-link dropdown-trigger hover:text-primary font-medium">
-            <span>More</span>
+            <span>{t(`More`)}</span>
             <svg class="icon is-small transform rotate-90"><use xlink:href="#icon-arrow-forward"></use></svg>
         </a>
         <div class="dropdown-menu whitespace-normal">
@@ -34,7 +36,7 @@ const { site, hasDropDown } = Astro.props;
                     ))}
                 </div>
                 <hr class="dropdown-divider" />
-                <!-- <SocialMediaWidget site={site} divClass="social-media" /> -->
+                <SocialMediaWidget site={site} divClass="social-media" />
             </div>
         </div>
     </li>

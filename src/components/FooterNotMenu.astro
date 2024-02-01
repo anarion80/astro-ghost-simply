@@ -3,6 +3,7 @@ import Navigation from "./Navigation.astro";
 import { Image } from 'astro:assets';
 import SocialMediaWidget from "./SocialMediaWidget.astro";
 import siteConfig from "../utils/siteConfig";
+import { t } from "@utils/use-lang";
 export interface Props {
 	site?: any;
 	isPost?: boolean;
@@ -39,8 +40,8 @@ const siteUrl = siteConfig.siteUrl
             </div>
 
             <div class="footer-copy lg:text-right text-sm">
-                            &copy; {new Date().getFullYear()} {site.title}. All rights reserved.<br />
-                <a href="https://github.com/anarion80/gatsby-ghost-simply" title="Gatsby-Ghost-Simply">Created</a> with <a href="https://www.gatsbyjs.com/" title="Gatsby"><svg class="icon icon-gatsby"><use xlink:href="#icon-gatsby"></use></svg></a><a href="https://reactjs.org/" title="ReactJS"><svg class="icon icon-react"><use xlink:href="#icon-react"></use></svg></a>and <a href="https://godofredo.ninja" title="Developer FullStack.">@GodoFredoNinja</a> styling.
+                            &copy; {new Date().getFullYear()} {site.title}. {t(`All rights reserved.`, `All rights reserved.`)}<br />
+                <a href="https://github.com/anarion80/astro-ghost-simply" title="Astro-Ghost-Simply">Created</a> with <a href="https://www.astro.build/" title="Astro"><svg class="icon icon-astro"><use xlink:href="#icon-astro"></use></svg></a><a href="https://reactjs.org/" title="ReactJS"><svg class="icon icon-react"><use xlink:href="#icon-react"></use></svg></a>and <a href="https://godofredo.ninja" title="Developer FullStack.">@GodoFredoNinja</a> styling.
             </div>
 
         </div>

@@ -2,6 +2,7 @@
 import DateTimeComponent from '../DateTimeComponent.astro';
 import { relativeUrl } from '../../utils/relativeUrl';
 import { Image } from 'astro:assets';
+import { t } from "@utils/use-lang";
 export interface Props {
 	post?: any;
 }
@@ -14,14 +15,14 @@ const image = post.feature_image
     <div class="max-w-1100 mx-auto relative z-3">
         <div class="row">
             <div class="col s12 m10 l8">
-                <p class="mb-4 text-base font-semibold uppercase text-amber-400">Featured_Story</p>
+                <p class="mb-4 text-base font-semibold uppercase text-amber-400">{t(`Featured story`)}</p>
                 <h2 class="relative text-32 md:text-5xl font-semibold leading-tight mb-4">
                     <a href={relativeUrl(post.url)} class="text-white" aria-label={post.title}>{post.title}</a>
                 </h2>
                 <p class="godo-f-story-excerpt mb-5 text-white font-normal lineClamp-2 text-xl">{post.excerpt.split(` `).splice(0,50).join(` `)}</p>
 
                 <DateTimeComponent post={post} dateTimeClass="godo-f-story-date mb-5 text-base text-white opacity-80" />
-                <a href={relativeUrl(post.url)} class="button is-primary font-medium" aria-label={post.title}>Read_post</a>
+                <a href={relativeUrl(post.url)} class="button is-primary font-medium" aria-label={post.title}>{t(`Read post`)}</a>
             </div>
         </div>
     </div>

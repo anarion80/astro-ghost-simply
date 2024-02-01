@@ -2,6 +2,7 @@
 import Navigation from "./Navigation.astro";
 import siteConfig from "../utils/siteConfig";
 import { relativeUrl } from "../utils/relativeUrl";
+import { t } from "@utils/use-lang";
 const menuDropdown = siteConfig.menuDropdown;
 
 export interface Props {
@@ -16,7 +17,7 @@ const { site } = Astro.props;
 
         {/*                 {{#unless @member}}
         <div class="py-4 flex justify-center md:hidden">
-            <a data-portal="signin" class="button mr-2 is-black text-sm font-medium" href="#">{t(`Log_in`)}</a>
+            <a data-portal="signin" class="button mr-2 is-black text-sm font-medium" href="#">{t(`Log in`)}</a>
             <a data-portal="account/plans" class="button is-primary text-sm font-medium" href="#">{t(`Subscribe`)}</a>
         </div>
         {{/unless}} */}

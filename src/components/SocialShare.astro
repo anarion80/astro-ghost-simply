@@ -1,5 +1,6 @@
 ---
 import siteConfig from "../utils/siteConfig";
+import { t } from "@utils/use-lang";
 
 export interface Props {
 	post?: any;
@@ -13,7 +14,7 @@ const url = `${siteConfig.siteUrl}/${post.slug}/`
 
 ---
 <aside class={`post-share flex items-center flex-none ` + (divClass ? divClass : `md:justify-end`)}>
-    <span class="share-label text-gray-500 text-sm mr-2">Share:</span>
+    <span class="share-label text-gray-500 text-sm mr-2">{t(`Share`)}:</span>
     {/*{!-- Share on Twitter --}*/}
     {/*<a href="https://twitter.com/share?text={{encode title}}&amp;url={{url absolute="true"}}"*/}
     {/* <a href={`https://twitter.com/share?text=` + post.title + `&url=` + url} */}
@@ -21,7 +22,7 @@ const url = `${siteConfig.siteUrl}/${post.slug}/`
         target="_blank"
         rel="noopener noreferrer"
         class="godo-tracking text-gray-900 mr-2"
-        aria-label="Share_on Twitter"
+        aria-label={`${t(`Share on`)} Twitter`}
         data-event-category="Article"
         data-event-action="Share"
         data-event-label={trackingName + `- Twitter`}
@@ -33,7 +34,7 @@ const url = `${siteConfig.siteUrl}/${post.slug}/`
         target="_blank"
         rel="noopener noreferrer"
         class="godo-tracking text-gray-900 mr-2"
-        aria-label="Share_on Linkedin"
+        aria-label={`${t(`Share on`)} Linkedin`}
         data-event-category="Article"
         data-event-action="Linkedin"
         data-event-label={trackingName + `- Linkedin`}
@@ -45,7 +46,7 @@ const url = `${siteConfig.siteUrl}/${post.slug}/`
         target="_blank"
         rel="noopener noreferrer"
         class="godo-tracking text-gray-900"
-        aria-label="Share_on Facebook"
+        aria-label={`${t(`Share on`)} Facebook`}
         data-event-category="Article"
         data-event-action="Share"
         data-event-label={trackingName + `- Facebook`}
@@ -57,7 +58,7 @@ const url = `${siteConfig.siteUrl}/${post.slug}/`
         target="_blank"
         rel="noopener noreferrer"
         class="godo-tracking text-gray-900 ml-2 md:hidden"
-        aria-label="Share_on WhatsApp"
+        aria-label={`${t(`Share on`)} WhatsApp`}
         data-event-category="Article"
         data-event-action="Share"
         data-event-label={trackingName + `- WhatsApp`}

@@ -2,6 +2,7 @@
 import Author from '../Author.astro';
 import { Image } from 'astro:assets';
 import { relativeUrl } from '../../utils/relativeUrl';
+import { t } from "@utils/use-lang";
 export interface Props {
 	post?: any;
     storyTitle?: string,
@@ -39,9 +40,7 @@ const image = post.feature_image ? post.localFeatureImage : null
 
     <div class="story-post-body">
         <div class="post-body text-xl mb-5"><p>{post.excerpt}</p></div>
-        <a href={relativeUrl(post.url)} class="link is-hover font-medium">
-            Read more
-            <svg class="icon is-medium"><use xlink:href="#icon-arrow"></use></svg>
+        <a href={relativeUrl(post.url)} class="link is-hover font-medium">{t(`Read more`)}<svg class="icon is-medium"><use xlink:href="#icon-arrow"></use></svg>
         </a>
     </div>
 </article>

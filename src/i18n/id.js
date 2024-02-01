@@ -1,4 +1,4 @@
-{
+export default {
   "Back": "Kembali",
   "Newer Posts": "Postingan Baru",
   "of": "dari",
@@ -53,5 +53,9 @@
   "Listen": "Dengarkan",
   "Related <span class='text-success'>Articles</span>": "Artikel <span class='text-success'>Terkait</span>",
   "Please enter a valid email address!": "Silahkan isi alamat email!",
-  "<strong>Great!</strong> Check your inbox and click the link to confirm your subscription": "<strong>Bagus!</strong> Periksa kotak masuk Anda dan klik tautan untuk mengonfirmasi langganan Anda"
+  "<strong>Great!</strong> Check your inbox and click the link to confirm your subscription": "<strong>Bagus!</strong> Periksa kotak masuk Anda dan klik tautan untuk mengonfirmasi langganan Anda",
+  "All rights reserved.": "All rights reserved.",
+  "List of all our tags": "List of all our tags",
+  "Authors": "Authors",
+  "Our writers": "Our writers"
 }

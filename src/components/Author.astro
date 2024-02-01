@@ -4,6 +4,7 @@ import avatarImage from '../../src/images/avatar.png';
 import Authors from "./Authors.astro";
 import DateTimeComponent from "./DateTimeComponent.astro";
 import { relativeUrl } from "../utils/relativeUrl";
+import { t } from "@utils/use-lang";
 
 export interface Props {
 	post?: any;
@@ -22,12 +23,12 @@ const authors = post.authors
                     <a
                         class="relative block avatar is-45x45"
                         href={relativeUrl(author.url)} /* TODO to be removed */
-                        title={`Go_to_the_profile_of ` + author.name}>
+                        title={t(`Go to the profile of`) + ' ' + author.name}>
                         {author.profile_image ?
                             <Image
                                 src={author.profile_image}
                                 class="object-cover rounded-full"
-                                alt={`Go_to_the_profile_of ` + author.name}
+                                alt={t(`Go to the profile of`) + ' ' + author.name}
                                 widths={[50, 80, 100]}
                                 sizes={`(max-width: 1000px) 80px, 50px`}
                                 width="36"
@@ -36,7 +37,7 @@ const authors = post.authors
                             :
                             <Image src={avatarImage}
                                 class="object-cover rounded-full"
-                                alt={`Go_to_the_profile_of ` + author.name}
+                                alt={t(`Go to the profile of`) + ' ' + author.name}
                                 widths={[50, 80, 100]}
                                 sizes={`(max-width: 1000px) 80px, 50px`}
                                 width="36"

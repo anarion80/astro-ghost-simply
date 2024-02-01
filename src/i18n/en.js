@@ -1,4 +1,4 @@
-{
+export default {
   "Back": "Back",
   "Newer Posts": "Newer Posts",
   "of": "of",
@@ -86,5 +86,9 @@
   "EMAIL": "EMAIL",
   "View Project": "View Project",
   "All": "All",
-  "Discover more of what matters to you": "Discover more of what matters to you"
+  "Discover more of what matters to you": "Discover more of what matters to you",
+  "All rights reserved.": "All rights reserved.",
+  "List of all our tags": "List of all our tags",
+  "Authors": "Authors",
+  "Our writers": "Our writers"
 }

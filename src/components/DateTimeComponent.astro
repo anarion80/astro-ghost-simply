@@ -1,5 +1,6 @@
 ---
 import { readingTime as readingTimeHelper } from '@tryghost/helpers';
+import { t } from "@utils/use-lang";
 
 export interface Props {
 	post?: any;
@@ -7,15 +8,15 @@ export interface Props {
 }
 
 const { post, dateTimeClass } = Astro.props;
-//console.log(post)
+
 const readingTime = readingTimeHelper(post, {
-        minute: `1 min read`,
-        minutes: `% min read`,
+        minute: await t(`1 min read`),
+        minutes: await t(`% min read`),
     })
 
 ---
 <div class={`hh-date flex items-center ` + (dateTimeClass ? dateTimeClass : `text-gray-500 text-sm`)}>
-    <time class="datetime capitalize" datetime={post.published_at} title={post.updated_at && `Updated` + post.updated_at} >{new Date(post.published_at).toLocaleDateString()}</time>
+    <time class="datetime capitalize" datetime={post.published_at} title={post.updated_at && t(`Updated`) + post.updated_at} >{new Date(post.published_at).toLocaleDateString()}</time>
     <span class="bull mx-1">·</span>
     <span class="readingTime cursor-default" title={readingTime}>{readingTime}</span>
     {post.featured && <svg class="icon icon--star is-small p-1"><use xlink:href="#icon-star"></use></svg>}

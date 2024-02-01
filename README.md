@@ -53,6 +53,7 @@ Rewritten from Handlebars theme to Astro/React.
   - [Portfolio Page](https://godofredo.ninja/ghost-theme/simply/portfolio-page/) (:warning: no need to create the page, just use internal tags on the post)
 - Hamburger navigation menu
 - Header Transparency
+- Support for [different Languages](https://godofredo.ninja/ghost-theme/simply/languages)
 
 ## ❌ What is not yet working
 
@@ -66,7 +67,6 @@ Rewritten from Handlebars theme to Astro/React.
 - Resize Image Galleries
 - Medium style image zoom
 - Members subscribing via email
-- Support for [different Languages](https://godofredo.ninja/ghost-theme/simply/languages)
 - [Logo Light / Dark Mode](https://godofredo.ninja/ghost-theme/simply/settings/#logolightdarkmode)
 - Different Home Page variants and Post formats
   - [AMP](https://github.com/godofredoninja/Hodor-AMP-Ghost) Template

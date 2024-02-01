@@ -1,4 +1,4 @@
-{
+export default {
   "Back": "Назад",
   "Newer Posts": "Новые посты",
   "of": "из",
@@ -52,5 +52,9 @@
   "Search new term": "Поиск",
   "Close search": "Закрыть поиск",
   "No results found": "Ничего не найдено",
-  "GO TOP": "Вверх"
+  "GO TOP": "Вверх",
+  "All rights reserved.": "All rights reserved.",
+  "List of all our tags": "List of all our tags",
+  "Authors": "Authors",
+  "Our writers": "Our writers"
 }

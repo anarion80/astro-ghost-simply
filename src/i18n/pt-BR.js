@@ -1,4 +1,4 @@
-{
+export default {
 	"Back": "Voltar",
 	"Newer Posts": "Artigos recentes",
 	"of": "de",
@@ -52,5 +52,9 @@
 	"Send": "Enviar",
 	"Listen": "Escutar",
 	"Related <span class='text-success'>Articles</span>": "Artigos <span class='text-success'>Relacionados</span>",
-	"<strong>Great!</strong> Check your inbox and click the link to confirm your subscription": "<strong>Obrigado!</strong> Verifique sua caixa de entrada no link para confirmar sua incrição."
+	"<strong>Great!</strong> Check your inbox and click the link to confirm your subscription": "<strong>Obrigado!</strong> Verifique sua caixa de entrada no link para confirmar sua incrição.",
+	"All rights reserved.": "All rights reserved.",
+	"List of all our tags": "List of all our tags",
+	"Authors": "Authors",
+	"Our writers": "Our writers"
 }

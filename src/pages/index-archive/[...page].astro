@@ -7,6 +7,7 @@ import { getPosts } from "../../lib/api";
 import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
 import DateTimeComponent from "@components/DateTimeComponent.astro";
 import { relativeUrl } from "@utils/relativeUrl";
+import { t } from "@utils/use-lang";
 
 export const getStaticPaths = (async ({ paginate }) => {
 const posts = await getPosts({
@@ -26,8 +27,8 @@ const locale = siteConfig.locale || `en`
 <Layout isHome={true} footer={true} isPost={false} bodyClass="is-frontpage">
 	<header class="author-header">
 		<div class="px-4 py-12 md:py-vw6 mx-auto max-w-3xl text-center">
-			<h1 class="text-3xl md:text-4xl text-title">"The_full_archive"</h1>
-			<div class="mt-5 text-lg text-gray-500">{`Total_number_of_posts: ${page.total}`}</div>
+			<h1 class="text-3xl md:text-4xl text-title">{t(`The full archive`)}</h1>
+			<div class="mt-5 text-lg text-gray-500">{t(`Total number of posts`)} {`: ${page.total}`}</div>
 		</div>
 	</header>
 	<div class="site-post feed-entry-content container mx-auto pb-10">

@@ -7,6 +7,7 @@ import MediaCover from '@components/MediaCover.astro';
 import siteConfig from '@utils/siteConfig';
 import MetaData from '@components/meta/MetaData.astro';
 import { getPosts, getAuthors } from '../../../lib/api';
+import { t } from "@utils/use-lang";
 
 export async function getStaticPaths({paginate}) {
     const authors = await getAuthors({include: "count.posts"})
@@ -38,8 +39,8 @@ const params = Astro.params;
             {/*{!-- Author avatar --}*/}
             <figure class="author-avatar animated bounceInDown relative mx-auto">
                 {author.profile_image ?
-                    <imng src={author.profile_image} class="avatar is-100x100 rounded-full object-cover" alt={`Hi_I_m` + author.name} />
-                    : <ime src="/images/avatar.png" class="avatar is-100x100 rounded-full object-cover" alt={`Hi_I_m` + author.name} />
+                    <imng src={author.profile_image} class="avatar is-100x100 rounded-full object-cover" alt={t(`Hi! I'm`) + ' ' +author.name} />
+                    : <ime src="/images/avatar.png" class="avatar is-100x100 rounded-full object-cover" alt={t(`Hi! I'm`) + ' ' + author.name} />
                 }
             </figure>
 

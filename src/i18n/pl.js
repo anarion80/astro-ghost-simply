@@ -1,4 +1,4 @@
-{
+export default {
   "Back": "Wstecz",
   "Newer Posts": "Nowsze Wpisy",
   "of": "z",
@@ -60,7 +60,7 @@
   "Related Articles": "Powiązane Artykuły",
   "Unfortunately, this page doesn't exist": "Niestety, ta strona nie istnieje",
   "Go to the profile of": "Idź do profilu",
-  "Hi I'm": "Cześć, Jestem",
+  "Hi! I'm": "Cześć, Jestem",
   "Go to": "Idź do",
   "Stories": "Wpisy",
   "1 Story": "Wpis",
@@ -90,5 +90,9 @@
   "EMAIL": "Email",
   "View Project": "Zobacz Projekt",
   "All": "Wszystkie",
-  "Discover more of what matters to you": "Odkryj więcej ciekawych tematów"
+  "Discover more of what matters to you": "Odkryj więcej ciekawych tematów",
+  "All rights reserved.": "Wszystkie prawa zastrzeżone.",
+  "List of all our tags": "Lista wszystkich tagów",
+  "Authors": "Autorzy",
+  "Our writers": "Nasi twórcy"
 }
