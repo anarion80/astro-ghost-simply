@@ -84,7 +84,7 @@ const hasDropDown = siteConfig.menuDropdown ? true : false
 					if (!hasCover) return
 
 					lastScrollY >= 20 ? document.body.classList.remove('is-head-transparent') : document.body.classList.add('is-head-transparent')
-				}, { passive: true })
+				})
 			}
 
 			headerTransparency()
