@@ -54,16 +54,16 @@ Rewritten from Handlebars theme to Astro/React.
 - Hamburger navigation menu
 - Header Transparency
 - Support for [different Languages](https://godofredo.ninja/ghost-theme/simply/languages)
+- [Social accounts link](https://godofredo.ninja/ghost-theme/simply/settings/#socialmedia)
+- Lazy Loading for feature-images
 
 ## ❌ What is not yet working
 
 - Light Mode / Dark Mode
 - [Fast search](https://godofredo.ninja/ghost-theme/simply/settings/#search/) functionality
-- [Social accounts link](https://godofredo.ninja/ghost-theme/simply/settings/#socialmedia)
 - [PrismJS syntax highlighting](https://prismjs.com/index.html#supported-languages) - basic only
 - Page
   - [Kusi Doc](https://godofredo.ninja/ghost-theme/simply/kusi-doc/) for the documentation of your project (:warning: use internal tags and not `custom_template` field!)
-- Lazy Loading for feature-images (using gatsby-plugin-image)
 - Resize Image Galleries
 - Medium style image zoom
 - Members subscribing via email
