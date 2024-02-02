@@ -38,7 +38,7 @@ const tags = await getTags({filter: 'visibility:public+slug:-hash-portfolio+slug
                     }
 
                     <header class="relative text-white z-4 text-center w-full px-4 py-16 lg:px-6">
-                        <div class="text-xs uppercase mb-3 opacity-90 tracking-widest font-medium">{tag.count.posts} {tag.count.posts === 0 ? t(`No Stories`) : tag.count.posts === 1 ? t(`1 Story`) : t(`% Stories`)}</div>
+                        <div class="text-xs uppercase mb-3 opacity-90 tracking-widest font-medium">{tag.count.posts} {tag.count.posts === 0 ? t(`No Stories`, `No Stories`) : tag.count.posts === 1 ? t(`1 Story`, `1 Story`) : t(`% Stories`, `% Stories`)}</div>
                         <h2 class="text-2xl capitalize font-semibold tracking-wide"><a href={relativeUrl(tag.url)}>{tag.name}</a></h2>
                     </header>
 
