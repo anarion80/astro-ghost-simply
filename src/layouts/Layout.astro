@@ -108,3 +108,18 @@ const hasDropDown = siteConfig.menuDropdown ? true : false
 	</body>
 </html>
 <style set:text={`:root {--ghost-accent-color: ${accentColor};}`}></style>
+<script>
+	import resizeImageGalleries from '@utils/resizeImageGalleries';
+	import videoResponsive from "@utils/videoResponsive";
+	import toggle from "@utils/toggle";
+	import audio from "@utils/audio";
+	import video from "@utils/video";
+	import beforeAfter from "@utils/before-after"
+
+	videoResponsive(); // responsive, bigger embedded videos from Ghost posts
+	resizeImageGalleries(); // proper sizes of images in galleries in Ghost posts
+	toggle(); // enable toggle for toggle card
+	audio(); // enable audio controls
+	video(); // enable video controls
+	beforeAfter();
+</script>

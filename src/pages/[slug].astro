@@ -60,8 +60,20 @@ if (isPost) {
 	}
 </>
 
-<script src="../utils/mediumZoom.js"></script>
 <script>
-	import mediumZoomImg from '@utils/mediumZoom.js'
+	import mediumZoomImg from '@utils/mediumZoom.js';
+	import Prism from 'prismjs';
+	import 'prismjs/plugins/autoloader/prism-autoloader';
+
+    var prismJsComponents = 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/';
+
+	(prism => {
+	if (typeof prismJsComponents === 'undefined') return
+
+	prism.plugins.autoloader.languages_path = prismJsComponents
+
+	prism.highlightAll()
+	})(Prism)
+
 	mediumZoomImg();
 </script>

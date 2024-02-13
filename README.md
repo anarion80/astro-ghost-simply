@@ -59,13 +59,13 @@ Rewritten from Handlebars theme to Astro/React.
 - Light Mode / Dark Mode
 - Fast search functionality
 - Medium style image zoom
+- Resize Image Galleries
+- [PrismJS syntax highlighting](https://prismjs.com/index.html#supported-languages) - basic only
 
 ## ❌ What is not yet working
 
-- [PrismJS syntax highlighting](https://prismjs.com/index.html#supported-languages) - basic only
 - Page
   - [Kusi Doc](https://godofredo.ninja/ghost-theme/simply/kusi-doc/) for the documentation of your project (:warning: use internal tags and not `custom_template` field!)
-- Resize Image Galleries
 - Members subscribing via email
 - [Logo Light / Dark Mode](https://godofredo.ninja/ghost-theme/simply/settings/#logolightdarkmode)
 - Different Home Page variants and Post formats
