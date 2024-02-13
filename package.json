@@ -22,9 +22,9 @@
     "astro-dynamic-import": "^1.0.2",
     "flexsearch": "^0.7.43",
     "fuzzysort": "^2.0.4",
+    "medium-zoom": "^1.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-medium-image-zoom": "^5.1.10",
     "sharp": "^0.33.2",
     "tiny-slider": "^2.9.4"
   }
