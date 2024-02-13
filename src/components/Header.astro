@@ -4,7 +4,8 @@ import NavigationDropDown from "./NavigationDropDown.astro";
 import { Image } from 'astro:assets';
 import ghostIconImage from '../../src/images/avatar.png';
 import SideNav from "./SideNav.astro";
-import SearchWidget from "./SearchWidget";
+// import SearchBar from "./SearchBar.jsx"
+import SearchWidget from "./SearchWidget.astro";
 import { relativeUrl } from "../utils/relativeUrl";
 import ThemeIcon from "./ThemeIcon.astro";
 
@@ -72,7 +73,7 @@ const { site, hasDropDown } = Astro.props;
                 <ThemeIcon />
 
                 <!-- Toggle Search -->
-                <!-- <SearchWidget /> -->
+                <SearchWidget />
 
                 <!-- Toggle Menu -->
                 <a href="javascript:;" role="button" aria-label="Show Navigation Menu" class="js-menu-toggle menu-burger button is-white relative lg:hidden"><span></span><span></span><span></span></a>

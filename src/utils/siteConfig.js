@@ -165,24 +165,29 @@ export default {
         */
     ],
     searchSettings: {
-        key: `9cc5c67c358edfdd81455149d0`,
-        url: `https://gatsby.ghost.io`,
-        /* This is optional */
-        options: {
-            keys: [`title`, `plaintext`],
-            limit: 10,
+        key: "b65148c547c7646037343029a1",
+        url: "https://ghost.nas.anarion.pl",
+        debug: false,
+        searchOn: 'keyup',
+        loadOn: 'focus',
+        limit: 10,
+        cacheMaxAge: 1800,
+        version: 'v3',
+        inputId: ['search-field'],
+        outputId: ['search-results'],
+        outputChildsType: false,
+        // postsFields: ['title', 'slug', 'html'],
+        postsFields: ['title', 'slug'],
+        postsExtraFields: [],
+        postsFormats: [],
+        indexedFields: ['title', 'slug', 'html'],
+        template: function (post) {
+            return `<a href="/${post.slug}/" class="block py-2 pr-3 pl-10"><svg class="icon icon--search" style="margin-left:-28px"><use xlink:href="#icon-search"></use></svg> ${post.title}</a>`
         },
-        /* This is optional to perform filtering of the ghost api */
-        api: {
-            resource: `posts`,
-            parameters: {
-                limit: `all`,
-                fields: [`title`, `slug`, `plaintext`],
-                filter: ``,
-                include: ``,
-                order: ``,
-                formats: ``,
-            },
-        },
+        emptyTemplate: function () { },
+        customProcessing: function (post) { return post },
+        indexOptions: {},
+        searchOptions: {},
+
     },
 }

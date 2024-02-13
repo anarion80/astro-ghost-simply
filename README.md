@@ -57,10 +57,10 @@ Rewritten from Handlebars theme to Astro/React.
 - [Social accounts link](https://godofredo.ninja/ghost-theme/simply/settings/#socialmedia)
 - Lazy Loading for feature-images
 - Light Mode / Dark Mode
+- Fast search functionality
 
 ## ❌ What is not yet working
 
-- [Fast search](https://godofredo.ninja/ghost-theme/simply/settings/#search/) functionality
 - [PrismJS syntax highlighting](https://prismjs.com/index.html#supported-languages) - basic only
 - Page
   - [Kusi Doc](https://godofredo.ninja/ghost-theme/simply/kusi-doc/) for the documentation of your project (:warning: use internal tags and not `custom_template` field!)
