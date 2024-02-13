@@ -41,7 +41,7 @@ const CustomPage = await dynamic(toImport)
 if (isPost) {
 	prevPost = (await getPosts({filter: `published_at:<='${formatDate(post.published_at)}'+slug:-${post.slug}+tag:-hash-portfolio+tag:-hash-podcast+tag:-hash-custom-kusi-doc`, limit: "1", order: "published_at DESC"}))[0]
 	nextPost = (await getPosts({filter: `published_at:>'${formatDate(post.published_at)}'+slug:-${post.slug}+tag:-hash-portfolio+tag:-hash-podcast+tag:-hash-custom-kusi-doc`, limit: "1", order: "published_at ASC"}))[0]
-	relatedPosts = await getPosts({filter: `slug:-${post.slug}+primary_tag:'${post.primary_tag.slug}'+tag:-hash-portfolio+tag:-hash-podcast+tag:-hash-custom-kusi-doc`, limit: "6", order: "published_at DESC"})
+	relatedPosts = await getPosts({filter: `slug:-${post.slug}+primary_tag:'${post.primary_tag?.slug}'+tag:-hash-portfolio+tag:-hash-podcast+tag:-hash-custom-kusi-doc`, limit: "6", order: "published_at DESC"})
 }
 
 ---
