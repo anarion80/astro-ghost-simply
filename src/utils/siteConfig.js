@@ -15,6 +15,10 @@ export default {
     themeColor: `#15171A`, // Used for Offline Manifest
     fontStrategy: `selfHosted`, // Used for specifying where fonts should come from ('selfHosted' || 'base64' || 'cdn')
 
+    docsPath: `/docs`, // Used to specify a route for the docs. In Ghost, you would create posts with tag "#custom-kusi-docs" and then
+                       // they would be all available under /docs/[slug]
+                       // you will need to also update the folder name in src/pages to match the route
+
     locale: `en`,
 
     menuDropdown: [

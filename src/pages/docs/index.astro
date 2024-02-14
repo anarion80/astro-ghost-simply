@@ -1,0 +1,32 @@
+---
+import Layout from "@layouts/Layout.astro";
+import { relativeUrl, resolveUrl } from "@utils/relativeUrl";
+import { getPosts } from "@lib/api";
+import siteConfig from "@utils/siteConfig";
+
+const posts = await getPosts({filter: `visibility:public+tag:-hash-portfolio+tag:-hash-podcast+tag:hash-custom-kusi-doc`});
+const firstPost = posts[0]
+const path = siteConfig.docsPath
+firstPost.url = resolveUrl(path, firstPost.url)
+---
+<Layout footer={true} isPost={false} bodyClass="is-portfolio">
+    <div class="spc-header simply-hero-cover flex items-center justify-center relative min-h-lg py-24 px-4 overflow-hidden">
+
+        <article class="spc-h-inner max-w-4xl relative flex flex-col text-center z-3 pt-16 text-title text-2xl md:text-3xl animated bounceIn">
+            <h1 class="spc-h-t text-title text-5xl md:text-6xl" >Documentation</h1>
+            <p class="spc-h-e">The docs</p>
+            <p class="spc-des">Beautiful theme for your documentation needs</p>
+            {/* <p class="spc-des" set:html={page.html}></p> */}
+            <div class="spc-buttons">
+
+                <a href={relativeUrl(firstPost.url)} class="button">
+                    <svg class="icon is-stroke"><use xlink:href="#icon-docs"></use></svg>
+                    <span>Start Here</span>
+                </a>&nbsp;
+            </div>
+
+        </article>
+
+        {/* <MediaCover background={page.feature_image} hasGradient={true} altTitle={page.title} /> */}
+    </div>
+</Layout>

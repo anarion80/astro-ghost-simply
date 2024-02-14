@@ -51,6 +51,7 @@ Rewritten from Handlebars theme to Astro/React.
   - [Contact](https://godofredo.ninja/ghost-theme/simply/contact-page/) (:warning: use internal tags and not `custom_template` field!)
   - [Podcasts Page](https://godofredo.ninja/ghost-theme/simply/podcasts-page/) (:warning: no need to create the page, just use internal tags on the post)
   - [Portfolio Page](https://godofredo.ninja/ghost-theme/simply/portfolio-page/) (:warning: no need to create the page, just use internal tags on the post)
+  - [Kusi Doc](https://godofredo.ninja/ghost-theme/simply/kusi-doc/) for the documentation of your project (:warning: use internal tags and not `custom_template` field!)
 - Hamburger navigation menu
 - Header Transparency
 - Support for [different Languages](https://godofredo.ninja/ghost-theme/simply/languages)
@@ -64,8 +65,6 @@ Rewritten from Handlebars theme to Astro/React.
 
 ## ❌ What is not yet working
 
-- Page
-  - [Kusi Doc](https://godofredo.ninja/ghost-theme/simply/kusi-doc/) for the documentation of your project (:warning: use internal tags and not `custom_template` field!)
 - Members subscribing via email
 - [Logo Light / Dark Mode](https://godofredo.ninja/ghost-theme/simply/settings/#logolightdarkmode)
 - Different Home Page variants and Post formats
