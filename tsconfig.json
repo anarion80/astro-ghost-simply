@@ -7,7 +7,10 @@
       "@components/*": ["src/components/*"],
       "@layouts/*": ["src/layouts/*"],
       "@utils/*": ["src/utils/*"],
-      "@scripts/*": ["src/scripts/*"]
+      "@scripts/*": ["src/scripts/*"],
+      "@lib/*": ["src/lib/*"],
+      "@i18n/*": ["src/i18n/*"],
+      "@images/*": ["src/images/*"]
     }
   }
 }
