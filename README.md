@@ -62,6 +62,7 @@ Rewritten from Handlebars theme to Astro/React.
 - Medium style image zoom
 - Resize Image Galleries
 - [PrismJS syntax highlighting](https://prismjs.com/index.html#supported-languages) - basic only
+- [GDPR Cookie Consent](https://github.com/jop-software/astro-cookieconsent)
 
 ## ❌ What is not yet working
 
@@ -72,7 +73,6 @@ Rewritten from Handlebars theme to Astro/React.
 - Pagination Infinite Scroll - not for static sites
 - Comments
 - All Membership features
-- [GDPR Cookie Consent and Google/Facebook tracking](https://github.com/andrezimpel/gatsby-plugin-gdpr-cookies)
 
 ## ✏ What could be improved
 
