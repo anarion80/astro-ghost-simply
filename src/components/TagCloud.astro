@@ -1,5 +1,5 @@
 ---
-import { getTags } from "../lib/api";
+import { getTags } from "@lib/api";
 
 const tags = await getTags({filter: 'visibility:public', limit: "5", order: "postCount DESC"})
 

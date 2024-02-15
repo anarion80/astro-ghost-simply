@@ -3,11 +3,13 @@ import ArticleBody from "../article/ArticleBody.astro";
 import ArticleRelated from "../article/ArticleRelated.astro";
 import Layout from "@layouts/Layout.astro";
 import ArticleHeader from "@components/article/ArticleHeader.astro";
+import MetaData from "@components/meta/MetaData.astro";
 
 const { post, nextPost, prevPost, relatedPosts } = Astro.props;
 
 const tags = post.tags?.map((item) => item.name);
 ---
+<MetaData slot="head" location={Astro.url.pathname} type="article" data={post} />
 <Layout footer={true} bodyClass="is-article" isPost={true}>
     <article class="post mb-10 pt-8 lg:pt-10 relative">
         <ArticleHeader post={post} />

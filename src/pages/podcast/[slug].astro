@@ -1,7 +1,7 @@
 ---
 import type { InferGetStaticPropsType, GetStaticPaths } from 'astro'
 import Post from '@components/Post.astro'
-import { getPosts } from '../../lib/api'
+import { getPosts } from '@lib/api'
 import { formatDate } from '@utils/dateConvert'
 
 export const getStaticPaths = (async () => {

@@ -1,8 +1,8 @@
 ---
 import ImageMeta from './ImageMeta.astro';
 import _ from 'lodash'
-import { getSettings } from '../../lib/api';
-import siteConfig from '../../utils/siteConfig';
+import { getSettings } from '@lib/api';
+import siteConfig from '@utils/siteConfig';
 
 export interface Props {
     data?: any,
@@ -21,7 +21,7 @@ let shareImage = image || data.feature_image || _.get(settings, `cover_image`, n
 shareImage = shareImage ? new URL(siteConfig.siteUrl, shareImage).toString() : null
 
 const desc = description || data.meta_description || data.description || siteConfig.siteDescriptionMeta || settings.description
-const t = `${title || data.meta_title || data.name || data.title} - ${settings.title}`
+const t = `${title || data.meta_title || data.name || data.title || settings.title} - ${settings.title}`
 
 const jsonLd = {
         "@context": `https://schema.org/`,

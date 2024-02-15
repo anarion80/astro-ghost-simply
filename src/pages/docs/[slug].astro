@@ -6,6 +6,7 @@ import type { InferGetStaticPropsType, GetStaticPaths } from 'astro';
 import siteConfig from "@utils/siteConfig";
 import { t } from "@utils/use-lang";
 import { formatDate } from '@utils/dateConvert'
+import MetaData from "@components/meta/MetaData.astro";
 
 export const getStaticPaths = (async () => {
 	const posts = await getPosts({filter: `visibility:public+tag:-hash-portfolio+tag:-hash-podcast+tag:hash-custom-kusi-doc`});
@@ -38,11 +39,7 @@ const linkClass = "menu-link p-2 flex hover:text-primary relative transition-col
 
 ---
 
-<!-- <MetaData
-	data={data}
-	location={location}
-	type="article"
-/> -->
+<MetaData location={Astro.url.pathname}	type="article" title={post.title}/>
 <Layout footer={true} bodyClass="bg-gray-100" isPost={true}>
 	<div class="max-w-extreme mx-auto flex flex-col pb-16 px-4 lg:flex-row">
 		{/* {{!-- Navigating the documentation --}} */}

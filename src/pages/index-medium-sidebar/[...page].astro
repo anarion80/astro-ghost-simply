@@ -3,7 +3,7 @@ import Layout from '@layouts/Layout.astro';
 import Pagination from "@components/Pagination.astro";
 import siteConfig from "@utils/siteConfig";
 import MetaData from "@components/meta/MetaData.astro";
-import { getPosts } from "../../lib/api";
+import { getPosts } from "@lib/api";
 import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
 import { Image } from 'astro:assets';
 import DateTimeComponent from '@components/DateTimeComponent.astro';
@@ -26,8 +26,7 @@ const featuredPosts = await getPosts({filter:"visibility:public+tag:-hash-portfo
 const featuredPost = featuredPosts[0]
 const image = featuredPost.feature_image || undefined
 ---
-
-<!-- <MetaData location={Astro.url.pathname} /> -->
+<MetaData location={Astro.url.pathname} />
 <Layout isHome={true} footer={true} isPost={false} bodyClass="medium-sidebar has-cover is-head-transparent">
     {featuredPost &&
         <div class="simply-hero-cover u-primaryGradient overflow-hidden pt-16">

@@ -4,13 +4,13 @@ import Layout from '@layouts/Layout.astro';
 import Pagination from '@components/Pagination.astro';
 import siteConfig from '@utils/siteConfig';
 import MetaData from '@components/meta/MetaData.astro';
-import StoryPodcast from '@components/story/StoryPodcast.astro'
+import StoryPodcast from '@components/story/StoryPodcast.astro';
 import { Image } from 'astro:assets';
-import itunesImage from '../../images/icon-itunes.png';
-import pocketcastsImage from '../../images/icon-pocketcasts.png';
-import rssImage from '../../images/icon-rss.png';
-import { getPosts } from '../../lib/api';
-import { resolveUrl } from '@utils/relativeUrl'
+import itunesImage from '@images/icon-itunes.png';
+import pocketcastsImage from '@images/icon-pocketcasts.png';
+import rssImage from '@images/icon-rss.png';
+import { getPosts } from '@lib/api';
+import { t } from "@utils/use-lang";
 
 export const getStaticPaths = (async ({paginate}) => {
 	const posts = await getPosts({filter: `visibility:public+tag:hash-podcast+tag:-hash-portfolio+tag:-hash-custom-kusi-doc`});
@@ -23,7 +23,7 @@ export type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 const { page } = Astro.props;
 
 ---
-<!-- <MetaData location={Astro.url.pathname} /> -->
+<MetaData slot="head" location={Astro.url.pathname} title={t(`Podcasts`, `Podcasts`)}/>
 <Layout footer={true} isPost={false} bodyClass="is-podcast has-cover is-head-transparent">
     <div class="spc-header simply-hero-cover flex items-center justify-center relative min-h-lg py-24 px-4 bg-dark overflow-hidden">
 

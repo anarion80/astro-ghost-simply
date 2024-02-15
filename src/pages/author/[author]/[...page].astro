@@ -6,7 +6,7 @@ import Pagination from '@components/Pagination.astro';
 import MediaCover from '@components/MediaCover.astro';
 import siteConfig from '@utils/siteConfig';
 import MetaData from '@components/meta/MetaData.astro';
-import { getPosts, getAuthors } from '../../../lib/api';
+import { getPosts, getAuthors } from '@lib/api';
 import { t } from "@utils/use-lang";
 
 export async function getStaticPaths({paginate}) {
@@ -29,7 +29,7 @@ const { page, author } = Astro.props;
 const params = Astro.params;
 
 ---
-<!-- <MetaData location={Astro.url.pathname} /> -->
+<MetaData location={Astro.url.pathname}	type="author" data={author}/>
 <Layout footer={true} isPost={false} bodyClass="is-author has-cover is-head-transparent">
     <div class="simply-hero-cover author shadow flex items-center justify-center relative min-h-lg py-24 bg-dark">
         {/*{{!-- Featured Media - partials/components/media-cover.hbs --}} */}

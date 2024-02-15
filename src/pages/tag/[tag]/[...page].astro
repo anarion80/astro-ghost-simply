@@ -5,7 +5,7 @@ import StoryGrid from '@components/story/StoryGrid.astro';
 import Pagination from '@components/Pagination.astro';
 import siteConfig from '@utils/siteConfig';
 import MetaData from '@components/meta/MetaData.astro';
-import { getPosts, getTags } from '../../../lib/api';
+import { getPosts, getTags } from '@lib/api';
 import { t } from "@utils/use-lang";
 
 export const getStaticPaths = (async ({paginate}) => {
@@ -28,7 +28,7 @@ const { page, tag } = Astro.props;
 const params = Astro.params;
 
 ---
-<!-- <MetaData location={Astro.url.pathname} /> -->
+<MetaData slot="head" location={Astro.url.pathname} title={tag.name}/>
 <Layout footer={true} isPost={false} bodyClass="is-tag">
     <>
         <section class="tag py-12 md:py-vw6 bg-gray-150">

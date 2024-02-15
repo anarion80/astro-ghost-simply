@@ -55,13 +55,14 @@ const hasDropDown = siteConfig.menuDropdown ? true : false
 <html lang={site.lang}>
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css" />
 		<meta name="generator" content={Astro.generator} />
-		<!-- <style type="text/css">{`${site.codeinjection_styles}`}</style>
-		<style type="text/css">{`${site.codeinjection_head}`}</style> -->
-		<title>{site.title}</title>
+		<meta name="HandheldFriendly" content="True" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<style type="text/css" set:text={site.codeinjection_head}></style>
+		<slot name="head"/>
+
 	</head>
 	<body class={bodyClass}>
 		<div class="simply-viewport flexColumnTop">
@@ -107,6 +108,7 @@ const hasDropDown = siteConfig.menuDropdown ? true : false
 		</script>
 	</body>
 </html>
+<style type="text/css" set:text={site.codeinjection_foot}></style>
 <style set:text={`:root {--ghost-accent-color: ${accentColor};}`}></style>
 <script>
 	import resizeImageGalleries from '@utils/resizeImageGalleries';

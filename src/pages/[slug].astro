@@ -5,10 +5,10 @@ import dynamic from "astro:import"
 import Layout from '@layouts/Layout.astro'
 import Post from '@components/Post.astro'
 import Page from '@components/Page.astro'
-import { getPosts, getPages, getSettings } from '../lib/api'
+import { getPosts, getPages, getSettings } from '@lib/api'
 import { map } from 'astro/zod'
 import { getCustomTemplate } from '@utils/customTemplate'
-import { formatDate } from '../utils/dateConvert'
+import { formatDate } from '@utils/dateConvert'
 
 export const getStaticPaths = (async () => {
 	const [posts, pages, settings] = await Promise.all([getPosts({filter: 'visibility:public+tag:-hash-portfolio+tag:-hash-podcast+tag:-hash-custom-kusi-doc'}), await getPages({}), await getSettings()]);

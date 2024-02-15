@@ -1,7 +1,7 @@
 ---
 import Layout from '@layouts/Layout.astro';
 import MetaData from "@components/meta/MetaData.astro";
-import { getPosts } from "../lib/api";
+import { getPosts } from "@lib/api";
 import MediaCover from '@components/MediaCover.astro';
 import { relativeUrl } from '@utils/relativeUrl';
 import PrimaryTag from '@components/PrimaryTag.astro';
@@ -11,8 +11,7 @@ import Author from '@components/Author.astro';
 const posts = await getPosts({filter: 'visibility:public+tag:-hash-portfolio+tag:-hash-podcast+tag:-hash-custom-kusi-doc', limit: "12"})
 const featuredPosts = await getPosts({filter: 'visibility:public+tag:-hash-portfolio+tag:-hash-podcast+tag:-hash-custom-kusi-doc+featured:true', limit: "3"})
 ---
-
-<!-- <MetaData location={Astro.url.pathname} /> -->
+<MetaData location={Astro.url.pathname} />
 <Layout isHome={true} footer={false} isPost={false} bodyClass="is-photographer has-cover is-head-transparent">
     <script type="module">
 		import { tns } from "../../../node_modules/tiny-slider/src/tiny-slider.js";

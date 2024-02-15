@@ -5,11 +5,13 @@ import Layout from "@layouts/Layout.astro";
 import Author from "@components/Author.astro";
 import PrimaryTag from "@components/PrimaryTag.astro";
 import MediaCover from "@components/MediaCover.astro";
+import MetaData from "@components/meta/MetaData.astro";
 
 const { post, nextPost, prevPost, relatedPosts } = Astro.props;
 
 const tags = post.tags?.map((item) => item.name);
 ---
+<MetaData slot="head" location={Astro.url.pathname} title={post.title}/>
 <Layout footer={true} bodyClass="is-article has-cover is-head-transparent" isPost={true}>
 
     <article class="post mb-10 relative">

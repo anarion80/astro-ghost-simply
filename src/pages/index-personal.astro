@@ -1,14 +1,13 @@
 ---
 import Layout from '@layouts/Layout.astro';
 import MetaData from "@components/meta/MetaData.astro";
-import { getSinglePage } from "../lib/api";
+import { getSinglePage } from "@lib/api";
 import MediaCover from '@components/MediaCover.astro';
 
 const post = await getSinglePage("home-personal");
 const image = post.feature_image || undefined
 ---
-
-<!-- <MetaData location={Astro.url.pathname} /> -->
+<MetaData location={Astro.url.pathname} />
 <Layout isHome={true} footer={false} isPost={false} bodyClass="has-cover is-head-transparent overflow-hidden">
     <article class="simply-hero-cover flex items-center justify-center relative min-h-screen py-24 bg-dark">
         {/* {!-- Featured Media - partials/components/media-cover.hbs --} */}

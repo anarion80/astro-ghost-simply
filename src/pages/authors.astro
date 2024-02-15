@@ -1,14 +1,15 @@
 ---
 import Layout from '@layouts/Layout.astro'
 import { Image } from 'astro:assets';
-import avatarImage from '../../src/images/avatar.png';
-import { getAuthors } from '../lib/api'
-import { relativeUrl } from '../utils/relativeUrl'
+import avatarImage from '@images/avatar.png';
+import { getAuthors } from '@lib/api'
+import { relativeUrl } from '@utils/relativeUrl'
 import { t } from "@utils/use-lang";
+import MetaData from '@components/meta/MetaData.astro';
 
 const authors = await getAuthors({})
 ---
-
+<MetaData slot="head" location={Astro.url.pathname} title={t(`Authors`)}/>
 <Layout footer={true} isPost={false} bodyClass="archive-author bg-gray-150">
     <header class="author-header">
         <div class="px-4 py-12 md:py-vw6 mx-auto max-w-3xl text-center">

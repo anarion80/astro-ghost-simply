@@ -3,7 +3,7 @@ import Layout from '@layouts/Layout.astro';
 import Pagination from "@components/Pagination.astro";
 import siteConfig from "@utils/siteConfig";
 import MetaData from "@components/meta/MetaData.astro";
-import { getPosts } from "../../lib/api";
+import { getPosts } from "@lib/api";
 import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
 import StoryGrid from '@components/story/StoryGrid.astro';
 import Sidebar from '@components/sidebar/Sidebar.astro';
@@ -21,8 +21,7 @@ export type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 const { page } = Astro.props;
 
 ---
-
-<!-- <MetaData location={Astro.url.pathname} /> -->
+<MetaData location={Astro.url.pathname} />
 <Layout isHome={true} isPost={false} footer={true} bodyClass="is-frontpage">
     <div class="container mx-auto px-4 py-16">
         <div class=" max-w-1100 mx-auto">

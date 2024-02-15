@@ -1,13 +1,14 @@
 ---
 import Layout from '@layouts/Layout.astro'
 import { Image } from 'astro:assets';
-import { getTags } from '../lib/api'
-import { relativeUrl } from '../utils/relativeUrl'
+import { getTags } from '@lib/api'
+import { relativeUrl } from '@utils/relativeUrl'
 import { t } from "@utils/use-lang";
+import MetaData from '@components/meta/MetaData.astro';
 
 const tags = await getTags({filter: 'visibility:public+slug:-hash-portfolio+slug:-hash-podcast+slug:-hash-custom-kusi-doc', include: "tags,authors,count.posts"})
 ---
-
+ds
 <Layout footer={true} isPost={false} bodyClass="topic">
     <header style={{ background: `url("/images/bg-setup.svg") bottom no-repeat, linear-gradient(60deg,#2e2ea2,#138395)` }}>
         <div class="px-4 py-12 mx-auto max-w-3xl text-center text-white md:py-vw6">

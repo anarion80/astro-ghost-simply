@@ -3,7 +3,7 @@ import Layout from "@layouts/Layout.astro";
 import Pagination from "@components/Pagination.astro";
 import siteConfig from "@utils/siteConfig";
 import MetaData from "@components/meta/MetaData.astro";
-import { getPosts } from "../../lib/api";
+import { getPosts } from "@lib/api";
 import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
 import DateTimeComponent from "@components/DateTimeComponent.astro";
 import { relativeUrl } from "@utils/relativeUrl";
@@ -22,8 +22,7 @@ export type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 const { page } = Astro.props;
 const locale = siteConfig.locale || `en`
 ---
-
-<!-- <MetaData location={Astro.url.pathname} /> -->
+<MetaData location={Astro.url.pathname} title={t(`The full archive`)}/>
 <Layout isHome={true} footer={true} isPost={false} bodyClass="is-frontpage">
 	<header class="author-header">
 		<div class="px-4 py-12 md:py-vw6 mx-auto max-w-3xl text-center">

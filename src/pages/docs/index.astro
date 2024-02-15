@@ -3,12 +3,15 @@ import Layout from "@layouts/Layout.astro";
 import { relativeUrl, resolveUrl } from "@utils/relativeUrl";
 import { getPosts } from "@lib/api";
 import siteConfig from "@utils/siteConfig";
+import MetaData from "@components/meta/MetaData.astro";
+import { t } from "@utils/use-lang";
 
 const posts = await getPosts({filter: `visibility:public+tag:-hash-portfolio+tag:-hash-podcast+tag:hash-custom-kusi-doc`});
 const firstPost = posts[0]
 const path = siteConfig.docsPath
 firstPost.url = resolveUrl(path, firstPost.url)
 ---
+<MetaData location={Astro.url.pathname} title={t(`Documentation`, `Documentation`)}/>
 <Layout footer={true} isPost={false} bodyClass="is-portfolio">
     <div class="spc-header simply-hero-cover flex items-center justify-center relative min-h-lg py-24 px-4 overflow-hidden">
 

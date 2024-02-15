@@ -8,14 +8,14 @@ import SocialShare from "@components/SocialShare.astro";
 import StoryPreviousNext from "@components/story/StoryPreviousNext.astro";
 import SidebarPost from "@components/sidebar/SidebarPost.astro";
 import { t } from "@utils/use-lang";
+import MetaData from "@components/meta/MetaData.astro";
 
 const { post, nextPost, prevPost, relatedPosts } = Astro.props;
 
 const tags = post.tags?.map((item) => item.name);
 
-// const t = getTranslation(useLang())
-
 ---
+<MetaData slot="head" location={Astro.url.pathname} type="article" data={post} />
 <Layout footer={true} bodyClass="is-article is-sidebar" isPost={true}>
     <div class="container mx-auto px-4 py-16">
         <div class=" max-w-1100 mx-auto">

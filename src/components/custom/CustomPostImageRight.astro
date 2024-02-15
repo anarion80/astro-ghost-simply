@@ -5,11 +5,13 @@ import Layout from "@layouts/Layout.astro";
 import Author from "@components/Author.astro";
 import PrimaryTag from "@components/PrimaryTag.astro";
 import { Image } from "astro:assets";
+import MetaData from "@components/meta/MetaData.astro";
 
 const { post, nextPost, prevPost, relatedPosts } = Astro.props;
 
 const tags = post.tags?.map((item) => item.name);
 ---
+<MetaData slot="head" location={Astro.url.pathname} type="article" data={post} />
 <Layout footer={true} bodyClass="is-article is-article-image-right" isPost={true}>
     <article class="post mb-10 relative">
         <div class="lg:mx-12 flex flex-col-reverse md:flex-row">

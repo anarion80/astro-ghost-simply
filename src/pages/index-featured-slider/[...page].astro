@@ -3,7 +3,7 @@ import Layout from "@layouts/Layout.astro";
 import Pagination from "@components/Pagination.astro";
 import siteConfig from "@utils/siteConfig";
 import MetaData from "@components/meta/MetaData.astro";
-import { getPosts } from "../../lib/api";
+import { getPosts } from "@lib/api";
 import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
 import StoryFeatured from "@components/story/StoryFeatured.astro";
 import StoryGrid from "@components/story/StoryGrid.astro";
@@ -23,26 +23,8 @@ const locale = siteConfig.locale || `en`
 const featuredPosts = await getPosts({filter:"visibility:public+tag:-hash-portfolio+tag:-hash-podcast+tag:-hash-custom-kusi-doc+featured:true"});
 
 ---
-
-<!-- <MetaData location={Astro.url.pathname} /> -->
+<MetaData location={Astro.url.pathname} />
 <Layout isHome={true} footer={true} isPost={false} bodyClass="is-frontpage has-cover is-head-transparent">
-	<script type="module">
-		import { tns } from "../../../node_modules/tiny-slider/src/tiny-slider.js";
-		var slider = tns({
-                container: `.simply-slider`,
-                loop: true,
-                mouseDrag: true,
-                items: 1,
-                nav: false,
-                speed: 400,
-                autoplay: true,
-                autoplayButtonOutput: false,
-                prevButton: `.simply-slider-prev`,
-                nextButton: `.simply-slider-next`,
-                mode: `gallery`,
-            })
-	</script>
-
 	{/* {!-- Featured Story --} */}
 	{featuredPosts &&
 	<div class="relative overflow-hidden simply-hero-cover">
@@ -89,3 +71,19 @@ const featuredPosts = await getPosts({filter:"visibility:public+tag:-hash-portfo
 		</div>
 	</div>
 </Layout>
+	<script type="module">
+		import { tns } from "../../../node_modules/tiny-slider/src/tiny-slider.js";
+		var slider = tns({
+                container: `.simply-slider`,
+                loop: true,
+                mouseDrag: true,
+                items: 1,
+                nav: false,
+                speed: 400,
+                autoplay: true,
+                autoplayButtonOutput: false,
+                prevButton: `.simply-slider-prev`,
+                nextButton: `.simply-slider-next`,
+                mode: `gallery`,
+            })
+	</script>

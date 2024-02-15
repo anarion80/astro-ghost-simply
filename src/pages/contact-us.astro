@@ -1,7 +1,8 @@
 ---
 import Layout from "@layouts/Layout.astro";
-import { getSinglePage } from "../lib/api";
+import { getSinglePage } from "@lib/api";
 import { t } from "@utils/use-lang";
+import MetaData from "@components/meta/MetaData.astro";
 
 const page = await getSinglePage("contact");
 
@@ -38,7 +39,7 @@ if (Astro.request.method === "POST") {
 }
 
 ---
-
+<MetaData slot="head" location={Astro.url.pathname} title={page.title}/>
 <Layout footer={true} isPost={false} bodyClass="archive-contact">
     <article class="container mx-auto py-12 relative">
         <header class="mx-auto max-w-740 mb-10 text-center">

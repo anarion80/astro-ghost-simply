@@ -2,14 +2,14 @@
 import Layout from '@layouts/Layout.astro';
 import MetaData from '@components/meta/MetaData.astro';
 import StoryPortfolio from '@components/story/StoryPortfolio.astro'
-import { getPosts } from '../../lib/api';
-import { map } from 'astro/zod'
+import { getPosts } from '@lib/api';
+import { t } from "@utils/use-lang";
 
 const posts = await getPosts({filter: `visibility:public+tag:hash-portfolio+tag:-hash-podcast+tag:-hash-custom-kusi-doc`});
 const tags = [...new Set(posts.map(item => item.primary_tag && item.primary_tag.name).filter(a => a))] //return unique, non-null primary tags
 
 ---
-<!-- <MetaData location={Astro.url.pathname} /> -->
+<MetaData slot="head" location={Astro.url.pathname} title={t(`Portfolio`, `Portfolio`)}/>
 <Layout footer={true} isPost={false} bodyClass="is-portfolio">
     <script>
         import "@scripts/portfolio.js";

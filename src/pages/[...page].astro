@@ -4,7 +4,7 @@ import StoryGrid from '@components/story/StoryGrid.astro';
 import Pagination from '@components/Pagination.astro';
 import siteConfig from '@utils/siteConfig';
 import MetaData from '@components/meta/MetaData.astro';
-import { getPosts } from '../lib/api';
+import { getPosts } from '@lib/api';
 import type { GetStaticPaths, InferGetStaticPropsType } from 'astro';
 
 export const getStaticPaths = (async ({paginate}) => {
@@ -17,7 +17,7 @@ export type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 const { page } = Astro.props;
 
 ---
-<!-- <MetaData location={Astro.url.pathname} /> -->
+<MetaData slot="head" location={Astro.url.pathname}/>
 <Layout isHome={true} footer={true} isPost={false} bodyClass="is-frontpage">
 	<div class="site-post feed-entry-content container mx-auto pt-10">
 		<div class="feed-entry-wrap max-w-1100 mx-auto">
