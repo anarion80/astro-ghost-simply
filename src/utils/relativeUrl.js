@@ -1,14 +1,12 @@
 export const relativeUrl = url => url.replace(/https?:\/{2}[^/]+/, ``)
 
-import _ from 'lodash';
-
 // higher order function
 const withPrefixPath = prefixPath => path => normalizePath(`/${prefixPath}/${path}/`)
 
 const normalizePath = (path) => {
-    const normalize = `/${_.trim(path,`/`)}/`
-    return normalize.replace(`////`,`/`).replace(`///`,`/`).replace(`//`,`/`)
-}
+    const normalized = `/${path.trim().replace(/\/+/g, '/')}/`;
+    return normalized;
+};
 
 const splitUrl = (url) => {
     // Regexp to extract the absolute part of the CMS url
@@ -38,4 +36,3 @@ export const resolveUrl = (collectionPath = `/`, url) => {
     }
     return resolvePath(dirUrl)
 }
-

@@ -2,7 +2,6 @@
 import WebsiteMeta from './WebsiteMeta.astro';
 import ArticleMeta from './ArticleMeta.astro';
 import AuthorMeta from './AuthorMeta.astro';
-import _ from 'lodash'
 import { getSettings } from '@lib/api';
 import siteConfig from '@utils/siteConfig';
 
@@ -17,7 +16,6 @@ export interface Props {
 }
 
 const { data, canonical, title, description, image, location, type } = Astro.props;
-console.log("🚀 ~ props:", Astro.props)
 const settings = await getSettings();
 const c = new URL(location, siteConfig.siteUrl).toString();
 let t = title || siteConfig.siteTitleMeta || settings.title

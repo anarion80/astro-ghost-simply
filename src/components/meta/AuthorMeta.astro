@@ -1,6 +1,5 @@
 ---
 import ImageMeta from './ImageMeta.astro';
-import _ from 'lodash'
 import { getSettings } from '@lib/api';
 import siteConfig from '@utils/siteConfig';
 import getAuthorProperties from '@utils/getAuthorProperties';
@@ -13,7 +12,7 @@ export interface Props {
 const { data, canonical } = Astro.props;
 const settings = await getSettings();
 const author = getAuthorProperties(data)
-const shareImage = author.image || _.get(settings, `cover_image`, null)
+const shareImage = author.image ?? settings?.cover_image ?? null;
 const title = `${data.name} - ${settings.title}`
 const description = data.bio || siteConfig.siteDescriptionMeta || settings.description
 
