@@ -3,7 +3,6 @@ import docSelectorAll from './getAll'
 
 export default function mediumZoomImg() {
     docSelectorAll('.post-body img').forEach(el => !el.closest('a') && el.classList.add('simply-zoom'))
-    console.log("medium zoom")
 
     mediumZoom(`.simply-zoom`, {
         margin: 20,
