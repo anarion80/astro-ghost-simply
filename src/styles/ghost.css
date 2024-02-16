@@ -1644,7 +1644,7 @@ a.dropdown-item {
 
 .button.is-primary,
 .button.is-primary:hover {
-    background-color: var(--ghost-button-accent-color);
+    background-color: var(--ghost-accent-color);
     border-color: transparent;
     color: #fff;
 }
@@ -1655,13 +1655,13 @@ a.dropdown-item {
 
 .button.is-primary.is-outlined {
     background-color: transparent;
-    border-color: var(--ghost-button-accent-color);
-    color: var(--ghost-button-accent-color);
+    border-color: var(--ghost-accent-color);
+    color: var(--ghost-accent-color);
 }
 
 .button.is-primary.is-outlined:hover {
-    background-color: var(--ghost-button-accent-color);
-    border-color: var(--ghost-button-accent-color);
+    background-color: var(--ghost-accent-color);
+    border-color: var(--ghost-accent-color);
     color: #fff;
 }
 

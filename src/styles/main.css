@@ -1044,7 +1044,7 @@ textarea[rows] {
 
 .button.is-primary {
     background-color: #0abe51;
-    background-color: var(--ghost-button-accent-color);
+    background-color: var(--ghost-accent-color);
     color: #fff
 }
 

@@ -48,10 +48,9 @@ const { bodyClass, footer, isPost, isHome } = Astro.props;
 const site = await getSettings();
 //console.log(site);
 
-const accentColor = site.accent_color;
-let buttonAccentColor = accentColor
+let accentColor = site.accent_color;
 if (getContrastRatio("#FFFFFF", accentColor) < 4.5) {
-	buttonAccentColor = adjustColorForContrast("#FFFFFF", accentColor);
+	accentColor = adjustColorForContrast("#FFFFFF", accentColor);
 }
 const hasDropDown = siteConfig.menuDropdown ? true : false
 ---
@@ -114,7 +113,7 @@ const hasDropDown = siteConfig.menuDropdown ? true : false
 	</body>
 </html>
 <style type="text/css" set:text={site.codeinjection_foot}></style>
-<style set:text={`:root {--ghost-accent-color: ${accentColor}; --ghost-button-accent-color: ${buttonAccentColor};}`}></style>
+<style set:text={`:root {--ghost-accent-color: ${accentColor};}`}></style>
 <script>
 	import resizeImageGalleries from '@utils/resizeImageGalleries';
 	import videoResponsive from "@utils/videoResponsive";
