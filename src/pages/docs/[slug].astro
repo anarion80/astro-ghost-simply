@@ -39,7 +39,7 @@ const linkClass = "menu-link p-2 flex hover:text-primary relative transition-col
 
 ---
 
-<MetaData location={Astro.url.pathname}	type="article" title={post.title}/>
+<MetaData location={Astro.url.pathname}	type="article" data={post}/>
 <Layout footer={true} bodyClass="bg-gray-100" isPost={true}>
 	<div class="max-w-extreme mx-auto flex flex-col pb-16 px-4 lg:flex-row">
 		{/* {{!-- Navigating the documentation --}} */}
@@ -116,7 +116,7 @@ const linkClass = "menu-link p-2 flex hover:text-primary relative transition-col
 	</div>
 </Layout>
 
-<style type="text/css">{post.codeinjection_styles}</style>
+<style type="text/css" set:html={post.codeinjection_styles}></style>
 
 <script>
 	import mediumZoomImg from '@utils/mediumZoom.js';
