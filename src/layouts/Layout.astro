@@ -4,6 +4,7 @@ import siteConfig from '@utils/siteConfig';
 import Header from '@components/Header.astro';
 import FooterDark from '@components/FooterDark.astro';
 import SvgIcons from '@components/SvgIcons';
+import { getContrastRatio, reduceBrightness, adjustColorForContrast } from '@utils/colors';
 import '../styles/main.css'
 import '../styles/ghost.css'
 import '../styles/cards/audio.css'
@@ -48,6 +49,10 @@ const site = await getSettings();
 //console.log(site);
 
 const accentColor = site.accent_color;
+let buttonAccentColor = accentColor
+if (getContrastRatio("#FFFFFF", accentColor) < 4.5) {
+	buttonAccentColor = adjustColorForContrast("#FFFFFF", accentColor);
+}
 const hasDropDown = siteConfig.menuDropdown ? true : false
 ---
 
@@ -109,7 +114,7 @@ const hasDropDown = siteConfig.menuDropdown ? true : false
 	</body>
 </html>
 <style type="text/css" set:text={site.codeinjection_foot}></style>
-<style set:text={`:root {--ghost-accent-color: ${accentColor};}`}></style>
+<style set:text={`:root {--ghost-accent-color: ${accentColor}; --ghost-button-accent-color: ${buttonAccentColor};}`}></style>
 <script>
 	import resizeImageGalleries from '@utils/resizeImageGalleries';
 	import videoResponsive from "@utils/videoResponsive";
