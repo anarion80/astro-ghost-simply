@@ -23,26 +23,6 @@ const c = new URL(location, siteConfig.siteUrl).toString();
 let t = title || siteConfig.siteTitleMeta || settings.title
 let i = image || settings.cover_image || null
 let d = description || siteConfig.siteDescriptionMeta || settings.description
-// const { currentPost, ghostTag, ghostAuthor, ghostPage } = data;
-
-// let showCurrentPost, showGhostTag, showGhostAuthor, showGhostPage = false;
-
-// if (currentPost) {
-//         showCurrentPost = true
-//     } else if (ghostTag) {
-//         showGhostTag = true
-//     } else if (ghostAuthor) {
-//         showGhostAuthor = true
-//     } else if (ghostPage) {
-//         showGhostPage = true
-//     } else {
-//         t = title || siteConfig.siteTitleMeta || settings.title
-//         d = description || siteConfig.siteDescriptionMeta || settings.description
-//         i = image || settings.cover_image || null
-
-//         i = image ? new URL(siteConfig.siteUrl, image).toString() : null
-
-//     }
 
 ---
 {type=="article" && <ArticleMeta data={data} canonical={c} />}

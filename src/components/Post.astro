@@ -13,7 +13,6 @@ const tags = post.tags?.map(item => item.name)
 ---
 <MetaData slot="head" location={Astro.url.pathname} type="article" data={post} />
 <Layout footer={true} bodyClass="is-article" isPost={true}>
-	<title slot="head">Post Title</title>
 	<article class="post mb-10 pt-8 lg:pt-10 relative">
 			<ArticleHeader post={post} />
 			{ post.feature_image && <ArticleFeaturedImage figureClass="block mx-auto max-w-740 mt-12 px-4" divClass="mx-auto w-full simply-zoom" zoomable={true} article={post} /> }
