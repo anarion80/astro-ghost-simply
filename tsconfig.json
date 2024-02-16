@@ -10,7 +10,8 @@
       "@scripts/*": ["src/scripts/*"],
       "@lib/*": ["src/lib/*"],
       "@i18n/*": ["src/i18n/*"],
-      "@images/*": ["src/images/*"]
+      "@images/*": ["src/images/*"],
+      "@styles/*": ["src/styles/*"]
     }
   }
 }
