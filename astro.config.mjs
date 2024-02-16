@@ -4,10 +4,11 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import dynamicImport from 'astro-dynamic-import';
 import cookieconsent from "@jop-software/astro-cookieconsent";
+import siteConfig from './src/utils/siteConfig';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'http://localhost/',
+	site: siteConfig.siteUrl,
 	integrations: [
 		react(),
 		sitemap(),
