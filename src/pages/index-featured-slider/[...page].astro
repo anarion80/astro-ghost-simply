@@ -24,6 +24,7 @@ const featuredPosts = await getPosts({filter:"visibility:public+tag:-hash-portfo
 
 ---
 <MetaData location={Astro.url.pathname} />
+<link slot="head"rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css">
 <Layout isHome={true} footer={true} isPost={false} bodyClass="is-frontpage has-cover is-head-transparent">
 	{/* {!-- Featured Story --} */}
 	{featuredPosts &&

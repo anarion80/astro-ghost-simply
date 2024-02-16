@@ -43,10 +43,7 @@ export interface Props {
 
 const { bodyClass, footer, isPost, isHome } = Astro.props;
 
-// const { id, title } = Astro.props;
-
 const site = await getSettings();
-//console.log(site);
 
 let accentColor = site.accent_color;
 if (getContrastRatio("#FFFFFF", accentColor) < 4.5) {
@@ -60,7 +57,6 @@ const hasDropDown = siteConfig.menuDropdown ? true : false
 	<head>
 		<meta charset="UTF-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css" />
 		<meta name="generator" content={Astro.generator} />
 		<meta name="HandheldFriendly" content="True" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
