@@ -1,11 +1,11 @@
 # Astro Starter Ghost with Simply Theme
 
-Netlify Status TBD
+[![Netlify Status](https://api.netlify.com/api/v1/badges/eb5fb344-5cf0-4bbe-9a7d-1a5494684357/deploy-status)](https://app.netlify.com/sites/curious-cobbler-55f37b/deploys)
 
 A starter template to build lightning fast websites with [Ghost](https://ghost.org) (as headless CMS in this case) & [Astro](https://astro.build), using the excellent [Simply Ghost Theme](https://github.com/godofredoninja/simply).
 Rewritten from Handlebars theme to Astro/React.
 
-**Demo:** TBD
+**Demo:** [https://astro-ghost-simply.netlify.app/](https://astro-ghost-simply.netlify.app/)
 
 &nbsp;
 
