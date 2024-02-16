@@ -15,10 +15,10 @@ export interface Props {
 
 const { data, canonical, title, description, image, type } = Astro.props;
 const settings = await getSettings();
-const publisherLogo = new URL(siteConfig.siteUrl, (settings.logo || siteConfig.siteIcon)).toString();
+const publisherLogo = new URL((settings.logo || siteConfig.siteIcon), siteConfig.siteUrl).toString();
 let shareImage = image || data.feature_image || _.get(settings, `cover_image`, null)
 
-shareImage = shareImage ? new URL(siteConfig.siteUrl, shareImage).toString() : null
+shareImage = shareImage ? new URL(shareImage, siteConfig.siteUrl).toString() : null
 
 const desc = description || data.meta_description || data.description || siteConfig.siteDescriptionMeta || settings.description
 const t = `${title || data.meta_title || data.name || data.title || settings.title} - ${settings.title}`
