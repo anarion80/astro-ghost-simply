@@ -1,7 +1,5 @@
 # Astro Starter Ghost with Simply Theme
 
-## :construction: This is still a work in progress :exclamation:
-
 Netlify Status TBD
 
 A starter template to build lightning fast websites with [Ghost](https://ghost.org) (as headless CMS in this case) & [Astro](https://astro.build), using the excellent [Simply Ghost Theme](https://github.com/godofredoninja/simply).
@@ -11,7 +9,7 @@ Rewritten from Handlebars theme to Astro/React.
 
 &nbsp;
 
-![gatsby-ghost-simply](https://user-images.githubusercontent.com/2185791/133974213-7f41e2e5-427d-4a0b-8024-e0d2ac3c4dd0.png)
+![astro-ghost-simply](https://user-images.githubusercontent.com/2185791/133974213-7f41e2e5-427d-4a0b-8024-e0d2ac3c4dd0.png)
 &nbsp;
 
 ## 🚀 What is working
@@ -67,9 +65,6 @@ Rewritten from Handlebars theme to Astro/React.
 ## ❌ What is not yet working
 
 - Members subscribing via email
-- [Logo Light / Dark Mode](https://godofredo.ninja/ghost-theme/simply/settings/#logolightdarkmode)
-- Different Home Page variants and Post formats
-  - [AMP](https://github.com/godofredoninja/Hodor-AMP-Ghost) Template
 - Pagination Infinite Scroll - not for static sites
 - Comments
 - All Membership features
@@ -78,25 +73,20 @@ Rewritten from Handlebars theme to Astro/React.
 
 - Move videoResponsive and resizeImageGalleries to build time using some rehype plugin
 - Convert this from a starter to a proper theme
-- Extract pretty dates from GraphQL to apply locale to them
 
 ## 🏗 Installing
 
-```bash
-# With Gatsby CLI
-gatsby new gatsby-starter-ghost https://github.com/anarion80/gatsby-ghost-simply.git
-```
+The easiest way to run this project locally is to run the following command in your desired directory.
 
 ```bash
-# From Source
-git clone https://github.com/anarion80/gatsby-ghost-simply.git
-cd gatsby-ghost-simply
-```
+# npm 6.x
+npm create astro@latest --template anarion80/astro-ghost-simply
 
-Then install dependencies
+# npm 7+, extra double-dash is needed:
+npm create astro@latest -- --template anarion80/astro-ghost-simply
 
-```bash
-yarn
+# yarn
+yarn create astro --template anarion80/astro-ghost-simply
 ```
 
 &nbsp;
@@ -121,7 +111,7 @@ GHOST_API_URL="https://gatsby.ghost.io"
 
 ```
 
-Finally, configure your desired URL in `siteConfig.js`, so links (e. g. canonical links) are generated correctly. You should also update other values in there needed for menu, social sharing and search.
+Finally, configure your desired URL in `utils/siteConfig.js`, so links (e. g. canonical links) are generated correctly. You should also update other values in there needed for menu, social sharing and search.
 
 ```js
 {
@@ -176,13 +166,11 @@ Demo and the repo is the "maximum version" with all possible types of Home Page 
 
 ## ✈ Deploying with Netlify
 
-The starter contains three config files specifically for deploying with Netlify. A `netlify.toml` file for build settings, a `/static/_headers` file with default security headers set for all routes, and `/static/_redirects` to set Netlify custom domain redirects.
+Click this button and it will help you create a new repo, create a new Netlify project, and deploy!
 
-To deploy to your Netlify account, hit the button below.
+[![Deploy to Netlify Button](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/anarion80/astro-ghost-simply.git)
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/anarion80/gatsby-ghost-simply.git)
-
-Content API Keys are generally not considered to be sensitive information, they exist so that they can be changed in the event of abuse; so most people commit it directly to their `.ghost.json` config file. If you prefer to keep this information out of your repository you can remove this config and set [Netlify ENV variables](https://www.netlify.com/docs/continuous-deployment/#build-environment-variables) for production builds instead.
+Content API Keys are generally not considered to be sensitive information, they exist so that they can be changed in the event of abuse; so most people commit it directly to their `.env` config file. If you prefer to keep this information out of your repository you can remove this config and set [Netlify ENV variables](https://www.netlify.com/docs/continuous-deployment/#build-environment-variables) for production builds instead.
 
 Once deployed, you can set up a [Ghost + Netlify Integration](https://docs.ghost.org/integrations/netlify/) to use deploy hooks from Ghost to trigger Netlify rebuilds. That way, any time data changes in Ghost, your site will rebuild on Netlify.
 
@@ -190,7 +178,7 @@ Once deployed, you can set up a [Ghost + Netlify Integration](https://docs.ghost
 
 ## ⚡ Optimising
 
-You can disable the default Ghost Handlebars Theme front-end by enabling the `Make this site private` flag within your Ghost settings. This enables password protection in front of the Ghost install and sets `<meta name="robots" content="noindex" />` so your Gatsby front-end becomes the source of truth for SEO.
+You can disable the default Ghost Handlebars Theme front-end by enabling the `Make this site private` flag within your Ghost settings. This enables password protection in front of the Ghost install and sets `<meta name="robots" content="noindex" />` so your Astro front-end becomes the source of truth for SEO.
 
 &nbsp;
 
