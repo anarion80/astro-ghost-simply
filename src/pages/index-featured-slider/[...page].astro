@@ -24,7 +24,7 @@ const featuredPosts = await getPosts({filter:"visibility:public+tag:-hash-portfo
 
 ---
 <MetaData location={Astro.url.pathname} />
-<link slot="head"rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css">
 <Layout isHome={true} footer={true} isPost={false} bodyClass="is-frontpage has-cover is-head-transparent">
 	{/* {!-- Featured Story --} */}
 	{featuredPosts &&
@@ -72,7 +72,7 @@ const featuredPosts = await getPosts({filter:"visibility:public+tag:-hash-portfo
 		</div>
 	</div>
 </Layout>
-	<script type="module">
+	<script>
 		import { tns } from "../../../node_modules/tiny-slider/src/tiny-slider.js";
 		var slider = tns({
                 container: `.simply-slider`,
