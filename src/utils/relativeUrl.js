@@ -4,8 +4,8 @@ export const relativeUrl = url => url.replace(/https?:\/{2}[^/]+/, ``)
 const withPrefixPath = prefixPath => path => normalizePath(`/${prefixPath}/${path}/`)
 
 const normalizePath = (path) => {
-    const normalized = `/${path.trim().replace(/\/+/g, '/')}/`;
-    return normalized;
+    const normalized = `/${path.trim().replace(/^\/+|\/+$/g, '')}/`;
+    return normalized.replace(`////`, `/`).replace(`///`, `/`).replace(`//`, `/`);
 };
 
 const splitUrl = (url) => {
