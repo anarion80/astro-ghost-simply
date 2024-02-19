@@ -2,19 +2,21 @@
 import Layout from "@layouts/Layout.astro";
 import { relativeUrl, resolveUrl } from "@utils/relativeUrl";
 import { getPosts } from "@lib/api";
-import type { InferGetStaticPropsType, GetStaticPaths } from 'astro';
+import type { InferGetStaticPropsType, GetStaticPaths } from "astro";
 import siteConfig from "@utils/siteConfig";
 import { t } from "@utils/use-lang";
-import { formatDate } from '@utils/dateConvert'
+import { formatDate } from "@utils/dateConvert";
 import MetaData from "@components/meta/MetaData.astro";
 
 export const getStaticPaths = (async () => {
-	const posts = await getPosts({filter: `visibility:public+tag:-hash-portfolio+tag:-hash-podcast+tag:hash-custom-kusi-doc`});
+    const posts = await getPosts({
+        filter: `visibility:public+tag:-hash-portfolio+tag:-hash-podcast+tag:hash-custom-kusi-doc`,
+    });
 
-	return posts.map((post) => ({
-		params: { slug: post.slug },
-		props: { post },
-	}));
+    return posts.map(post => ({
+        params: { slug: post.slug },
+        props: { post },
+    }));
 }) satisfies GetStaticPaths;
 
 export type Props = InferGetStaticPropsType<typeof getStaticPaths>;
@@ -22,185 +24,256 @@ export type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 const { post } = Astro.props;
 const pathname = new URL(Astro.request.url).pathname;
 
-const path = siteConfig.docsPath
+const path = siteConfig.docsPath;
 
-const posts = await getPosts({filter: `visibility:public+tag:-hash-portfolio+tag:-hash-podcast+tag:hash-custom-kusi-doc`});
-const previousPost = (await getPosts({filter: `published_at:<='${formatDate(post.published_at)}'+slug:-${post.slug}+tag:-hash-portfolio+tag:-hash-podcast+tag:hash-custom-kusi-doc`, limit: "1", order: "published_at DESC"}))[0]
-const nextPost = (await getPosts({filter: `published_at:>'${formatDate(post.published_at)}'+slug:-${post.slug}+tag:-hash-portfolio+tag:-hash-podcast+tag:hash-custom-kusi-doc`, limit: "1", order: "published_at ASC"}))[0]
+const posts = await getPosts({
+    filter: `visibility:public+tag:-hash-portfolio+tag:-hash-podcast+tag:hash-custom-kusi-doc`,
+});
+const previousPost = (
+    await getPosts({
+        filter: `published_at:<='${formatDate(post.published_at)}'+slug:-${post.slug}+tag:-hash-portfolio+tag:-hash-podcast+tag:hash-custom-kusi-doc`,
+        limit: "1",
+        order: "published_at DESC",
+    })
+)[0];
+const nextPost = (
+    await getPosts({
+        filter: `published_at:>'${formatDate(post.published_at)}'+slug:-${post.slug}+tag:-hash-portfolio+tag:-hash-podcast+tag:hash-custom-kusi-doc`,
+        limit: "1",
+        order: "published_at ASC",
+    })
+)[0];
 
 if (previousPost) {
-	previousPost.url = resolveUrl(path, previousPost.url)
+    previousPost.url = resolveUrl(path, previousPost.url);
 }
 if (nextPost) {
-	nextPost.url = resolveUrl(path, nextPost.url)
+    nextPost.url = resolveUrl(path, nextPost.url);
 }
 
-const linkClass = "menu-link p-2 flex hover:text-primary relative transition-colors duration-200"
-
+const linkClass =
+    "menu-link p-2 flex hover:text-primary relative transition-colors duration-200";
 ---
 
-<MetaData location={Astro.url.pathname}	type="article" data={post}/>
+<MetaData location={Astro.url.pathname} type="article" data={post} />
 <Layout footer={true} bodyClass="bg-gray-100" isPost={true}>
-	<div class="max-w-extreme mx-auto flex flex-col pb-16 px-4 lg:flex-row">
-		{/* {{!-- Navigating the documentation --}} */}
-		<div class="sidebar flex-none border-r border-gray-300 order-2 md:w-64 lg:order-none" style={{ borderColor: `var(--border-color)` }}>
-			<div class="sticky top-16 pr-5">
-				<nav class="py-12 overflow-y-auto lg:max-h-(screen-16) scroll-transparent">
-					<div class="uppercase font-medium text-sm text-gray-600 mb-3 px-2">{t(`Getting_Started`, `Getting Started`)}</div>
+    <div class="max-w-extreme mx-auto flex flex-col pb-16 px-4 lg:flex-row">
+        {/* {{!-- Navigating the documentation --}} */}
+        <div
+            class="sidebar flex-none border-r border-gray-300 order-2 md:w-64 lg:order-none"
+            style={{ borderColor: `var(--border-color)` }}
+        >
+            <div class="sticky top-16 pr-5">
+                <nav
+                    class="py-12 overflow-y-auto lg:max-h-(screen-16) scroll-transparent"
+                >
+                    <div
+                        class="uppercase font-medium text-sm text-gray-600 mb-3 px-2"
+                    >
+                        {t(`Getting_Started`, `Getting Started`)}
+                    </div>
 
-					<ul itemscope itemtype="http://www.schema.org/SiteNavigationElement" role="menu" class="leading-tight text-base">
-						{posts.map((item) => {
-							item.url = resolveUrl(path, item.url)
-							return (
-								<li itemprop="name" role="menuitem">
-									<a
-										href={relativeUrl(item.url)}
-										class={pathname === relativeUrl(item.url) ? linkClass + " is-active text-primary pl-4 font-medium" : linkClass}
-										itemprop="url">
-										<span class="menu-link-bg rounded-md absolute inset-0 bg-primary opacity-0"></span>
-										<span class="relative">{item.title}</span>
-									</a>
-								</li>
-							)
-						})}
-					</ul>
-				</nav>
-			</div>
-		</div>
+                    <ul
+                        itemscope
+                        itemtype="http://www.schema.org/SiteNavigationElement"
+                        role="menu"
+                        class="leading-tight text-base"
+                    >
+                        {
+                            posts.map(item => {
+                                item.url = resolveUrl(path, item.url);
+                                return (
+                                    <li itemprop="name" role="menuitem">
+                                        <a
+                                            href={relativeUrl(item.url)}
+                                            class={
+                                                pathname ===
+                                                relativeUrl(item.url)
+                                                    ? linkClass +
+                                                      " is-active text-primary pl-4 font-medium"
+                                                    : linkClass
+                                            }
+                                            itemprop="url"
+                                        >
+                                            <span class="menu-link-bg rounded-md absolute inset-0 bg-primary opacity-0" />
+                                            <span class="relative">
+                                                {item.title}
+                                            </span>
+                                        </a>
+                                    </li>
+                                );
+                            })
+                        }
+                    </ul>
+                </nav>
+            </div>
+        </div>
 
-		{/* {{!-- content of the documentation --}} */}
-		<article class="py-4 md:py-12 flex-grow">
-			<div class="max-w-2xl mx-auto md:px-4">
-				<section class="post-body pt-0 font-sans has-sidebar text-base leading-relaxed js-kusi-doc" set:html={post.html}>
-				</section>
-				{/* {{!-- Button to edit on GitHub - add link on Facebook description --}} */}
-				{post.og_description &&
-					<p class="mt-10">
-						<a class="edit-on-github godo-tracking button is-outlined is-primary"
-							href={post.og_description}
-							data-event-category="Kusi Doc"
-							data-event-action={post.tags[0].name}
-							data-event-label={post.title}
-							data-event-non-interaction="true">
-							<svg class="icon mr-2"><use xlink:href="#icon-github"></use></svg>
-							<span>Edit this page on GitHub</span>
-						</a>
-					</p>
-				}
-				<hr class="my-10" />
-				<div class="flex justify-between text-gray-500">
-					<div>
-						{previousPost &&
-							<a href={relativeUrl(previousPost.url)} class="hover:underline">← {previousPost.title}</a>
-						}
-					</div>
+        {/* {{!-- content of the documentation --}} */}
+        <article class="py-4 md:py-12 flex-grow">
+            <div class="max-w-2xl mx-auto md:px-4">
+                <section
+                    class="post-body pt-0 font-sans has-sidebar text-base leading-relaxed js-kusi-doc"
+                    set:html={post.html}
+                />
+                {
+                    /* {{!-- Button to edit on GitHub - add link on Facebook description --}} */
+                }
+                {
+                    post.og_description && (
+                        <p class="mt-10">
+                            <a
+                                class="edit-on-github godo-tracking button is-outlined is-primary"
+                                href={post.og_description}
+                                data-event-category="Kusi Doc"
+                                data-event-action={post.tags[0].name}
+                                data-event-label={post.title}
+                                data-event-non-interaction="true"
+                            >
+                                <svg class="icon mr-2">
+                                    <use xlink:href="#icon-github" />
+                                </svg>
+                                <span>Edit this page on GitHub</span>
+                            </a>
+                        </p>
+                    )
+                }
+                <hr class="my-10" />
+                <div class="flex justify-between text-gray-500">
+                    <div>
+                        {
+                            previousPost && (
+                                <a
+                                    href={relativeUrl(previousPost.url)}
+                                    class="hover:underline"
+                                >
+                                    ← {previousPost.title}
+                                </a>
+                            )
+                        }
+                    </div>
 
-					<div>
-						{nextPost &&
-							<a href={relativeUrl(nextPost.url)} class="hover:underline">{nextPost.title} →</a>
-						}
-					</div>
-				</div>
-			</div>
-		</article>
+                    <div>
+                        {
+                            nextPost && (
+                                <a
+                                    href={relativeUrl(nextPost.url)}
+                                    class="hover:underline"
+                                >
+                                    {nextPost.title} →
+                                </a>
+                            )
+                        }
+                    </div>
+                </div>
+            </div>
+        </article>
 
-		{/* {{!-- Table of Contents --}} */}
-		<aside class="js-sidebar-right flex flex-col flex-none pt-8 pl-5 mb-12 order-2 md:w-64 lg:order-none lg:hidden xl:flex">
-			<div class="sticky top-24 js-sidebar-wrap hidden">
-				<div class="pt-4 pb-10 overflow-y-auto scroll-transparent lg:max-h-(screen-16)">
-					<div class="uppercase font-medium text-sm mb-3">{t(`On_this_page`, `On this page`)}</div>
-					<ul class="text-sm js-table-content leading-tight"></ul>
-				</div>
-			</div>
-		</aside>
-	</div>
+        {/* {{!-- Table of Contents --}} */}
+        <aside
+            class="js-sidebar-right flex flex-col flex-none pt-8 pl-5 mb-12 order-2 md:w-64 lg:order-none lg:hidden xl:flex"
+        >
+            <div class="sticky top-24 js-sidebar-wrap hidden">
+                <div
+                    class="pt-4 pb-10 overflow-y-auto scroll-transparent lg:max-h-(screen-16)"
+                >
+                    <div class="uppercase font-medium text-sm mb-3">
+                        {t(`On_this_page`, `On this page`)}
+                    </div>
+                    <ul class="text-sm js-table-content leading-tight"></ul>
+                </div>
+            </div>
+        </aside>
+    </div>
 </Layout>
 
 <style type="text/css" set:html={post.codeinjection_styles}></style>
 
 <script>
-	import mediumZoomImg from '@utils/mediumZoom.js';
-	import Prism from 'prismjs';
-	import 'prismjs/plugins/autoloader/prism-autoloader';
+    import mediumZoomImg from "@utils/mediumZoom.js";
+    import Prism from "prismjs";
+    import "prismjs/plugins/autoloader/prism-autoloader";
 
-    var prismJsComponents = 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/';
+    var prismJsComponents =
+        "https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/";
 
-	(prism => {
-	if (typeof prismJsComponents === 'undefined') return
+    (prism => {
+        if (typeof prismJsComponents === "undefined") return;
 
-	prism.plugins.autoloader.languages_path = prismJsComponents
+        prism.plugins.autoloader.languages_path = prismJsComponents;
 
-	prism.highlightAll()
-	})(Prism)
+        prism.highlightAll();
+    })(Prism);
 
-	mediumZoomImg();
+    mediumZoomImg();
 
-	const setup = () => {
-    // Return if no post box exists
-        const markdown = document.querySelector(`.js-kusi-doc`)
+    const setup = () => {
+        // Return if no post box exists
+        const markdown = document.querySelector(`.js-kusi-doc`);
         if (!markdown) {
-            return
+            return;
         }
 
         // Search the titles in the post
         // Return if no title exists
-        const argTitles = [`h1`, `h2`, `h3`]
-        const titles = markdown.querySelectorAll(argTitles.join(`,`))
+        const argTitles = [`h1`, `h2`, `h3`];
+        const titles = markdown.querySelectorAll(argTitles.join(`,`));
 
         if (!titles.length) {
-            return
+            return;
         }
 
         // Table of Contents Box
-        const jsTableOfContent = document.querySelector(`.js-table-content`)
-        const sidebar = document.querySelector(`.js-sidebar-right`)
+        const jsTableOfContent = document.querySelector(`.js-table-content`);
+        const sidebar = document.querySelector(`.js-sidebar-right`);
 
         if (sidebar) {
-            document.querySelector(`.js-sidebar-wrap`).classList.remove(`hidden`)
+            document
+                .querySelector(`.js-sidebar-wrap`)
+                .classList.remove(`hidden`);
         }
 
         // Table of Content sidebar right
         function tableOfContent(link, el) {
             if (!jsTableOfContent) {
-                return
+                return;
             }
 
-            link.textContent = el.textContent
+            link.textContent = el.textContent;
 
-            const tocList = document.createElement(`li`)
+            const tocList = document.createElement(`li`);
 
             if (el.closest(`h3`)) {
-                link.classList = `py-1 pl-3 block text-xs hover:text-primary`
+                link.classList = `py-1 pl-3 block text-xs hover:text-primary`;
             } else {
-                link.classList = `py-2 block hover:text-primary`
+                link.classList = `py-2 block hover:text-primary`;
             }
 
-            tocList.appendChild(link)
-            jsTableOfContent.appendChild(tocList)
+            tocList.appendChild(link);
+            jsTableOfContent.appendChild(tocList);
         }
 
         // Links To Titles
         function linkToTile(link, el) {
-            link.setAttribute(`aria-hidden`, `true`)
-            link.innerHTML = `<svg class="icon is-stroke" aria-hidden="true"><use xlink:href="#icon-link"></use></svg>`
-            link.classList = `anchor px-3 inline-block invisible opacity-0 -ml-12 text-gray-500`
+            link.setAttribute(`aria-hidden`, `true`);
+            link.innerHTML = `<svg class="icon is-stroke" aria-hidden="true"><use xlink:href="#icon-link"></use></svg>`;
+            link.classList = `anchor px-3 inline-block invisible opacity-0 -ml-12 text-gray-500`;
 
-            el.insertBefore(link, el.childNodes[0])
+            el.insertBefore(link, el.childNodes[0]);
         }
 
-        titles.forEach((el) => {
-            el.classList = `hover-title`
+        titles.forEach(el => {
+            el.classList = `hover-title`;
 
-            const titleLink = document.createElement(`a`)
-            titleLink.href = `#${el.getAttribute(`id`)}`
+            const titleLink = document.createElement(`a`);
+            titleLink.href = `#${el.getAttribute(`id`)}`;
 
             // Table of Content
-            tableOfContent(titleLink.cloneNode(true), el)
+            tableOfContent(titleLink.cloneNode(true), el);
 
             // Link To Title
-            linkToTile(titleLink, el)
-        })
-	}
-	setup();
-
+            linkToTile(titleLink, el);
+        });
+    };
+    setup();
 </script>

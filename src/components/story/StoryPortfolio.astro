@@ -1,42 +1,56 @@
 ---
-import Author from '@components/Author.astro';
-import { Image } from 'astro:assets';
-import { relativeUrl } from '@utils/relativeUrl';
+import { Image } from "astro:assets";
+import { relativeUrl } from "@utils/relativeUrl";
 import { t } from "@utils/use-lang";
 export interface Props {
-	post?: any;
-    storyTitle?: string,
-    divClass?: string,
+    post?: any;
+    storyTitle?: string;
+    divClass?: string;
 }
 
-const { post, storyTitle, divClass } = Astro.props;
-const image = post.feature_image
+const { post } = Astro.props;
+const image = post.feature_image;
 ---
-<article class="portfolio-card relative overflow-hidden mb-8 rounded-sm flex items-center justify-center h-90 has-overlay">
-    <a href={relativeUrl(post.url)} >
-        {post.feature_image &&
-            <Image
-                src={image}
-                alt={post.title}
-                style={{
-                    position: `absolute`,
-                    height: `100%`,
-                    width: `100%`,
-                    inset: 0,
-                    objectFit: `cover`,
-                }} class="image-inset"
-                widths={[300, 600, 1000]}
-                sizes={`(max-width: 1000px) 400px, 800px`}
-                width="300"
-                height="280"
-            />
+
+<article
+    class="portfolio-card relative overflow-hidden mb-8 rounded-sm flex items-center justify-center h-90 has-overlay"
+>
+    <a href={relativeUrl(post.url)}>
+        {
+            post.feature_image && (
+                <Image
+                    src={image}
+                    alt={post.title}
+                    style={{
+                        position: `absolute`,
+                        height: `100%`,
+                        width: `100%`,
+                        inset: 0,
+                        objectFit: `cover`,
+                    }}
+                    class="image-inset"
+                    widths={[300, 600, 1000]}
+                    sizes={`(max-width: 1000px) 400px, 800px`}
+                    width="300"
+                    height="280"
+                />
+            )
         }
 
-        <div class="portfolio-card-body relative text-white z-4 text-center px-4 py-16 overlay-toggle">
+        <div
+            class="portfolio-card-body relative text-white z-4 text-center px-4 py-16 overlay-toggle"
+        >
             <h2 class="text-xl capitalize font-medium mb-4">{post.title}</h2>
-            <div class="tracking-wide"><span class="button is-small is-primary">{t(`View Project`)}</span></div>
+            <div class="tracking-wide">
+                <span class="button is-small is-primary"
+                    >{t(`View Project`)}</span
+                >
+            </div>
         </div>
 
-        <div class="portfolio-card-bg absolute inset-0 z-2 bg-black bg-opacity-80 overlay-toggle"></div>
+        <div
+            class="portfolio-card-bg absolute inset-0 z-2 bg-black bg-opacity-80 overlay-toggle"
+        >
+        </div>
     </a>
 </article>

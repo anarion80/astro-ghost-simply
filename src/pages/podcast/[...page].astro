@@ -1,67 +1,104 @@
 ---
-import type { InferGetStaticPropsType, GetStaticPaths } from 'astro'
-import Layout from '@layouts/Layout.astro';
-import Pagination from '@components/Pagination.astro';
-import siteConfig from '@utils/siteConfig';
-import MetaData from '@components/meta/MetaData.astro';
-import StoryPodcast from '@components/story/StoryPodcast.astro';
-import { Image } from 'astro:assets';
-import itunesImage from '@images/icon-itunes.png';
-import pocketcastsImage from '@images/icon-pocketcasts.png';
-import rssImage from '@images/icon-rss.png';
-import { getPosts } from '@lib/api';
+import type { InferGetStaticPropsType, GetStaticPaths } from "astro";
+import Layout from "@layouts/Layout.astro";
+import Pagination from "@components/Pagination.astro";
+import siteConfig from "@utils/siteConfig";
+import MetaData from "@components/meta/MetaData.astro";
+import StoryPodcast from "@components/story/StoryPodcast.astro";
+import { Image } from "astro:assets";
+import itunesImage from "@images/icon-itunes.png";
+import pocketcastsImage from "@images/icon-pocketcasts.png";
+import rssImage from "@images/icon-rss.png";
+import { getPosts } from "@lib/api";
 import { t } from "@utils/use-lang";
 
-export const getStaticPaths = (async ({paginate}) => {
-	const posts = await getPosts({filter: `visibility:public+tag:hash-podcast+tag:-hash-portfolio+tag:-hash-custom-kusi-doc`});
+export const getStaticPaths = (async ({ paginate }) => {
+    const posts = await getPosts({
+        filter: `visibility:public+tag:hash-podcast+tag:-hash-portfolio+tag:-hash-custom-kusi-doc`,
+    });
 
-    return paginate(posts, {pageSize: siteConfig.postsPerPage});
+    return paginate(posts, { pageSize: siteConfig.postsPerPage });
 }) satisfies GetStaticPaths;
 
 export type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 const { page } = Astro.props;
-
 ---
-<MetaData slot="head" location={Astro.url.pathname} title={t(`Podcasts`, `Podcasts`)}/>
-<Layout footer={true} isPost={false} bodyClass="is-podcast has-cover is-head-transparent">
-    <div class="spc-header simply-hero-cover flex items-center justify-center relative min-h-lg py-24 px-4 bg-dark overflow-hidden">
 
-        <article class="spc-h-inner max-w-4xl relative flex flex-col text-center z-3 pt-16 text-white text-2xl md:text-3xl animated bounceIn">
-            <h1 class="spc-h-t text-white text-5xl md:text-6xl" >Podcasts</h1>
+<MetaData
+    slot="head"
+    location={Astro.url.pathname}
+    title={t(`Podcasts`, `Podcasts`)}
+/>
+<Layout
+    footer={true}
+    isPost={false}
+    bodyClass="is-podcast has-cover is-head-transparent"
+>
+    <div
+        class="spc-header simply-hero-cover flex items-center justify-center relative min-h-lg py-24 px-4 bg-dark overflow-hidden"
+    >
+        <article
+            class="spc-h-inner max-w-4xl relative flex flex-col text-center z-3 pt-16 text-white text-2xl md:text-3xl animated bounceIn"
+        >
+            <h1 class="spc-h-t text-white text-5xl md:text-6xl">Podcasts</h1>
             <p class="spc-h-e">The Podcast</p>
-            <p class="spc-des">Updates and behind the scenes stories about the world of Ghost. Hosted by Ghost founders <em>John O&apos;Nolan</em> &amp; <em>Hannah Wolfe</em>.</p>
-            {/* <p class="spc-des" dangerouslySetInnerHTML={{ __html: page.html }}></p> */}
+            <p class="spc-des">
+                Updates and behind the scenes stories about the world of Ghost.
+                Hosted by Ghost founders <em>John O&apos;Nolan</em> &amp; <em
+                    >Hannah Wolfe</em
+                >.
+            </p>
+            {
+                /* <p class="spc-des" dangerouslySetInnerHTML={{ __html: page.html }}></p> */
+            }
             <div class="spc-buttons">
-
                 <a href="https://itunes.apple.com/" class="button">
-                    <Image src={itunesImage} alt="iTunes Logo" height="20" height="20" style={{ margin: `0 0.5rem 0 0` }}/>
+                    <Image
+                        src={itunesImage}
+                        alt="iTunes Logo"
+                        height="20"
+                        height="20"
+                        style={{ margin: `0 0.5rem 0 0` }}
+                    />
                     <span>iTunes</span>
                 </a>&nbsp;
 
                 <a href="https://www.pocketcasts.com/" class="button">
-                    <Image src={pocketcastsImage} alt="Pocket Casts Logo" height="20" height="20" style={{ margin: `0 0.5rem 0 0` }}/>
+                    <Image
+                        src={pocketcastsImage}
+                        alt="Pocket Casts Logo"
+                        height="20"
+                        height="20"
+                        style={{ margin: `0 0.5rem 0 0` }}
+                    />
                     <span>Pocket Casts</span>
                 </a>&nbsp;
 
                 <a href="https://anchor.fm/" class="button">
-                    <Image src={rssImage} alt="RSS Icon" height="20" height="20" style={{ margin: `0 0.5rem 0 0` }}/>
+                    <Image
+                        src={rssImage}
+                        alt="RSS Icon"
+                        height="20"
+                        height="20"
+                        style={{ margin: `0 0.5rem 0 0` }}
+                    />
                     <span>RSS</span>
                 </a>
-
             </div>
-
         </article>
 
-        {/* <MediaCover background={page.localFeatureImage} hasGradient={true} altTitle={page.title} /> */}
+        {
+            /* <MediaCover background={page.localFeatureImage} hasGradient={true} altTitle={page.title} /> */
+        }
     </div>
     <div class="feed-entry-content py-12 px-4">
         <div class="mx-auto max-w-4xl feed-entry-wrap">
-            {page.data.map((item) => {
-                const post = item.node
-                // post.url = resolveUrl(pageContext.collectionPath, post.url)
-                return <StoryPodcast post={item}/>
-            })}
+            {
+                page.data.map(item => {
+                    return <StoryPodcast post={item} />;
+                })
+            }
 
             <Pagination pageContext={page} />
         </div>

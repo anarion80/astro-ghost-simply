@@ -1,4 +1,4 @@
-.kg-before-after-card>div {
+.kg-before-after-card > div {
     position: relative;
     margin: 0 auto;
 }
@@ -64,18 +64,18 @@
 
 .kg-before-after-card-slider-handle:after {
     transform: rotate(-45deg);
-    content: '';
+    content: "";
     padding: 3px;
     display: inline-block;
-    border: solid #5D5D5D;
+    border: solid #5d5d5d;
     border-width: 0 2px 2px 0;
 }
 
 .kg-before-after-card-slider-handle:before {
     transform: rotate(135deg);
-    content: '';
+    content: "";
     padding: 3px;
     display: inline-block;
-    border: solid #5D5D5D;
+    border: solid #5d5d5d;
     border-width: 0 2px 2px 0;
 }

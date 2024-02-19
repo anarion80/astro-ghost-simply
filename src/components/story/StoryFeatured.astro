@@ -1,49 +1,74 @@
 ---
-import DateTimeComponent from '../DateTimeComponent.astro';
-import { relativeUrl } from '../../utils/relativeUrl';
-import { Image } from 'astro:assets';
+import DateTimeComponent from "../DateTimeComponent.astro";
+import { relativeUrl } from "../../utils/relativeUrl";
+import { Image } from "astro:assets";
 import { t } from "@utils/use-lang";
 export interface Props {
-	post?: any;
+    post?: any;
 }
 
 const { post } = Astro.props;
-const image = post.feature_image
-
+const image = post.feature_image;
 ---
-<article class="godo-f-story relative px-4 overflow-hidden py-vw8 bg-dark w-full flex-none simply-hero-cover">
+
+<article
+    class="godo-f-story relative px-4 overflow-hidden py-vw8 bg-dark w-full flex-none simply-hero-cover"
+>
     <div class="max-w-1100 mx-auto relative z-3">
         <div class="row">
             <div class="col s12 m10 l8">
-                <p class="mb-4 text-base font-semibold uppercase text-amber-400">{t(`Featured story`)}</p>
-                <h2 class="relative text-32 md:text-5xl font-semibold leading-tight mb-4">
-                    <a href={relativeUrl(post.url)} class="text-white" aria-label={post.title}>{post.title}</a>
+                <p
+                    class="mb-4 text-base font-semibold uppercase text-amber-400"
+                >
+                    {t(`Featured story`)}
+                </p>
+                <h2
+                    class="relative text-32 md:text-5xl font-semibold leading-tight mb-4"
+                >
+                    <a
+                        href={relativeUrl(post.url)}
+                        class="text-white"
+                        aria-label={post.title}>{post.title}</a
+                    >
                 </h2>
-                <p class="godo-f-story-excerpt mb-5 text-white font-normal lineClamp-2 text-xl">{post.excerpt.split(` `).splice(0,50).join(` `)}</p>
+                <p
+                    class="godo-f-story-excerpt mb-5 text-white font-normal lineClamp-2 text-xl"
+                >
+                    {post.excerpt.split(` `).splice(0, 50).join(` `)}
+                </p>
 
-                <DateTimeComponent post={post} dateTimeClass="godo-f-story-date mb-5 text-base text-white opacity-80" />
-                <a href={relativeUrl(post.url)} class="button is-primary font-medium" aria-label={post.title}>{t(`Read post`)}</a>
+                <DateTimeComponent
+                    post={post}
+                    dateTimeClass="godo-f-story-date mb-5 text-base text-white opacity-80"
+                />
+                <a
+                    href={relativeUrl(post.url)}
+                    class="button is-primary font-medium"
+                    aria-label={post.title}>{t(`Read post`)}</a
+                >
             </div>
         </div>
     </div>
-    {post.feature_image &&
-        <Image
-            src={image}
-            alt={post.title}
-            class="u-image absolute inset-0"
-            style={{
-                position: `absolute`,
-                height: `100%`,
-                width: `100%`,
-                inset: 0,
-                objectFit: `cover`,
-            }}
-            widths={[300, 600, 1000, 2000]}
-            sizes="auto"
-            width="1200"
-            height="628"
-            loading="eager"
-        />
+    {
+        post.feature_image && (
+            <Image
+                src={image}
+                alt={post.title}
+                class="u-image absolute inset-0"
+                style={{
+                    position: `absolute`,
+                    height: `100%`,
+                    width: `100%`,
+                    inset: 0,
+                    objectFit: `cover`,
+                }}
+                widths={[300, 600, 1000, 2000]}
+                sizes="auto"
+                width="1200"
+                height="628"
+                loading="eager"
+            />
+        )
     }
 
     <div class="u-primaryGradient absolute inset-0 z-2 opacity-70"></div>

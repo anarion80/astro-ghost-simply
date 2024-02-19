@@ -1,10 +1,9 @@
 .is-doc .post-body {
-
-  /* & > [id]:not(:first-child) {
+    /* & > [id]:not(:first-child) {
     margin: 3em 0 0;
   } */
 
-  /* & > h1,
+    /* & > h1,
   & > h2,
   & > h3,
   & > h4,
@@ -13,34 +12,43 @@
     scroll-margin-top: calc(4rem + 4vmin);
   } */
 
+    h2 {
+        font-size: 1.75rem;
+    }
+    h3 {
+        font-size: 1.375rem;
+    }
+    h4 {
+        font-size: 1.25rem;
+    }
+    h5 {
+        font-size: 1.125rem;
+    }
+    h6 {
+        font-size: 1rem;
+    }
 
-  h2 { font-size: 1.75rem; }
-  h3 { font-size: 1.375rem; }
-  h4 { font-size: 1.25rem; }
-  h5 { font-size: 1.125rem; }
-  h6 { font-size: 1rem; }
-
-  blockquote:not([class]) {
-    font-size: 1.125rem;
-    margin-left: 0;
-  }
+    blockquote:not([class]) {
+        font-size: 1.125rem;
+        margin-left: 0;
+    }
 }
 
 /* hover-title */
 .hover-title:hover .anchor {
-  visibility: visible;
-  opacity: 1;
+    visibility: visible;
+    opacity: 1;
 }
 
 .docstoc::before {
-  content: "— ";
-  display: inline;
-  font-weight: 400;
-  opacity: .5;
+    content: "— ";
+    display: inline;
+    font-weight: 400;
+    opacity: 0.5;
 }
 
 .scroll-transparent::-webkit-scrollbar {
-  width: 5px;
-  position: fixed;
-  right: 0;
+    width: 5px;
+    position: fixed;
+    right: 0;
 }

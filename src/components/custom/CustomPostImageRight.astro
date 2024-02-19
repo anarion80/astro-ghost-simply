@@ -9,41 +9,80 @@ import MetaData from "@components/meta/MetaData.astro";
 
 const { post, nextPost, prevPost, relatedPosts } = Astro.props;
 
-const tags = post.tags?.map((item) => item.name);
+const tags = post.tags?.map(item => item.name);
 ---
-<MetaData slot="head" location={Astro.url.pathname} type="article" data={post} />
-<Layout footer={true} bodyClass="is-article is-article-image-right" isPost={true}>
+
+<MetaData
+    slot="head"
+    location={Astro.url.pathname}
+    type="article"
+    data={post}
+/>
+<Layout
+    footer={true}
+    bodyClass="is-article is-article-image-right"
+    isPost={true}
+>
     <article class="post mb-10 relative">
         <div class="lg:mx-12 flex flex-col-reverse md:flex-row">
             <div class="flex flex-col justify-center md:w-3/6">
-                <header class="post-header px-4 max-w-740 pt-8 lg:mr-16 md:pb-8">
-                    {post.primary_tag && <div class="mb-3 text-gray-500 tracking-wider text-sm font-medium"><PrimaryTag tag={post.primary_tag} tagClass="uppercase hover:underline"/></div>}
+                <header
+                    class="post-header px-4 max-w-740 pt-8 lg:mr-16 md:pb-8"
+                >
+                    {
+                        post.primary_tag && (
+                            <div class="mb-3 text-gray-500 tracking-wider text-sm font-medium">
+                                <PrimaryTag
+                                    tag={post.primary_tag}
+                                    tagClass="uppercase hover:underline"
+                                />
+                            </div>
+                        )
+                    }
 
-                    <h1 class="post-title text-32 text-title leading-tight md:text-4xl lg:text-5xl">{post.title}</h1>
-                    {post.custom_excerpt && <p class="post-excerpt mt-6 text-xl text-gray-500">{post.custom_excerpt}</p>}
+                    <h1
+                        class="post-title text-32 text-title leading-tight md:text-4xl lg:text-5xl"
+                    >
+                        {post.title}
+                    </h1>
+                    {
+                        post.custom_excerpt && (
+                            <p class="post-excerpt mt-6 text-xl text-gray-500">
+                                {post.custom_excerpt}
+                            </p>
+                        )
+                    }
 
-                    {/* {!-- [Author, DateTime, Reading Time] - ./partials/components/author-meta.hbs --} */}
+                    {
+                        /* {!-- [Author, DateTime, Reading Time] - ./partials/components/author-meta.hbs --} */
+                    }
                     <div class="flex mt-8"><Author post={post} /></div>
                 </header>
             </div>
 
-            {post.feature_image &&
-            <figure class="post-image md:w-3/6">
-                <Image
-                    src={post.feature_image}
-                    class="block w-full object-cover h-88 lg:h-98"
-                    alt={post.title}
-                    widths={[300, 600, 1000, 2000]}
-                    sizes="(max-width: 400px) 300px,(max-width: 730px) 600px, (max-width: 1600px) 100vw"
-                    width="750"
-                    height="520"
-                />
-            </figure>
+            {
+                post.feature_image && (
+                    <figure class="post-image md:w-3/6">
+                        <Image
+                            src={post.feature_image}
+                            class="block w-full object-cover h-88 lg:h-98"
+                            alt={post.title}
+                            widths={[300, 600, 1000, 2000]}
+                            sizes="(max-width: 400px) 300px,(max-width: 730px) 600px, (max-width: 1600px) 100vw"
+                            width="750"
+                            height="520"
+                        />
+                    </figure>
+                )
             }
         </div>
 
         {/* {!-- Article Body - partials/article/article-body.hbs --} */}
         <ArticleBody post={post} nextPost={nextPost} prevPost={prevPost} />
     </article>
-    {(!tags.includes(`#podcast`) && !tags.includes(`#portfolio`)) && <ArticleRelated relatedPosts={relatedPosts} />}
+    {
+        !tags.includes(`#podcast`) && !tags.includes(`#portfolio`) && (
+            <ArticleRelated relatedPosts={relatedPosts} />
+        )
+    }
 </Layout>

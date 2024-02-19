@@ -1,62 +1,81 @@
 ---
-import PrimaryTag from '../PrimaryTag.astro';
-import Author from '../Author.astro';
-import { Image } from 'astro:assets';
-import { relativeUrl } from '../../utils/relativeUrl';
+import PrimaryTag from "../PrimaryTag.astro";
+import Author from "../Author.astro";
+import { Image } from "astro:assets";
+import { relativeUrl } from "../../utils/relativeUrl";
 export interface Props {
-	post?: any;
+    post?: any;
 }
 
 const { post } = Astro.props;
 
-const url = relativeUrl(post.url)
-const featureImage = post.feature_image
-const primaryTag = post.primary_tag
-const image = featureImage
+const url = relativeUrl(post.url);
+const featureImage = post.feature_image;
+const primaryTag = post.primary_tag;
+const image = featureImage;
 //console.log(post)
-
 ---
+
 <article class="story relative mb-5 pb-5 border-b border-gray-100 md:border-0">
-    <figure class="story-image relative border border-gray-300 bg-gray-200 block overflow-hidden">
-        {featureImage ?
-            <a href={url} class="block">
-                <Image
-                    src={image}
-                    alt={post.title}
-                    width="400"
-                    height="250"
-                    loading="eager"
-                    style={{
-                        position: `absolute`,
-                        height: `100%`,
-                        width: `100%`,
-                        inset: 0,
-                        objectFit: `cover`,
-                    }}
-                    class="story-img absolute u-image block blur-up lazyloaded"/>
-            </a>
-            :
-            <a href={url} class="block" aria-label={post.title}></a>
+    <figure
+        class="story-image relative border border-gray-300 bg-gray-200 block overflow-hidden"
+    >
+        {
+            featureImage ? (
+                <a href={url} class="block">
+                    <Image
+                        src={image}
+                        alt={post.title}
+                        width="400"
+                        height="250"
+                        loading="eager"
+                        style={{
+                            position: `absolute`,
+                            height: `100%`,
+                            width: `100%`,
+                            inset: 0,
+                            objectFit: `cover`,
+                        }}
+                        class="story-img absolute u-image block blur-up lazyloaded"
+                    />
+                </a>
+            ) : (
+                <a href={url} class="block" aria-label={post.title} />
+            )
         }
-        {primaryTag &&
-            <div class="absolute right-0 top-0"><PrimaryTag tag={primaryTag} /></div>
+        {
+            primaryTag && (
+                <div class="absolute right-0 top-0">
+                    <PrimaryTag tag={primaryTag} />
+                </div>
+            )
         }
     </figure>
 
     <div class="story-body pt-5 flexColumnTop">
         {/* <DateTimeComponent post={post} /> */}
 
-        <h2 class="story-title text-2xl font-sans text-title leading-tight mb-3"><a href={url} class="block">{post.title}</a></h2>
+        <h2
+            class="story-title text-2xl font-sans text-title leading-tight mb-3"
+        >
+            <a href={url} class="block">{post.title}</a>
+        </h2>
 
-        {post.excerpt &&
-            <p class="story-excerpt mb-5 text-lg leading-normal text-gray-500">
-                <a href={url} class="block">{post.excerpt.split(` `).splice(0,30).join(` `)}</a>
-            </p>
+        {
+            post.excerpt && (
+                <p class="story-excerpt mb-5 text-lg leading-normal text-gray-500">
+                    <a href={url} class="block">
+                        {post.excerpt.split(` `).splice(0, 30).join(` `)}
+                    </a>
+                </p>
+            )
         }
         {/*{{> "components/author-meta"}}*/}
         <Author post={post} />
 
-        {/*{{!-- Read more --}}
-        {{!-- <Link to={url} class="link is-hover font-medium">{t(`Read more`)}<svg class="icon is-medium"><use xlinkHref="#icon-arrow"></use></svg></Link> --}}*/}
+        {
+            /*{{!-- Read more --}}
+        {{!-- <Link to={url} class="link is-hover font-medium">{t(`Read more`)}<svg class="icon is-medium"><use xlinkHref="#icon-arrow"></use></svg></Link> --}}*/
+        }
     </div>
-    </article>
+</article>

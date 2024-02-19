@@ -1,45 +1,60 @@
 ---
-import Author from '../Author.astro';
-import { Image } from 'astro:assets';
-import { relativeUrl } from '../../utils/relativeUrl';
+import Author from "../Author.astro";
+import { Image } from "astro:assets";
+import { relativeUrl } from "../../utils/relativeUrl";
 
 export interface Props {
-	post?: any;
+    post?: any;
 }
 
 const { post } = Astro.props;
 
-const image = post.feature_image ? post.localFeatureImage : null
+const image = post.feature_image ? post.localFeatureImage : null;
 ---
+
 <article class="homeHero-mediumCard flex-auto w-full mt-8 lg:ml-6 lg:mt-0">
     <a href={relativeUrl(post.url)} class="hhp-image" aria-label={post.title}>
         <div class="hhp-img relative h-40 mb-4">
-            {post.feature_image &&
-                <Image
-                    src={image}
-                    alt={post.title}
-                    class="u-image inset-0 absolute"
-                    widths={[300, 600]}
-                    sizes={`(max-width: 1000px) 600px, 300px`}
-                    width="320"
-                    height="160"
-                />
+            {
+                post.feature_image && (
+                    <Image
+                        src={image}
+                        alt={post.title}
+                        class="u-image inset-0 absolute"
+                        widths={[300, 600]}
+                        sizes={`(max-width: 1000px) 600px, 300px`}
+                        width="320"
+                        height="160"
+                    />
+                )
             }
         </div>
     </a>
 
     <div class="hhp-body mb-4">
-        <h2 class="hhp-title text-2xl mb-3 leading-tight text-title lineClamp-2 overflow-hidden">
-            <a href={relativeUrl(post.url)} class="block" aria-label={post.title}>{post.title}</a>
+        <h2
+            class="hhp-title text-2xl mb-3 leading-tight text-title lineClamp-2 overflow-hidden"
+        >
+            <a
+                href={relativeUrl(post.url)}
+                class="block"
+                aria-label={post.title}>{post.title}</a
+            >
         </h2>
 
-        {post.excerpt &&
-            <div class="hhp-excerpt text-lg leading-snug overflow-hidden lineClamp mb-3 text-gray-500">
-                <a href={relativeUrl(post.url)} aria-label={post.title}>{post.excerpt.split(` `).splice(0,30).join(` `)}</a>
-            </div>
+        {
+            post.excerpt && (
+                <div class="hhp-excerpt text-lg leading-snug overflow-hidden lineClamp mb-3 text-gray-500">
+                    <a href={relativeUrl(post.url)} aria-label={post.title}>
+                        {post.excerpt.split(` `).splice(0, 30).join(` `)}
+                    </a>
+                </div>
+            )
         }
     </div>
 
-    {/* {!-- Author - Primary Tag - Datetime - Read time - ./partials/components/author-meta.hbs --} */}
+    {
+        /* {!-- Author - Primary Tag - Datetime - Read time - ./partials/components/author-meta.hbs --} */
+    }
     <Author post={post} hideAvatar={true} />
 </article>

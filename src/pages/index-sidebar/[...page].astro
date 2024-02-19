@@ -1,17 +1,16 @@
 ---
-import Layout from '@layouts/Layout.astro';
+import Layout from "@layouts/Layout.astro";
 import Pagination from "@components/Pagination.astro";
 import siteConfig from "@utils/siteConfig";
 import MetaData from "@components/meta/MetaData.astro";
 import { getPosts } from "@lib/api";
 import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
-import StoryGrid from '@components/story/StoryGrid.astro';
-import Sidebar from '@components/sidebar/Sidebar.astro';
+import StoryGrid from "@components/story/StoryGrid.astro";
+import Sidebar from "@components/sidebar/Sidebar.astro";
 
 export const getStaticPaths = (async ({ paginate }) => {
     const posts = await getPosts({
-    filter:
-        "visibility:public+tag:-hash-portfolio+tag:-hash-podcast+tag:-hash-custom-kusi-doc",
+        filter: "visibility:public+tag:-hash-portfolio+tag:-hash-podcast+tag:-hash-custom-kusi-doc",
     });
     return paginate(posts, { pageSize: siteConfig.postsPerPage });
 }) satisfies GetStaticPaths;
@@ -19,12 +18,12 @@ export const getStaticPaths = (async ({ paginate }) => {
 export type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 const { page } = Astro.props;
-
 ---
+
 <MetaData location={Astro.url.pathname} />
 <Layout isHome={true} isPost={false} footer={true} bodyClass="is-frontpage">
     <div class="container mx-auto px-4 py-16">
-        <div class=" max-w-1100 mx-auto">
+        <div class="max-w-1100 mx-auto">
             <div class="row">
                 <div class="col s12 l7">
                     <div class="feed-entry-content">
@@ -36,7 +35,7 @@ const { page } = Astro.props;
 
                 <div class="col s12 l1"></div>
 
-                <Sidebar posts={page.data.filter(item => item.featured)}/>
+                <Sidebar posts={page.data.filter(item => item.featured)} />
                 <Pagination pageContext={page} />
             </div>
         </div>

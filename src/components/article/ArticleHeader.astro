@@ -1,22 +1,40 @@
 ---
-import { relativeUrl } from '../../utils/relativeUrl';
-import Author from '../Author.astro';
+import { relativeUrl } from "../../utils/relativeUrl";
+import Author from "../Author.astro";
 export interface Props {
-	post?: any;
+    post?: any;
 }
 
 const { post } = Astro.props;
-
 ---
+
 <header class="post-header px-4 mx-auto max-w-740 relative z-3">
-    { post.primary_tag &&
-        <div class="mb-3 text-gray-500 tracking-wider text-sm font-medium">
-            <a class="uppercase hover:underline" href={relativeUrl(post.primary_tag.url)}>{post.primary_tag.name}</a> {/* TODO: update to proper link */}
-        </div>
+    {
+        post.primary_tag && (
+            <div class="mb-3 text-gray-500 tracking-wider text-sm font-medium">
+                <a
+                    class="uppercase hover:underline"
+                    href={relativeUrl(post.primary_tag.url)}
+                >
+                    {post.primary_tag.name}
+                </a>{" "}
+                {/* TODO: update to proper link */}
+            </div>
+        )
     }
 
-    <h1 class="post-title text-32 md:text-4xl lg:text-44 text-title leading-tight">{post.title}</h1>
-    {post.custom_excerpt && <p class="post-excerpt mt-6 text-22 text-gray-500">{post.custom_excerpt}</p>}
+    <h1
+        class="post-title text-32 md:text-4xl lg:text-44 text-title leading-tight"
+    >
+        {post.title}
+    </h1>
+    {
+        post.custom_excerpt && (
+            <p class="post-excerpt mt-6 text-22 text-gray-500">
+                {post.custom_excerpt}
+            </p>
+        )
+    }
 
     <div class="post-share flex flex-col md:flex-row mt-8">
         <Author post={post} />

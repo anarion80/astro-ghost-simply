@@ -89,7 +89,7 @@
     max-width: 40em;
 }
 
-.kg-header-card h2+h3.kg-header-card-subheader {
+.kg-header-card h2 + h3.kg-header-card-subheader {
     margin: 0.35em 0 0;
 }
 
@@ -112,7 +112,7 @@
 
 .kg-header-card.kg-style-accent h3.kg-header-card-subheader,
 .kg-header-card.kg-style-image h3.kg-header-card-subheader {
-    opacity: 1.0;
+    opacity: 1;
 }
 
 .kg-header-card.kg-style-image h2.kg-header-card-header,
@@ -141,23 +141,25 @@
     background: #fff;
     border-radius: 3px;
     outline: none;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+        "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+        "Helvetica Neue", sans-serif;
     font-size: 1.05em;
     font-weight: 600;
     line-height: 1em;
     text-align: center;
     text-decoration: none;
-    letter-spacing: .2px;
+    letter-spacing: 0.2px;
     white-space: nowrap;
     text-overflow: ellipsis;
     color: #151515;
     height: 2.7em;
     padding: 0 1.2em;
-    transition: opacity .2s ease;
+    transition: opacity 0.2s ease;
 }
 
-.kg-header-card h2+a.kg-header-card-button,
-.kg-header-card h3+a.kg-header-card-button {
+.kg-header-card h2 + a.kg-header-card-button,
+.kg-header-card h3 + a.kg-header-card-button {
     margin: 1.75em 0 0;
 }
 
@@ -170,8 +172,8 @@
     height: 2.9em;
 }
 
-.kg-header-card.kg-size-large h2+a.kg-header-card-button,
-.kg-header-card.kg-size-large h3+a.kg-header-card-button {
+.kg-header-card.kg-size-large h2 + a.kg-header-card-button,
+.kg-header-card.kg-size-large h3 + a.kg-header-card-button {
     margin-top: 2em;
 }
 
@@ -180,8 +182,8 @@
     font-size: 1em;
 }
 
-.kg-header-card.kg-size-small h2+a.kg-header-card-button,
-.kg-header-card.kg-size-small h3+a.kg-header-card-button {
+.kg-header-card.kg-size-small h2 + a.kg-header-card-button,
+.kg-header-card.kg-size-small h3 + a.kg-header-card-button {
     margin-top: 1.5em;
 }
 

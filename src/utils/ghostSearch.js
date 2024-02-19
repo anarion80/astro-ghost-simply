@@ -1,10 +1,9 @@
-import FlexSearch from 'flexsearch';
+import FlexSearch from "flexsearch";
 
 /**
  * Based on https://github.com/gmfmi/searchinGhost but updated to latest FlexSearch
  */
 export default class SearchinGhost {
-
     /**
      * Constructor and entry point of the library
      * @param {Document} args
@@ -12,59 +11,77 @@ export default class SearchinGhost {
     constructor(args) {
         this.config = {
             url: window.location.origin,
-            key: '',
-            version: 'v3',
-            loadOn: 'focus',
-            searchOn: 'keyup',
+            key: "",
+            version: "v3",
+            loadOn: "focus",
+            searchOn: "keyup",
             limit: 10,
-            inputId: ['search-bar'],
-            outputId: ['search-results'],
-            outputChildsType: 'li',
-            postsFields: ['title', 'url', 'excerpt', 'custom_excerpt', 'published_at', 'feature_image'],
-            postsExtraFields: ['tags'],
-            postsFormats: ['plaintext'],
-            indexedFields: ['title', 'excerpt', 'plaintext'],
+            inputId: ["search-bar"],
+            outputId: ["search-results"],
+            outputChildsType: "li",
+            postsFields: [
+                "title",
+                "url",
+                "excerpt",
+                "custom_excerpt",
+                "published_at",
+                "feature_image",
+            ],
+            postsExtraFields: ["tags"],
+            postsFormats: ["plaintext"],
+            indexedFields: ["title", "excerpt", "plaintext"],
             template: function (post) {
-                var o = `<a href="${post.url}">`
-                if (post.feature_image) o += `<img src="${post.feature_image}">`
-                o += '<section>'
+                var o = `<a href="${post.url}">`;
+                if (post.feature_image)
+                    o += `<img src="${post.feature_image}">`;
+                o += "<section>";
                 if (post.tags.length > 0) {
                     o += `<header>
                             <span class="head-tags">${post.tags[0].name}</span>
                             <span class="head-date">${post.published_at}</span>
-                          </header>`
+                          </header>`;
                 } else {
                     o += `<header>
                             <span class="head-tags">UNKNOWN</span>
                             <span class="head-date">${post.published_at}</span>
-                          </header>`
+                          </header>`;
                 }
-                o += `<h2>${post.title}</h2>`
-                o += `</section></a>`
+                o += `<h2>${post.title}</h2>`;
+                o += `</section></a>`;
                 return o;
             },
-            emptyTemplate: function () { },
-            customProcessing: function (post) { return post; },
+            emptyTemplate: function () {},
+            customProcessing: function (post) {
+                return post;
+            },
             date: {
                 locale: document.documentElement.lang || "en-US",
-                options: { year: 'numeric', month: 'short', day: 'numeric' }
+                options: { year: "numeric", month: "short", day: "numeric" },
             },
             cacheMaxAge: 1800,
-            onFetchStart: function () { },
-            onFetchEnd: function (posts) { },
-            onIndexBuildStart: function () { },
-            onIndexBuildEnd: function (index) { },
-            onSearchStart: function () { },
-            onSearchEnd: function (posts) { },
+            onFetchStart: function () {},
+            /* eslint-disable */
+            onFetchEnd: function (posts) {},
+            onIndexBuildStart: function () {},
+            onIndexBuildEnd: function (index) {},
+            onSearchStart: function () {},
+            onSearchEnd: function (posts) {},
+            /* eslint-enable */
             indexOptions: {},
             searchOptions: {},
-            debug: false
-        }
+            debug: false,
+        };
 
-        this.dataLoaded = false;  // flag to ensure data are properly loaded
-        this.postsCount = 0;      // keep track of posts ID, must be numeric
+        this.dataLoaded = false; // flag to ensure data are properly loaded
+        this.postsCount = 0; // keep track of posts ID, must be numeric
         this.storage = this.getLocalStorageOption();
-        this.exportedKeys = [`tag`, `store`, `reg`].concat(this.config.indexedFields.flatMap((str) => [`${str}.ctr`, `${str}.reg`, `${str}.map`]));
+        this.exportedKeys = [`tag`, `store`, `reg`].concat(
+            this.config.indexedFields.flatMap(str => [
+                `${str}.ctr`,
+                `${str}.reg`,
+                `${str}.map`,
+            ])
+        );
 
         this.initConfig(args);
         this.triggerDataLoad();
@@ -80,16 +97,18 @@ export default class SearchinGhost {
         }
 
         // ensure config backward compatibility of <1.5.0
-        if (!Array.isArray(this.config.inputId)) this.config.inputId = [this.config.inputId];
-        if (!Array.isArray(this.config.outputId)) this.config.outputId = [this.config.outputId];
+        if (!Array.isArray(this.config.inputId))
+            this.config.inputId = [this.config.inputId];
+        if (!Array.isArray(this.config.outputId))
+            this.config.outputId = [this.config.outputId];
 
         // Inject the "limit" arg within the final searchOptions
         this.config.searchOptions.limit = this.config.limit;
 
         // Ensure 'updated_at' will be fetched, needed for the local storage logic
         this.originalPostsFields = this.config.postsFields;
-        if (!this.config.postsFields.includes('updated_at')) {
-            this.config.postsFields.push('updated_at');
+        if (!this.config.postsFields.includes("updated_at")) {
+            this.config.postsFields.push("updated_at");
         }
 
         if (this.config.inputId && this.config.inputId.length > 0) {
@@ -100,7 +119,9 @@ export default class SearchinGhost {
                     this.searchBarEls.push(searchBar);
                     this.addSearchListeners(searchBar);
                 } else {
-                    this.error(`Enable to find the input element #${id}, please check your configuration`);
+                    this.error(
+                        `Enable to find the input element #${id}, please check your configuration`
+                    );
                 }
             });
         }
@@ -110,9 +131,11 @@ export default class SearchinGhost {
             this.config.outputId.forEach(id => {
                 let searchResult = document.getElementById(id);
                 if (searchResult) {
-                    this.searchResultEls.push(searchResult)
+                    this.searchResultEls.push(searchResult);
                 } else {
-                    this.error(`Enable to find the output element #${id}, please check your configuration`);
+                    this.error(
+                        `Enable to find the output element #${id}, please check your configuration`
+                    );
                 }
             });
         }
@@ -126,28 +149,33 @@ export default class SearchinGhost {
      */
     addSearchListeners(searchBarEl) {
         // In any case, prevent the input form from being submitted
-        let searchForm = searchBarEl.closest('form');
-        if (searchForm) searchForm.addEventListener("submit", (ev) => { ev.preventDefault(); });
+        let searchForm = searchBarEl.closest("form");
+        if (searchForm)
+            searchForm.addEventListener("submit", ev => {
+                ev.preventDefault();
+            });
 
         switch (this.config.searchOn) {
-            case 'keyup':
+            case "keyup":
                 searchBarEl.addEventListener("keyup", () => {
                     let inputQuery = searchBarEl.value.toLowerCase();
                     this.search(inputQuery);
                 });
                 break;
-            case 'submit':
+            case "submit":
                 searchForm.addEventListener("submit", () => {
                     let inputQuery = searchBarEl.value.toLowerCase();
                     this.search(inputQuery);
                 });
                 break;
             case false:
-            case 'none':
+            case "none":
                 // do nothing
                 break;
             default:
-                this.error(`Unknown "searchOn" option: '${this.config.searchOn}'`);
+                this.error(
+                    `Unknown "searchOn" option: '${this.config.searchOn}'`
+                );
         }
     }
 
@@ -156,20 +184,20 @@ export default class SearchinGhost {
      */
     triggerDataLoad() {
         switch (this.config.loadOn) {
-            case 'focus':
+            case "focus":
                 this.searchBarEls.forEach(searchBarEl => {
-                    searchBarEl.addEventListener('focus', () => {
+                    searchBarEl.addEventListener("focus", () => {
                         this.loadData();
                     });
-                })
+                });
                 break;
-            case 'page':
-                window.addEventListener('load', () => {
+            case "page":
+                window.addEventListener("load", () => {
                     this.loadData();
                 });
                 break;
             case false:
-            case 'none':
+            case "none":
                 // do nothing
                 break;
             default:
@@ -195,7 +223,6 @@ export default class SearchinGhost {
             this.log("Found an index stored locally, loads it");
             this.config.onIndexBuildStart();
             for (let i = 0, key; i < this.exportedKeys.length; i++) {
-
                 key = this.exportedKeys[i];
                 if (localStorage.getItem(key) !== "undefined") {
                     this.index.import(key, localStorage.getItem(key));
@@ -226,21 +253,23 @@ export default class SearchinGhost {
         const lastUpdate = new Date(cacheInfo.lastCacheCheck);
         const elapsedTime = Math.round((new Date() - lastUpdate) / 1000);
         if (elapsedTime < this.config.cacheMaxAge) {
-            this.log(`Skip cache refreshing, updated less than ${this.config.cacheMaxAge}s ago (${elapsedTime}s)`);
+            this.log(
+                `Skip cache refreshing, updated less than ${this.config.cacheMaxAge}s ago (${elapsedTime}s)`
+            );
             return;
         }
 
         const browseOptions = {
             limit: 1,
-            fields: ['updated_at'],
-            order: 'updated_at DESC'
+            fields: ["updated_at"],
+            order: "updated_at DESC",
         };
         const lastUpdatedPostUrl = this.buildUrl(browseOptions);
         fetch(lastUpdatedPostUrl)
             .then(function (response) {
                 return response.json();
             })
-            .then((jsonResponse) => {
+            .then(jsonResponse => {
                 const lastestPostUpdatedAt = jsonResponse.posts[0].updated_at;
                 const totalPosts = jsonResponse.meta.pagination.total;
 
@@ -248,15 +277,24 @@ export default class SearchinGhost {
                     this.log("Posts update found, purge outdated local cache");
                     this.fetch();
                 } else if (totalPosts < cacheInfo.totalPosts) {
-                    this.log("Deleted or unpublished posts found, purge outdated local cache")
+                    this.log(
+                        "Deleted or unpublished posts found, purge outdated local cache"
+                    );
                     this.fetch();
                 } else {
                     this.log("Local cached data up to date");
                     cacheInfo.lastCacheCheck = new Date().toISOString();
-                    this.storage.setItem("SearchinGhost_cache_info", JSON.stringify(cacheInfo));
+                    this.storage.setItem(
+                        "SearchinGhost_cache_info",
+                        JSON.stringify(cacheInfo)
+                    );
                 }
-            }).catch((error) => {
-                console.error("Unable to fetch the latest post information to check cache state", error);
+            })
+            .catch(error => {
+                console.error(
+                    "Unable to fetch the latest post information to check cache state",
+                    error
+                );
             });
     }
 
@@ -268,20 +306,22 @@ export default class SearchinGhost {
         this.config.onFetchStart();
 
         const browseOptions = {
-            limit: 'all',
+            limit: "all",
             fields: this.config.postsFields,
-            order: 'updated_at DESC'
-        }
+            order: "updated_at DESC",
+        };
 
-        if (this.config.postsExtraFields.length > 0) browseOptions.include = this.config.postsExtraFields;
-        if (this.config.postsFormats.length > 0) browseOptions.formats = this.config.postsFormats;
+        if (this.config.postsExtraFields.length > 0)
+            browseOptions.include = this.config.postsExtraFields;
+        if (this.config.postsFormats.length > 0)
+            browseOptions.formats = this.config.postsFormats;
 
         const allPostsUrl = this.buildUrl(browseOptions);
         fetch(allPostsUrl)
             .then(function (response) {
                 return response.json();
             })
-            .then((jsonResponse) => {
+            .then(jsonResponse => {
                 const posts = jsonResponse.posts;
 
                 this.config.onFetchEnd(posts);
@@ -289,7 +329,7 @@ export default class SearchinGhost {
 
                 this.index = this.getNewSearchDocument();
 
-                posts.forEach((post) => {
+                posts.forEach(post => {
                     let formattedPost = this.format(post);
                     if (formattedPost) this.index.add(formattedPost);
                 });
@@ -301,20 +341,22 @@ export default class SearchinGhost {
                     const cacheInfo = {
                         lastCacheCheck: new Date().toISOString(),
                         lastestPostUpdatedAt: posts[0].updated_at,
-                        totalPosts: jsonResponse.meta.pagination.total
-                    }
+                        totalPosts: jsonResponse.meta.pagination.total,
+                    };
                     this.index.export(function (key, data) {
-
                         return new Promise(function (resolve) {
                             localStorage.setItem(key, data);
                             resolve();
                         });
                     });
-                    this.storage.setItem("SearchinGhost_cache_info", JSON.stringify(cacheInfo));
+                    this.storage.setItem(
+                        "SearchinGhost_cache_info",
+                        JSON.stringify(cacheInfo)
+                    );
                 }
                 this.log("Search index build complete");
             })
-            .catch((error) => {
+            .catch(error => {
                 this.error("Unable to fetch Ghost data.\n", error);
             });
     }
@@ -333,7 +375,7 @@ export default class SearchinGhost {
 
         // only used to keep track of the last fetch time,
         // remove it before indexing BUT only if not wanted by the user
-        if (!this.originalPostsFields.includes('updated_at')) {
+        if (!this.originalPostsFields.includes("updated_at")) {
             delete post.updated_at;
         }
 
@@ -358,25 +400,38 @@ export default class SearchinGhost {
 
         let searchQuery = {
             index: this.config.indexedFields,
-            query: inputQuery
-        }
+            query: inputQuery,
+        };
 
         for (let [key, value] of Object.entries(searchQuery)) {
             searchQuery[key] = value;
         }
 
-        let postsFound = this.index.search(inputQuery, this.config.searchOptions, { limit: this.config.limit, enrich: true })
+        let postsFound = this.index.search(
+            inputQuery,
+            this.config.searchOptions,
+            {
+                limit: this.config.limit,
+                enrich: true,
+            }
+        );
 
         // remove duplicates if differernt fields were used to search
-        const uniqueData = [...postsFound.flatMap(item => item["result"]).reduce((map, obj) => map.set(obj.id, obj), new Map()).values()]
-        // get the underlying documents
-        .flatMap(item => item["doc"])
-        // sorty by date
-        .sort((a, b) => b["updated_at"] - a["updated_at"])
-        // limit results
-        .splice(0, this.config.limit);
+        const uniqueData = [
+            ...postsFound
+                .flatMap(item => item["result"])
+                .reduce((map, obj) => map.set(obj.id, obj), new Map())
+                .values(),
+        ]
+            // get the underlying documents
+            .flatMap(item => item["doc"])
+            // sorty by date
+            .sort((a, b) => b["updated_at"] - a["updated_at"])
+            // limit results
+            .splice(0, this.config.limit);
 
-        if (this.searchResultEls && this.searchResultEls.length > 0) this.display(uniqueData);
+        if (this.searchResultEls && this.searchResultEls.length > 0)
+            this.display(uniqueData);
 
         this.config.onSearchEnd(uniqueData);
         return uniqueData;
@@ -388,7 +443,7 @@ export default class SearchinGhost {
      */
     display(posts) {
         this.searchResultEls.forEach(resultEl => {
-            resultEl.innerHTML = '';
+            resultEl.innerHTML = "";
         });
 
         if (posts.length < 1) {
@@ -409,12 +464,14 @@ export default class SearchinGhost {
         if (generatedHtml) {
             this.searchResultEls.forEach(resultEl => {
                 if (this.config.outputChildsType) {
-                    let child = document.createElement(this.config.outputChildsType);
+                    let child = document.createElement(
+                        this.config.outputChildsType
+                    );
                     child.classList.add(`${resultEl.id}-item`);
                     child.innerHTML = generatedHtml;
                     resultEl.appendChild(child);
                 } else {
-                    resultEl.insertAdjacentHTML('beforeend', generatedHtml);
+                    resultEl.insertAdjacentHTML("beforeend", generatedHtml);
                 }
             });
         }
@@ -429,15 +486,15 @@ export default class SearchinGhost {
             document: {
                 id: "id",
                 index: this.config.indexedFields,
-                store: this.config.postsFields
+                store: this.config.postsFields,
             },
             preset: "default",
             tokenize: "forward",
             threshold: 0,
             resolution: 4,
             fastupdate: false,
-            depth: 0
-        }
+            depth: 0,
+        };
 
         for (let [key, value] of Object.entries(this.config.indexOptions)) {
             documentConfig[key] = value;
@@ -466,7 +523,10 @@ export default class SearchinGhost {
      */
     prettyDate(date) {
         let d = new Date(date);
-        return d.toLocaleDateString(this.config.date.locale, this.config.date.options);
+        return d.toLocaleDateString(
+            this.config.date.locale,
+            this.config.date.options
+        );
     }
 
     /**
@@ -476,8 +536,8 @@ export default class SearchinGhost {
      */
     getLocalStorageOption() {
         try {
-            window.localStorage.setItem('storage-availability-test', '');
-            window.localStorage.removeItem('storage-availability-test');
+            window.localStorage.setItem("storage-availability-test", "");
+            window.localStorage.removeItem("storage-availability-test");
             return window.localStorage;
         } catch (err) {
             return undefined;

@@ -12,48 +12,91 @@ import MetaData from "@components/meta/MetaData.astro";
 
 const { post, nextPost, prevPost, relatedPosts } = Astro.props;
 
-const tags = post.tags?.map((item) => item.name);
-
+const tags = post.tags?.map(item => item.name);
 ---
-<MetaData slot="head" location={Astro.url.pathname} type="article" data={post} />
+
+<MetaData
+    slot="head"
+    location={Astro.url.pathname}
+    type="article"
+    data={post}
+/>
 <Layout footer={true} bodyClass="is-article is-sidebar" isPost={true}>
     <div class="container mx-auto px-4 py-16">
-        <div class=" max-w-1100 mx-auto">
+        <div class="max-w-1100 mx-auto">
             <div class="row">
                 <div class="col s12 l7">
                     <article>
                         <header class="story-post-header mb-5">
-                            <h1 class="text-4xl leading-tight text-title mb-5">{post.title}</h1>
-                            {post.custom_excerpt && <p class="post-excerpt my-6 text-xl text-gray-500">{post.custom_excerpt}</p>}
-                            {/* {!-- Author - Primary Tag - Datetime - Read time - ./partials/components/author-meta.hbs --} */}
+                            <h1 class="text-4xl leading-tight text-title mb-5">
+                                {post.title}
+                            </h1>
+                            {
+                                post.custom_excerpt && (
+                                    <p class="post-excerpt my-6 text-xl text-gray-500">
+                                        {post.custom_excerpt}
+                                    </p>
+                                )
+                            }
+                            {
+                                /* {!-- Author - Primary Tag - Datetime - Read time - ./partials/components/author-meta.hbs --} */
+                            }
                             <Author post={post} />
                         </header>
 
-                        { post.feature_image &&
-                            <ArticleFeaturedImage
-                                article={post}
-                                figureClass="story-post-media relative overflow-hidden rounded-lg shadow-3xl"
-                                divClass="story-img block w-full object-cover object-center simply-zoom"
-                                zoomable={true} /> }
+                        {
+                            post.feature_image && (
+                                <ArticleFeaturedImage
+                                    article={post}
+                                    figureClass="story-post-media relative overflow-hidden rounded-lg shadow-3xl"
+                                    divClass="story-img block w-full object-cover object-center simply-zoom"
+                                    zoomable={true}
+                                />
+                            )
+                        }
 
-                        <div id="post-body" class="post-body has-sidebar relative" set:html={post.html}></div>
+                        <div
+                            id="post-body"
+                            class="post-body has-sidebar relative"
+                            set:html={post.html}
+                        />
 
                         {/* {!-- Tags - ./partials/components/tags,hbs --} */}
-                        <footer class="post-footer px-4 mx-auto max-w-740 pt-10">
+                        <footer
+                            class="post-footer px-4 mx-auto max-w-740 pt-10"
+                        >
                             <Tags tags={post.tags} />
 
-                            {/* {!-- Social Share - ./partials/components/social-share --} */}
-                            <SocialShare post={post} trackingName="Footer" divClass="block" />
+                            {
+                                /* {!-- Social Share - ./partials/components/social-share --} */
+                            }
+                            <SocialShare
+                                post={post}
+                                trackingName="Footer"
+                                divClass="block"
+                            />
 
                             {/*{!-- Previous and next article --}*/}
                             <div class="prev-next pb-8">
                                 <hr class="my-10" />
-                                {prevPost &&
-                                    <StoryPreviousNext post={prevPost} storyTitle={t(`Previous article`)} divClass="mb-8" />
+                                {
+                                    prevPost && (
+                                        <StoryPreviousNext
+                                            post={prevPost}
+                                            storyTitle={t(`Previous article`)}
+                                            divClass="mb-8"
+                                        />
+                                    )
                                 }
 
-                                {nextPost &&
-                                    <StoryPreviousNext post={nextPost} storyTitle={t(`Next article`)} divClass="" />
+                                {
+                                    nextPost && (
+                                        <StoryPreviousNext
+                                            post={nextPost}
+                                            storyTitle={t(`Next article`)}
+                                            divClass=""
+                                        />
+                                    )
                                 }
                             </div>
                         </footer>
@@ -68,5 +111,9 @@ const tags = post.tags?.map((item) => item.name);
         </div>
     </div>
 
-    {(!tags.includes(`#podcast`) && !tags.includes(`#portfolio`)) && <ArticleRelated relatedPosts={relatedPosts} />}
+    {
+        !tags.includes(`#podcast`) && !tags.includes(`#portfolio`) && (
+            <ArticleRelated relatedPosts={relatedPosts} />
+        )
+    }
 </Layout>

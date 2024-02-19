@@ -1,58 +1,69 @@
 ---
-import ImageMeta from './ImageMeta.astro';
-import { getSettings } from '@lib/api';
-import siteConfig from '@utils/siteConfig';
+import ImageMeta from "./ImageMeta.astro";
+import { getSettings } from "@lib/api";
+import siteConfig from "@utils/siteConfig";
 
 export interface Props {
-    data?: any,
-	canonical?: string,
-    title?: string,
-    description?: string,
-    image?: any,
-    type?: string,
+    data?: any;
+    canonical?: string;
+    title?: string;
+    description?: string;
+    image?: any;
+    type?: string;
 }
 
 const { data, canonical, title, description, image, type } = Astro.props;
 const settings = await getSettings();
-const publisherLogo = new URL((settings.logo || siteConfig.siteIcon), siteConfig.siteUrl).toString();
+const publisherLogo = new URL(
+    settings.logo || siteConfig.siteIcon,
+    siteConfig.siteUrl
+).toString();
 let shareImage = image || data.feature_image || (settings?.cover_image ?? null);
 
-shareImage = shareImage ? new URL(shareImage, siteConfig.siteUrl).toString() : null
+shareImage = shareImage
+    ? new URL(shareImage, siteConfig.siteUrl).toString()
+    : null;
 
-const desc = description || data.meta_description || data.description || siteConfig.siteDescriptionMeta || settings.description
-const t = `${title || data.meta_title || data.name || data.title || settings.title} - ${settings.title}`
+const desc =
+    description ||
+    data.meta_description ||
+    data.description ||
+    siteConfig.siteDescriptionMeta ||
+    settings.description;
+const t = `${title || data.meta_title || data.name || data.title || settings.title} - ${settings.title}`;
 
 const jsonLd = {
-        "@context": `https://schema.org/`,
-        "@type": type,
-        url: canonical,
-        image: shareImage ?
-            {
-                "@type": `ImageObject`,
-                url: shareImage,
-                width: siteConfig.shareImageWidth,
-                height: siteConfig.shareImageHeight,
-            } : undefined,
-        publisher: {
-            "@type": `Organization`,
-            name: settings.title,
-            logo: {
-                "@type": `ImageObject`,
-                url: publisherLogo,
-                width: 60,
-                height: 60,
-            },
+    "@context": `https://schema.org/`,
+    "@type": type,
+    url: canonical,
+    image: shareImage
+        ? {
+              "@type": `ImageObject`,
+              url: shareImage,
+              width: siteConfig.shareImageWidth,
+              height: siteConfig.shareImageHeight,
+          }
+        : undefined,
+    publisher: {
+        "@type": `Organization`,
+        name: settings.title,
+        logo: {
+            "@type": `ImageObject`,
+            url: publisherLogo,
+            width: 60,
+            height: 60,
         },
-        mainEntityOfPage: {
-            "@type": `WebPage`,
-            "@id": siteConfig.siteUrl,
-        },
-        description,
-    }
+    },
+    mainEntityOfPage: {
+        "@type": `WebPage`,
+        "@id": siteConfig.siteUrl,
+    },
+    description,
+};
 
-const schema = JSON.stringify(jsonLd, undefined, 4)
-
+const schema = JSON.stringify(jsonLd, undefined, 4);
 ---
+
 <title>{t}</title>
 <meta name="description" content={desc} />
 <link rel="canonical" href={canonical} />
@@ -64,8 +75,15 @@ const schema = JSON.stringify(jsonLd, undefined, 4)
 <meta name="twitter:title" content={t} />
 <meta name="twitter:description" content={desc} />
 <meta name="twitter:url" content={canonical} />
-{settings.twitter && <meta name="twitter:site" content={`https://twitter.com/${settings.twitter.replace(/^@/, ``)}/`} />}
+{
+    settings.twitter && (
+        <meta
+            name="twitter:site"
+            content={`https://twitter.com/${settings.twitter.replace(/^@/, ``)}/`}
+        />
+    )
+}
 {settings.twitter && <meta name="twitter:creator" content={settings.twitter} />}
-<script type="application/ld+json" set:html={schema}></script>
+<script type="application/ld+json" set:html={schema} />
 <!-- TODO -->
 <ImageMeta image={shareImage} />

@@ -1,29 +1,38 @@
 ---
-import type { InferGetStaticPropsType, GetStaticPaths } from 'astro'
-import Post from '@components/Post.astro'
-import { getPosts } from '@lib/api'
-import { formatDate } from '@utils/dateConvert'
+import type { InferGetStaticPropsType, GetStaticPaths } from "astro";
+import Post from "@components/Post.astro";
+import { getPosts } from "@lib/api";
+import { formatDate } from "@utils/dateConvert";
 
 export const getStaticPaths = (async () => {
-	const posts = await getPosts({filter: `visibility:public+tag:-hash-portfolio+tag:hash-podcast+tag:-hash-custom-kusi-doc`});
+    const posts = await getPosts({
+        filter: `visibility:public+tag:-hash-portfolio+tag:hash-podcast+tag:-hash-custom-kusi-doc`,
+    });
 
-	return posts.map((post) => ({
-		params: { slug: post.slug },
-		props: { post },
-	}));
+    return posts.map(post => ({
+        params: { slug: post.slug },
+        props: { post },
+    }));
 }) satisfies GetStaticPaths;
 
 export type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
-const {post} = Astro.props as Props;
+const { post } = Astro.props as Props;
 
-const prevPost = (await getPosts({filter: `published_at:<='${formatDate(post.published_at)}'+slug:-${post.slug}+tag:-hash-portfolio+tag:hash-podcast+tag:-hash-custom-kusi-doc`, limit: "1", order: "published_at DESC"}))[0]
-const nextPost = (await getPosts({filter: `published_at:>'${formatDate(post.published_at)}'+slug:-${post.slug}+tag:-hash-portfolio+tag:hash-podcast+tag:-hash-custom-kusi-doc`, limit: "1", order: "published_at ASC"}))[0]
-
+const prevPost = (
+    await getPosts({
+        filter: `published_at:<='${formatDate(post.published_at)}'+slug:-${post.slug}+tag:-hash-portfolio+tag:hash-podcast+tag:-hash-custom-kusi-doc`,
+        limit: "1",
+        order: "published_at DESC",
+    })
+)[0];
+const nextPost = (
+    await getPosts({
+        filter: `published_at:>'${formatDate(post.published_at)}'+slug:-${post.slug}+tag:-hash-portfolio+tag:hash-podcast+tag:-hash-custom-kusi-doc`,
+        limit: "1",
+        order: "published_at ASC",
+    })
+)[0];
 ---
 
-<Post
-    post={post}
-    nextPost={nextPost}
-    prevPost={prevPost}
-/>
+<Post post={post} nextPost={nextPost} prevPost={prevPost} />

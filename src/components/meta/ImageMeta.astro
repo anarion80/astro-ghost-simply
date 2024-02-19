@@ -1,8 +1,8 @@
 ---
-import siteConfig from '@utils/siteConfig';
+import siteConfig from "@utils/siteConfig";
 
 export interface Props {
-    image?: any,
+    image?: any;
 }
 
 const { image } = Astro.props;
@@ -10,10 +10,10 @@ const { image } = Astro.props;
 const config = siteConfig;
 
 if (!image) {
-        return null
-    }
-
+    return null;
+}
 ---
+
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content={image} />
 <meta property="og:image" content={image} />

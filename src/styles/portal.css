@@ -57,7 +57,7 @@
     padding: 0 1.8rem;
     border-radius: 6px;
     cursor: pointer;
-    transition: all .25s ease;
+    transition: all 0.25s ease;
     box-shadow: none;
     user-select: none;
     outline: none;
@@ -78,7 +78,11 @@
     bottom: 0;
     margin: 0 0 -32px;
     padding: 32px 0 32px;
-    background: linear-gradient(0deg, rgba(255, 255, 255, 1) 75%, rgba(255, 255, 255, 0) 100%);
+    background: linear-gradient(
+        0deg,
+        rgba(255, 255, 255, 1) 75%,
+        rgba(255, 255, 255, 0) 100%
+    );
 }
 
 .gh-portal-btn-container.sticky.m28 {
@@ -172,7 +176,7 @@
 }
 
 .gh-portal-btn-logout:hover .label {
-    opacity: 1.0;
+    opacity: 1;
     transform: translateX(-4px);
 }
 
@@ -185,7 +189,6 @@
     margin-right: 4px;
     transition: transform 0.4s cubic-bezier(0.1, 0.7, 0.1, 1);
 }
-
 
 .gh-portal-btn-site-title-back:hover span {
     transform: translateX(-3px);
@@ -230,7 +233,11 @@
     bottom: 0;
     left: 0;
     animation: fadein 0.2s;
-    background: linear-gradient(315deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.1) 100%);
+    background: linear-gradient(
+        315deg,
+        rgba(0, 0, 0, 0.2) 0%,
+        rgba(0, 0, 0, 0.1) 100%
+    );
     backdrop-filter: blur(2px);
     -webkit-backdrop-filter: blur(2px);
     -webkit-transform: translate3d(0, 0, 0);
@@ -240,7 +247,11 @@
 }
 
 .gh-portal-popup-background.preview {
-    background: linear-gradient(45deg, rgba(255, 255, 255, 1) 0%, rgba(249, 249, 250, 1) 100%);
+    background: linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 1) 0%,
+        rgba(249, 249, 250, 1) 100%
+    );
     animation: none;
     pointer-events: none;
 }
@@ -251,7 +262,7 @@
     }
 
     100% {
-        opacity: 1.0;
+        opacity: 1;
     }
 }
 
@@ -297,7 +308,13 @@
     padding: 32px;
     transform: translateY(0px);
     border-radius: 10px;
-    box-shadow: 0 3.8px 2.2px rgba(0, 0, 0, 0.028), 0 9.2px 5.3px rgba(0, 0, 0, 0.04), 0 17.3px 10px rgba(0, 0, 0, 0.05), 0 30.8px 17.9px rgba(0, 0, 0, 0.06), 0 57.7px 33.4px rgba(0, 0, 0, 0.072), 0 138px 80px rgba(0, 0, 0, 0.1);
+    box-shadow:
+        0 3.8px 2.2px rgba(0, 0, 0, 0.028),
+        0 9.2px 5.3px rgba(0, 0, 0, 0.04),
+        0 17.3px 10px rgba(0, 0, 0, 0.05),
+        0 30.8px 17.9px rgba(0, 0, 0, 0.06),
+        0 57.7px 33.4px rgba(0, 0, 0, 0.072),
+        0 138px 80px rgba(0, 0, 0, 0.1);
     animation: popup 0.25s ease-in-out;
     z-index: 9999;
 }
@@ -344,7 +361,7 @@
 
     100% {
         transform: translateY(0);
-        opacity: 1.0;
+        opacity: 1;
     }
 }
 
@@ -361,7 +378,7 @@
 
     100% {
         transform: translateY(0);
-        opacity: 1.0;
+        opacity: 1;
     }
 }
 
@@ -392,7 +409,7 @@
 }
 
 .gh-portal-powered a:hover {
-    color: #15171A;
+    color: #15171a;
 }
 
 @keyframes powered-fade-in {
@@ -402,7 +419,7 @@
     }
 
     75% {
-        opacity: 1.0;
+        opacity: 1;
     }
 
     100% {
@@ -544,11 +561,11 @@
     margin-bottom: 4px;
 }
 
-.gh-portal-list+.gh-portal-list-header {
+.gh-portal-list + .gh-portal-list-header {
     margin-top: 28px;
 }
 
-.gh-portal-list+.gh-portal-action-footer {
+.gh-portal-list + .gh-portal-action-footer {
     margin-top: 40px;
 }
 
@@ -678,7 +695,7 @@
 .gh-portal-publication-title {
     text-align: center;
     font-size: 1.6rem;
-    letter-spacing: -.1px;
+    letter-spacing: -0.1px;
     font-weight: 700;
     text-transform: uppercase;
     color: #15212a;
@@ -1021,7 +1038,6 @@
     display: none !important;
 }
 
-
 @media (max-width: 1440px) {
     .gh-portal-popup-container:not(.full-size):not(.large-size):not(.preview) {
         width: 460px;
@@ -1130,8 +1146,10 @@
     }
 
     /* Small width preview in Admin */
-    .gh-portal-popup-wrapper.preview:not(.full-size) footer.gh-portal-signup-footer,
-    .gh-portal-popup-wrapper.preview:not(.full-size) footer.gh-portal-signin-footer {
+    .gh-portal-popup-wrapper.preview:not(.full-size)
+        footer.gh-portal-signup-footer,
+    .gh-portal-popup-wrapper.preview:not(.full-size)
+        footer.gh-portal-signin-footer {
         padding-bottom: 32px;
     }
 
@@ -1155,7 +1173,7 @@
         margin-bottom: 0;
     }
 
-    .preview .gh-portal-invite-only-notification+.gh-portal-signup-message {
+    .preview .gh-portal-invite-only-notification + .gh-portal-signup-message {
         margin-bottom: 16px;
     }
 
@@ -1171,7 +1189,9 @@
 }
 
 @media (max-width: 390px) {
-    .gh-portal-popup-container:not(.account-plan) .gh-portal-detail-header .gh-portal-main-title {
+    .gh-portal-popup-container:not(.account-plan)
+        .gh-portal-detail-header
+        .gh-portal-main-title {
         font-size: 2.1rem;
         margin-top: 1px;
         padding: 0 74px;
@@ -1200,13 +1220,12 @@
     }
 
     100% {
-        opacity: 1.0;
+        opacity: 1;
     }
 }
 
 /* Prevent zoom */
-@media (hover:none) {
-
+@media (hover: none) {
     select,
     textarea,
     input[type="text"],
@@ -1233,7 +1252,13 @@
 /* Multiple product signup/signin-only modifications! */
 .gh-portal-popup-wrapper.multiple-products {
     background: #fff;
-    box-shadow: 0 3.8px 2.2px rgba(0, 0, 0, 0.028), 0 9.2px 5.3px rgba(0, 0, 0, 0.04), 0 17.3px 10px rgba(0, 0, 0, 0.05), 0 30.8px 17.9px rgba(0, 0, 0, 0.06), 0 57.7px 33.4px rgba(0, 0, 0, 0.072), 0 138px 80px rgba(0, 0, 0, 0.1);
+    box-shadow:
+        0 3.8px 2.2px rgba(0, 0, 0, 0.028),
+        0 9.2px 5.3px rgba(0, 0, 0, 0.04),
+        0 17.3px 10px rgba(0, 0, 0, 0.05),
+        0 30.8px 17.9px rgba(0, 0, 0, 0.06),
+        0 57.7px 33.4px rgba(0, 0, 0, 0.072),
+        0 138px 80px rgba(0, 0, 0, 0.1);
     padding: 0;
     border-radius: 5px;
     height: calc(100vh - 64px);
@@ -1324,7 +1349,8 @@
         margin: 0 !important;
     }
 
-    .gh-portal-popup-wrapper.multiple-products:not(.dev) .gh-portal-popup-container.preview {
+    .gh-portal-popup-wrapper.multiple-products:not(.dev)
+        .gh-portal-popup-container.preview {
         max-height: 640px;
     }
 }

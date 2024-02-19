@@ -1,92 +1,112 @@
 ---
-import type { InferGetStaticPropsType, GetStaticPaths } from 'astro'
-import url from 'url'
-import dynamic from "astro:import"
-import Layout from '@layouts/Layout.astro'
-import Post from '@components/Post.astro'
-import Page from '@components/Page.astro'
-import { getPosts, getPages, getSettings } from '@lib/api'
-import { map } from 'astro/zod'
-import { getCustomTemplate } from '@utils/customTemplate'
-import { formatDate } from '@utils/dateConvert'
-import '@styles/cards/audio.css'
-import '@styles/cards/before-after.css'
-import '@styles/cards/blockquote.css'
-import '@styles/cards/bookmark.css'
-import '@styles/cards/button.css'
-import '@styles/cards/callout.css'
-import '@styles/cards/file.css'
-import '@styles/cards/gallery.css'
-import '@styles/cards/header.css'
-import '@styles/cards/nft.css'
-import '@styles/cards/product.css'
-import '@styles/cards/toggle.css'
-import '@styles/cards/video.css'
+import type { InferGetStaticPropsType, GetStaticPaths } from "astro";
+import dynamic from "astro:import";
+import { getPosts, getPages, getSettings } from "@lib/api";
+import { getCustomTemplate } from "@utils/customTemplate";
+import { formatDate } from "@utils/dateConvert";
+import "@styles/cards/audio.css";
+import "@styles/cards/before-after.css";
+import "@styles/cards/blockquote.css";
+import "@styles/cards/bookmark.css";
+import "@styles/cards/button.css";
+import "@styles/cards/callout.css";
+import "@styles/cards/file.css";
+import "@styles/cards/gallery.css";
+import "@styles/cards/header.css";
+import "@styles/cards/nft.css";
+import "@styles/cards/product.css";
+import "@styles/cards/toggle.css";
+import "@styles/cards/video.css";
 
 export const getStaticPaths = (async () => {
-	const [posts, pages, settings] = await Promise.all([getPosts({filter: 'visibility:public+tag:-hash-portfolio+tag:-hash-podcast+tag:-hash-custom-kusi-doc'}), await getPages({}), await getSettings()]);
-	posts.forEach(post => {
-		post.type = "post"; // add a string value to the "type" field
-	});
-	pages.forEach(page => {
-		page.type = "page"; // add a string value to the "type" field
-	});
+    const [posts, pages, settings] = await Promise.all([
+        getPosts({
+            filter: "visibility:public+tag:-hash-portfolio+tag:-hash-podcast+tag:-hash-custom-kusi-doc",
+        }),
+        await getPages({}),
+        await getSettings(),
+    ]);
+    posts.forEach(post => {
+        post.type = "post"; // add a string value to the "type" field
+    });
+    pages.forEach(page => {
+        page.type = "page"; // add a string value to the "type" field
+    });
 
-	const allPosts = [...posts, ...pages];
+    const allPosts = [...posts, ...pages];
 
-	return allPosts.map((post) => ({
-		params: { slug: post.slug },
-		props: { post, posts, settings },
-	}));
+    return allPosts.map(post => ({
+        params: { slug: post.slug },
+        props: { post, posts, settings },
+    }));
 }) satisfies GetStaticPaths;
 
 export type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
-const {post, posts, settings} = Astro.props as Props;
+const { post } = Astro.props as Props;
 
-const isPost = post.type === `post`
-let prevPost, nextPost, relatedPosts = {}
+const isPost = post.type === `post`;
+let prevPost,
+    nextPost,
+    relatedPosts = {};
 
-const toImport = `/components/${getCustomTemplate(post)}.astro`
-const CustomPage = await dynamic(toImport)
+const toImport = `/components/${getCustomTemplate(post)}.astro`;
+const CustomPage = await dynamic(toImport);
 // console.log("🚀 ~ toImport:", toImport)
 
 if (isPost) {
-	prevPost = (await getPosts({filter: `published_at:<='${formatDate(post.published_at)}'+slug:-${post.slug}+tag:-hash-portfolio+tag:-hash-podcast+tag:-hash-custom-kusi-doc`, limit: "1", order: "published_at DESC"}))[0]
-	nextPost = (await getPosts({filter: `published_at:>'${formatDate(post.published_at)}'+slug:-${post.slug}+tag:-hash-portfolio+tag:-hash-podcast+tag:-hash-custom-kusi-doc`, limit: "1", order: "published_at ASC"}))[0]
-	relatedPosts = await getPosts({filter: `slug:-${post.slug}+primary_tag:'${post.primary_tag?.slug}'+tag:-hash-portfolio+tag:-hash-podcast+tag:-hash-custom-kusi-doc`, limit: "6", order: "published_at DESC"})
+    prevPost = (
+        await getPosts({
+            filter: `published_at:<='${formatDate(post.published_at)}'+slug:-${post.slug}+tag:-hash-portfolio+tag:-hash-podcast+tag:-hash-custom-kusi-doc`,
+            limit: "1",
+            order: "published_at DESC",
+        })
+    )[0];
+    nextPost = (
+        await getPosts({
+            filter: `published_at:>'${formatDate(post.published_at)}'+slug:-${post.slug}+tag:-hash-portfolio+tag:-hash-podcast+tag:-hash-custom-kusi-doc`,
+            limit: "1",
+            order: "published_at ASC",
+        })
+    )[0];
+    relatedPosts = await getPosts({
+        filter: `slug:-${post.slug}+primary_tag:'${post.primary_tag?.slug}'+tag:-hash-portfolio+tag:-hash-podcast+tag:-hash-custom-kusi-doc`,
+        limit: "6",
+        order: "published_at DESC",
+    });
 }
-
 ---
 
 <>
-	{
-		isPost ? (
-			<CustomPage
-				post={post}
-				nextPost={nextPost}
-				prevPost={prevPost}
-				relatedPosts={relatedPosts}
-			/>
-		) :	<CustomPage page={post} />
-
-	}
+    {
+        isPost ? (
+            <CustomPage
+                post={post}
+                nextPost={nextPost}
+                prevPost={prevPost}
+                relatedPosts={relatedPosts}
+            />
+        ) : (
+            <CustomPage page={post} />
+        )
+    }
 </>
 
 <script>
-	import mediumZoomImg from '@utils/mediumZoom.js';
-	import Prism from 'prismjs';
-	import 'prismjs/plugins/autoloader/prism-autoloader';
+    import mediumZoomImg from "@utils/mediumZoom.js";
+    import Prism from "prismjs";
+    import "prismjs/plugins/autoloader/prism-autoloader";
 
-    var prismJsComponents = 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/';
+    var prismJsComponents =
+        "https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/";
 
-	(prism => {
-	if (typeof prismJsComponents === 'undefined') return
+    (prism => {
+        if (typeof prismJsComponents === "undefined") return;
 
-	prism.plugins.autoloader.languages_path = prismJsComponents
+        prism.plugins.autoloader.languages_path = prismJsComponents;
 
-	prism.highlightAll()
-	})(Prism)
+        prism.highlightAll();
+    })(Prism);
 
-	mediumZoomImg();
+    mediumZoomImg();
 </script>

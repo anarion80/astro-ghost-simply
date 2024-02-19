@@ -1,51 +1,95 @@
 ---
-import Layout from '@layouts/Layout.astro'
-import { Image } from 'astro:assets';
-import { getTags } from '@lib/api'
-import { relativeUrl } from '@utils/relativeUrl'
+import Layout from "@layouts/Layout.astro";
+import { Image } from "astro:assets";
+import { getTags } from "@lib/api";
+import { relativeUrl } from "@utils/relativeUrl";
 import { t } from "@utils/use-lang";
-import MetaData from '@components/meta/MetaData.astro';
+import MetaData from "@components/meta/MetaData.astro";
 
-const tags = await getTags({filter: 'visibility:public+slug:-hash-portfolio+slug:-hash-podcast+slug:-hash-custom-kusi-doc', include: "tags,authors,count.posts"})
+const tags = await getTags({
+    filter: "visibility:public+slug:-hash-portfolio+slug:-hash-podcast+slug:-hash-custom-kusi-doc",
+    include: "tags,authors,count.posts",
+});
 ---
-<MetaData slot="head" location={Astro.url.pathname} title={t(`Tags`)}/>
-<Layout footer={true} isPost={false} bodyClass="topic has-cover is-head-transparent">
-    <header style={{ background: `url("/images/bg-setup.svg") bottom no-repeat, linear-gradient(60deg,#2e2ea2,#138395)` }}>
-        <div class="px-4 py-12 mx-auto max-w-3xl text-center text-white md:py-vw6 simply-hero-cover">
-            <h1 class="capitalize text-4xl lg:text-5xl font-semibold">{t(`Tags`)}</h1>
+
+<MetaData slot="head" location={Astro.url.pathname} title={t(`Tags`)} />
+<Layout
+    footer={true}
+    isPost={false}
+    bodyClass="topic has-cover is-head-transparent"
+>
+    <header
+        style={{
+            background: `url("/images/bg-setup.svg") bottom no-repeat, linear-gradient(60deg,#2e2ea2,#138395)`,
+        }}
+    >
+        <div
+            class="px-4 py-12 mx-auto max-w-3xl text-center text-white md:py-vw6 simply-hero-cover"
+        >
+            <h1 class="capitalize text-4xl lg:text-5xl font-semibold">
+                {t(`Tags`)}
+            </h1>
             <div class="mt-8 text-xl">{t(`List of all our tags`)}</div>
         </div>
     </header>
     <section class="container mx-auto py-8 lg:py-16">
-        <div class="max-w-1100 mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-            {tags.map(tag => (
-                <article class="topic-story relative bg-dark overflow-hidden rounded-md" style={ tag.accent_color && { backgroundColor: `${tag.accent_color}` }}>
-                    {tag.feature_image &&
-                        <>
-                            <a href={tag.url}>
-
-                                <Image class="inset-image blur-up lazyloaded"
-                                    src={tag.feature_image}
-                                    widths={[300, 600]}
-                                    sizes={`(max-width: 1000px) 400px, 600px`}
-                                    alt={tag.name}
-                                    width="600"
-                                    height="400"
+        <div
+            class="max-w-1100 mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
+            {
+                tags.map(tag => (
+                    <article
+                        class="topic-story relative bg-dark overflow-hidden rounded-md"
+                        style={
+                            tag.accent_color && {
+                                backgroundColor: `${tag.accent_color}`,
+                            }
+                        }
+                    >
+                        {tag.feature_image && (
+                            <>
+                                <a href={tag.url}>
+                                    <Image
+                                        class="inset-image blur-up lazyloaded"
+                                        src={tag.feature_image}
+                                        widths={[300, 600]}
+                                        sizes={`(max-width: 1000px) 400px, 600px`}
+                                        alt={tag.name}
+                                        width="600"
+                                        height="400"
+                                    />
+                                </a>
+                                <div
+                                    class="absolute inset-0 z-2"
+                                    style={{
+                                        background: `linear-gradient(135deg,rgb(6 10 25 / 70%),rgb(5 17 19 / 60%))`,
+                                    }}
                                 />
-                            </Link>
-                            <div class="absolute inset-0 z-2" style={{ background: `linear-gradient(135deg,rgb(6 10 25 / 70%),rgb(5 17 19 / 60%))` }}></div>
-                        </>
-                    }
+                            </>
+                        )}
 
-                    <header class="relative text-white z-4 text-center w-full px-4 py-16 lg:px-6">
-                        <div class="text-xs uppercase mb-3 opacity-90 tracking-widest font-medium">{tag.count.posts} {tag.count.posts === 0 ? t(`No Stories`, `No Stories`) : tag.count.posts === 1 ? t(`1 Story`, `1 Story`) : t(`% Stories`, `% Stories`)}</div>
-                        <h2 class="text-2xl capitalize font-semibold tracking-wide"><a href={relativeUrl(tag.url)}>{tag.name}</a></h2>
-                    </header>
+                        <header class="relative text-white z-4 text-center w-full px-4 py-16 lg:px-6">
+                            <div class="text-xs uppercase mb-3 opacity-90 tracking-widest font-medium">
+                                {tag.count.posts}{" "}
+                                {tag.count.posts === 0
+                                    ? t(`No Stories`, `No Stories`)
+                                    : tag.count.posts === 1
+                                      ? t(`1 Story`, `1 Story`)
+                                      : t(`% Stories`, `% Stories`)}
+                            </div>
+                            <h2 class="text-2xl capitalize font-semibold tracking-wide">
+                                <a href={relativeUrl(tag.url)}>{tag.name}</a>
+                            </h2>
+                        </header>
 
-                    <a href={relativeUrl(tag.url)} class="absolute inset-0 z-4" aria-label={tag.name}></a>
-                </article>
-            ))}
+                        <a
+                            href={relativeUrl(tag.url)}
+                            class="absolute inset-0 z-4"
+                            aria-label={tag.name}
+                        />
+                    </article>
+                ))
+            }
         </div>
     </section>
 </Layout>

@@ -1,31 +1,48 @@
 ---
 
 ---
-<a role="button" class="js-dark-mode button is-white items-center mr-2" aria-label="Dark and Light Mode" id="themeToggle">
-    <svg class="icon icon--moon m-0" style={{ marginRight: `calc(-0.5em - 1px)` }}><use xlink:href="#icon-moon"></use></svg>
-    <svg class="icon icon--sunny m-0 hidden" style={{ marginLeft: `calc(-0.5em - 1px)` }}><use xlink:href="#icon-sunny"></use></svg>
+
+<a
+    role="button"
+    class="js-dark-mode button is-white items-center mr-2"
+    aria-label="Dark and Light Mode"
+    id="themeToggle"
+>
+    <svg
+        class="icon icon--moon m-0"
+        style={{ marginRight: `calc(-0.5em - 1px)` }}
+        ><use xlink:href="#icon-moon"></use></svg
+    >
+    <svg
+        class="icon icon--sunny m-0 hidden"
+        style={{ marginLeft: `calc(-0.5em - 1px)` }}
+        ><use xlink:href="#icon-sunny"></use></svg
+    >
 </a>
 
 <script is:inline>
     const theme = (() => {
-        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-            return localStorage.getItem('theme');
-    }
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        return 'dark';
-    }
-        return 'light';
+        if (
+            typeof localStorage !== "undefined" &&
+            localStorage.getItem("theme")
+        ) {
+            return localStorage.getItem("theme");
+        }
+        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+            return "dark";
+        }
+        return "light";
     })();
 
-    if (theme === 'light') {
-        document.documentElement.classList.remove('dark');
-        document.documentElement.classList.remove('cc--darkmode');
+    if (theme === "light") {
+        document.documentElement.classList.remove("dark");
+        document.documentElement.classList.remove("cc--darkmode");
     } else {
-        document.documentElement.classList.add('dark');
-        document.documentElement.classList.add('cc--darkmode');
+        document.documentElement.classList.add("dark");
+        document.documentElement.classList.add("cc--darkmode");
     }
 
-    window.localStorage.setItem('theme', theme);
+    window.localStorage.setItem("theme", theme);
 
     const handleToggleClick = () => {
         const element = document.documentElement;
@@ -34,7 +51,9 @@
 
         const isDark = element.classList.contains("dark");
         localStorage.setItem("theme", isDark ? "dark" : "light");
-    }
+    };
 
-    document.getElementById("themeToggle").addEventListener("click", handleToggleClick);
+    document
+        .getElementById("themeToggle")
+        .addEventListener("click", handleToggleClick);
 </script>

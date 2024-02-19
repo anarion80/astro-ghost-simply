@@ -9,25 +9,58 @@ import MetaData from "@components/meta/MetaData.astro";
 
 const { post, nextPost, prevPost, relatedPosts } = Astro.props;
 
-const tags = post.tags?.map((item) => item.name);
+const tags = post.tags?.map(item => item.name);
 ---
-<MetaData slot="head" location={Astro.url.pathname} title={post.title}/>
-<Layout footer={true} bodyClass="is-article has-cover is-head-transparent" isPost={true}>
 
+<MetaData slot="head" location={Astro.url.pathname} title={post.title} />
+<Layout
+    footer={true}
+    bodyClass="is-article has-cover is-head-transparent"
+    isPost={true}
+>
     <article class="post mb-10 relative">
-        <div class="postImage relative simply-hero-cover bg-dark min-h-lg lg:min-h-screen py-24">
-            {/* {!-- Featured Media - partials/components/media-cover.hbs --} */}
-            <MediaCover background={post.feature_image} hasGradient={true} altTitle={post.title} />
+        <div
+            class="postImage relative simply-hero-cover bg-dark min-h-lg lg:min-h-screen py-24"
+        >
+            {
+                /* {!-- Featured Media - partials/components/media-cover.hbs --} */
+            }
+            <MediaCover
+                background={post.feature_image}
+                hasGradient={true}
+                altTitle={post.title}
+            />
 
-            <header class="post-header mx-auto max-w-740 px-4 p-24 relative z-3">
-                {post.primary_tag && <div class="mb-3 text-white tracking-wider text-sm"><PrimaryTag tag={post.primary_tag} tagClass="uppercase hover:underline"/></div>}
-
-                <h1 class="post-title mb-5 text-white text-4xl lg:text-5xl leading-tight">{post.title}</h1>
-                {post.custom_excerpt &&
-                            <p class="post-excerpt mb-8 text-2xl text-white leading-snug">{post.custom_excerpt}</p>
+            <header
+                class="post-header mx-auto max-w-740 px-4 p-24 relative z-3"
+            >
+                {
+                    post.primary_tag && (
+                        <div class="mb-3 text-white tracking-wider text-sm">
+                            <PrimaryTag
+                                tag={post.primary_tag}
+                                tagClass="uppercase hover:underline"
+                            />
+                        </div>
+                    )
                 }
 
-                {/* {!-- [Author, DateTime, Reading Time] - ./partials/components/author-meta.hbs --} */}
+                <h1
+                    class="post-title mb-5 text-white text-4xl lg:text-5xl leading-tight"
+                >
+                    {post.title}
+                </h1>
+                {
+                    post.custom_excerpt && (
+                        <p class="post-excerpt mb-8 text-2xl text-white leading-snug">
+                            {post.custom_excerpt}
+                        </p>
+                    )
+                }
+
+                {
+                    /* {!-- [Author, DateTime, Reading Time] - ./partials/components/author-meta.hbs --} */
+                }
                 <Author post={post} />
             </header>
         </div>
@@ -35,5 +68,9 @@ const tags = post.tags?.map((item) => item.name);
         {/* {!-- Article Body - partials/article/article-body.hbs --} */}
         <ArticleBody post={post} nextPost={nextPost} prevPost={prevPost} />
     </article>
-    {(!tags.includes(`#podcast`) && !tags.includes(`#portfolio`)) && <ArticleRelated relatedPosts={relatedPosts} />}
-    </Layout>
+    {
+        !tags.includes(`#podcast`) && !tags.includes(`#portfolio`) && (
+            <ArticleRelated relatedPosts={relatedPosts} />
+        )
+    }
+</Layout>

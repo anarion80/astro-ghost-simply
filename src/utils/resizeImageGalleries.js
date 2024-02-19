@@ -1,4 +1,4 @@
-import getAll from "./getAll"
+import getAll from "./getAll";
 
 /**
  * Gallery card support
@@ -9,17 +9,17 @@ import getAll from "./getAll"
  */
 
 export default function resizeImageGalleries() {
-    const images = getAll(`.kg-gallery-image > img`)
+    const images = getAll(`.kg-gallery-image > img`);
 
     if (!images.length) {
-        return
+        return;
     }
 
-    images.forEach((image) => {
-        const container = image.closest(`.kg-gallery-image`)
-        const width = image.attributes.width.value
-        const height = image.attributes.height.value
-        const ratio = width / height
-        container.style.flex = ratio + ` 1 0%`
-    })
+    images.forEach(image => {
+        const container = image.closest(`.kg-gallery-image`);
+        const width = image.attributes.width.value;
+        const height = image.attributes.height.value;
+        const ratio = width / height;
+        container.style.flex = ratio + ` 1 0%`;
+    });
 }

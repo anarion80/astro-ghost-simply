@@ -1,4 +1,4 @@
-import getAll from "./getAll"
+import getAll from "./getAll";
 
 export default function videoResponsive() {
     /* Iframe SRC video */
@@ -9,20 +9,20 @@ export default function videoResponsive() {
         `iframe[src*="youtube-nocookie.com"]`,
         `iframe[src*="player.twitch.tv"]`,
         `iframe[src*="kickstarter.com"][src*="video.html"]`,
-    ]
+    ];
 
-    const iframes = getAll(selectors.join(`,`))
+    const iframes = getAll(selectors.join(`,`));
 
     if (!iframes.length) {
-        return
+        return;
     }
 
-    iframes.forEach((el) => {
-        const parentForVideo = document.createElement(`div`)
-        parentForVideo.className = `video-responsive`
-        el.parentNode.insertBefore(parentForVideo, el)
-        parentForVideo.appendChild(el)
-        el.removeAttribute(`height`)
-        el.removeAttribute(`width`)
-    })
+    iframes.forEach(el => {
+        const parentForVideo = document.createElement(`div`);
+        parentForVideo.className = `video-responsive`;
+        el.parentNode.insertBefore(parentForVideo, el);
+        parentForVideo.appendChild(el);
+        el.removeAttribute(`height`);
+        el.removeAttribute(`width`);
+    });
 }

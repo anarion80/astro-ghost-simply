@@ -1,26 +1,46 @@
 ---
-import Layout from '@layouts/Layout.astro';
+import Layout from "@layouts/Layout.astro";
 import MetaData from "@components/meta/MetaData.astro";
 import { getSinglePage } from "@lib/api";
-import MediaCover from '@components/MediaCover.astro';
+import MediaCover from "@components/MediaCover.astro";
 
 const post = await getSinglePage("home-personal");
-const image = post.feature_image || undefined
+const image = post.feature_image || undefined;
 ---
+
 <MetaData location={Astro.url.pathname} />
-<Layout isHome={true} footer={false} isPost={false} bodyClass="has-cover is-head-transparent overflow-hidden">
-    <article class="simply-hero-cover flex items-center justify-center relative min-h-screen py-24 bg-dark">
+<Layout
+    isHome={true}
+    footer={false}
+    isPost={false}
+    bodyClass="has-cover is-head-transparent overflow-hidden"
+>
+    <article
+        class="simply-hero-cover flex items-center justify-center relative min-h-screen py-24 bg-dark"
+    >
         {/* {!-- Featured Media - partials/components/media-cover.hbs --} */}
-        {post.feature_image &&
-            <MediaCover background={image} hasGradient={true} altTitle={post.title} />
+        {
+            post.feature_image && (
+                <MediaCover
+                    background={image}
+                    hasGradient={true}
+                    altTitle={post.title}
+                />
+            )
         }
 
         <div class="mx-auto max-w-740 px-4 p-24 z-3 text-white text-center">
-            <h1 class="mb-6 text-5xl md:text-6xl tracking-wider animated bounceIn">{post.title}</h1>
-            <div class="text-3xl md:text-32" set:html={post.html}></div>
+            <h1
+                class="mb-6 text-5xl md:text-6xl tracking-wider animated bounceIn"
+            >
+                {post.title}
+            </h1>
+            <div class="text-3xl md:text-32" set:html={post.html} />
         </div>
 
         {/* {!-- Social Media - partilas/widget/social-media.hbs --} */}
-        {/* <SocialMediaWidget site={site} className="absolute right-0 bottom-0 mr-8 mb-8 text-white z-2 flex-col hidden md:flex" /> */}
+        {
+            /* <SocialMediaWidget site={site} className="absolute right-0 bottom-0 mr-8 mb-8 text-white z-2 flex-col hidden md:flex" /> */
+        }
     </article>
 </Layout>

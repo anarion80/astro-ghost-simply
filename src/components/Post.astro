@@ -1,22 +1,40 @@
 ---
-import ArticleHeader from './article/ArticleHeader.astro'
-import ArticleFeaturedImage from './article/ArticleFeaturedImage.astro'
-import ArticleBody from './article/ArticleBody.astro'
-import ArticleRelated from './article/ArticleRelated.astro'
-import Layout from '@layouts/Layout.astro'
-import MetaData from '@components/meta/MetaData.astro'
+import ArticleHeader from "./article/ArticleHeader.astro";
+import ArticleFeaturedImage from "./article/ArticleFeaturedImage.astro";
+import ArticleBody from "./article/ArticleBody.astro";
+import ArticleRelated from "./article/ArticleRelated.astro";
+import Layout from "@layouts/Layout.astro";
+import MetaData from "@components/meta/MetaData.astro";
 
-const { post, nextPost, prevPost, relatedPosts } = Astro.props
+const { post, nextPost, prevPost, relatedPosts } = Astro.props;
 
-const tags = post.tags?.map(item => item.name)
-
+const tags = post.tags?.map(item => item.name);
 ---
-<MetaData slot="head" location={Astro.url.pathname} type="article" data={post} />
+
+<MetaData
+    slot="head"
+    location={Astro.url.pathname}
+    type="article"
+    data={post}
+/>
 <Layout footer={true} bodyClass="is-article" isPost={true}>
-	<article class="post mb-10 pt-8 lg:pt-10 relative">
-			<ArticleHeader post={post} />
-			{ post.feature_image && <ArticleFeaturedImage figureClass="block mx-auto max-w-740 mt-12 px-4" divClass="mx-auto w-full simply-zoom" zoomable={true} article={post} /> }
-			<ArticleBody post={post} nextPost={nextPost} prevPost={prevPost} />
-	</article>
-	{(!tags.includes(`#podcast`) && !tags.includes(`#portfolio`)) && <ArticleRelated relatedPosts={relatedPosts} />}
+    <article class="post mb-10 pt-8 lg:pt-10 relative">
+        <ArticleHeader post={post} />
+        {
+            post.feature_image && (
+                <ArticleFeaturedImage
+                    figureClass="block mx-auto max-w-740 mt-12 px-4"
+                    divClass="mx-auto w-full simply-zoom"
+                    zoomable={true}
+                    article={post}
+                />
+            )
+        }
+        <ArticleBody post={post} nextPost={nextPost} prevPost={prevPost} />
+    </article>
+    {
+        !tags.includes(`#podcast`) && !tags.includes(`#portfolio`) && (
+            <ArticleRelated relatedPosts={relatedPosts} />
+        )
+    }
 </Layout>

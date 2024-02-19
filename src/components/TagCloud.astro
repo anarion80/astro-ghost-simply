@@ -1,17 +1,29 @@
 ---
 import { getTags } from "@lib/api";
 
-const tags = await getTags({filter: 'visibility:public', limit: "5", order: "postCount DESC"})
-
-
+const tags = await getTags({
+    filter: "visibility:public",
+    limit: "5",
+    order: "postCount DESC",
+});
 ---
-{tags.map(tagItem => (
-    <div class="mb-3 flex items-center justify-between leading-tight">
-        <a href={`/tag` + `/${tagItem.slug}/`}
-            title={tagItem.name}
-            class="capitalize pl-3 border-l-4 border-primary"
-            style= { tagItem.accent_color && { borderColor: tagItem.accent_color } }>{tagItem.name}
-        </a>
-        <div class="footer-arrow"></div>
-    </div>
-))}
+
+{
+    tags.map(tagItem => (
+        <div class="mb-3 flex items-center justify-between leading-tight">
+            <a
+                href={`/tag` + `/${tagItem.slug}/`}
+                title={tagItem.name}
+                class="capitalize pl-3 border-l-4 border-primary"
+                style={
+                    tagItem.accent_color && {
+                        borderColor: tagItem.accent_color,
+                    }
+                }
+            >
+                {tagItem.name}
+            </a>
+            <div class="footer-arrow" />
+        </div>
+    ))
+}

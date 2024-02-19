@@ -1,45 +1,57 @@
 ---
-import Navigation from "./Navigation.astro";
 import SocialMediaWidget from "./SocialMediaWidget.astro";
 import siteConfig from "@utils/siteConfig";
-import { relativeUrl } from "@utils/relativeUrl";
 import { t } from "@utils/use-lang";
 const menuDropdown = siteConfig.menuDropdown;
 
 export interface Props {
-	site?: any;
+    site?: any;
     hasDropDown?: boolean;
 }
 
 const { site, hasDropDown } = Astro.props;
-
 ---
-{hasDropDown &&
-    <li class={`dropdown is-hoverable ml-5 ` + (!(site.facebook || site.twitter) && `hidden`)}>
-        <a href="#" class="mainMenu-link dropdown-trigger hover:text-primary font-medium">
-            <span>{t(`More`)}</span>
-            <svg class="icon is-small transform rotate-90"><use xlink:href="#icon-arrow-forward"></use></svg>
-        </a>
-        <div class="dropdown-menu whitespace-normal">
-            <div class="dropdown-content">
-                <div class="js-dropdown-menu">
-                    {menuDropdown.map((menuItem, i) => (
-                        <a
-                            class="dropdown-item hover:text-primary"
-                            href={menuItem.url}
-                            partially-active={true}
-                            data-event-category="Header"
-                            data-event-action="Menu - DropDown"
-                            data-event-label={menuItem.label}
-                            data-event-non-interaction="true">{menuItem.label}
-                        </a>
-                    ))}
+
+{
+    hasDropDown && (
+        <li
+            class={
+                `dropdown is-hoverable ml-5 ` +
+                (!(site.facebook || site.twitter) && `hidden`)
+            }
+        >
+            <a
+                href="#"
+                class="mainMenu-link dropdown-trigger hover:text-primary font-medium"
+            >
+                <span>{t(`More`)}</span>
+                <svg class="icon is-small transform rotate-90">
+                    <use xlink:href="#icon-arrow-forward" />
+                </svg>
+            </a>
+            <div class="dropdown-menu whitespace-normal">
+                <div class="dropdown-content">
+                    <div class="js-dropdown-menu">
+                        {menuDropdown.map(menuItem => (
+                            <a
+                                class="dropdown-item hover:text-primary"
+                                href={menuItem.url}
+                                partially-active={true}
+                                data-event-category="Header"
+                                data-event-action="Menu - DropDown"
+                                data-event-label={menuItem.label}
+                                data-event-non-interaction="true"
+                            >
+                                {menuItem.label}
+                            </a>
+                        ))}
+                    </div>
+                    <hr class="dropdown-divider" />
+                    <SocialMediaWidget site={site} divClass="social-media" />
                 </div>
-                <hr class="dropdown-divider" />
-                <SocialMediaWidget site={site} divClass="social-media" />
             </div>
-        </div>
-    </li>
+        </li>
+    )
     /* Or use secondary navigation in the drop down */
     /* <li class={`dropdown is-hoverable ml-5 ` + (!(site.facebook || site.twitter) && `hidden`)}>
         <a href="#" class="mainMenu-link dropdown-trigger hover:text-primary font-medium">

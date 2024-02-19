@@ -3,22 +3,30 @@ import siteConfig from "@utils/siteConfig";
 import { t } from "@utils/use-lang";
 
 export interface Props {
-	post?: any;
-	divClass?: string;
-    trackingName?: string,
+    post?: any;
+    divClass?: string;
+    trackingName?: string;
 }
 
 const { post, divClass, trackingName } = Astro.props;
 
-const url = `${siteConfig.siteUrl}/${post.slug}/`
-
+const url = `${siteConfig.siteUrl}/${post.slug}/`;
 ---
-<aside class={`post-share flex items-center flex-none ` + (divClass ? divClass : `md:justify-end`)}>
+
+<aside
+    class={`post-share flex items-center flex-none ` +
+        (divClass ? divClass : `md:justify-end`)}
+>
     <span class="share-label text-gray-500 text-sm mr-2">{t(`Share`)}:</span>
     {/*{!-- Share on Twitter --}*/}
-    {/*<a href="https://twitter.com/share?text={{encode title}}&amp;url={{url absolute="true"}}"*/}
-    {/* <a href={`https://twitter.com/share?text=` + post.title + `&url=` + url} */}
-    <a href={`https://twitter.com/share?url=` + url}
+    {
+        /*<a href="https://twitter.com/share?text={{encode title}}&amp;url={{url absolute="true"}}"*/
+    }
+    {
+        /* <a href={`https://twitter.com/share?text=` + post.title + `&url=` + url} */
+    }
+    <a
+        href={`https://twitter.com/share?url=` + url}
         target="_blank"
         rel="noopener noreferrer"
         class="godo-tracking text-gray-900 mr-2"
@@ -26,11 +34,16 @@ const url = `${siteConfig.siteUrl}/${post.slug}/`
         data-event-category="Article"
         data-event-action="Share"
         data-event-label={trackingName + `- Twitter`}
-        data-event-non-interaction="true">
+        data-event-non-interaction="true"
+    >
         <svg class="icon"><use xlink:href="#icon-twitter"></use></svg>
     </a>
     {/*{!-- Share on Linkedin --}*/}
-    <a href={`https://www.linkedin.com/shareArticle?mini=true&url=` + url + `&title=` + post.title}
+    <a
+        href={`https://www.linkedin.com/shareArticle?mini=true&url=` +
+            url +
+            `&title=` +
+            post.title}
         target="_blank"
         rel="noopener noreferrer"
         class="godo-tracking text-gray-900 mr-2"
@@ -38,11 +51,13 @@ const url = `${siteConfig.siteUrl}/${post.slug}/`
         data-event-category="Article"
         data-event-action="Linkedin"
         data-event-label={trackingName + `- Linkedin`}
-        data-event-non-interaction="true">
+        data-event-non-interaction="true"
+    >
         <svg class="icon"><use xlink:href="#icon-linkedin"></use></svg>
     </a>
     {/*{!-- Share on Facebook --}*/}
-    <a href={`https://www.facebook.com/sharer/sharer.php?u=` + url}
+    <a
+        href={`https://www.facebook.com/sharer/sharer.php?u=` + url}
         target="_blank"
         rel="noopener noreferrer"
         class="godo-tracking text-gray-900"
@@ -50,11 +65,13 @@ const url = `${siteConfig.siteUrl}/${post.slug}/`
         data-event-category="Article"
         data-event-action="Share"
         data-event-label={trackingName + `- Facebook`}
-        data-event-non-interaction="true">
+        data-event-non-interaction="true"
+    >
         <svg class="icon"><use xlink:href="#icon-facebook"></use></svg>
     </a>
     {/*{!-- Share on WhatsApp --}*/}
-    <a href={`whatsapp://send?text=` + url}
+    <a
+        href={`whatsapp://send?text=` + url}
         target="_blank"
         rel="noopener noreferrer"
         class="godo-tracking text-gray-900 ml-2 md:hidden"
@@ -62,7 +79,8 @@ const url = `${siteConfig.siteUrl}/${post.slug}/`
         data-event-category="Article"
         data-event-action="Share"
         data-event-label={trackingName + `- WhatsApp`}
-        data-event-non-interaction="true">
+        data-event-non-interaction="true"
+    >
         <svg class="icon"><use xlink:href="#icon-whatsapp"></use></svg>
     </a>
 </aside>

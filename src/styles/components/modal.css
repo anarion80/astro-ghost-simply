@@ -2,42 +2,46 @@
 /* ---------------------------------------------------------- */
 
 %modal {
-  opacity: 0;
-  transition: opacity .2s ease-out .1s, visibility 0s .4s;
-  visibility: hidden;
-  z-index: 100;
+    opacity: 0;
+    transition:
+        opacity 0.2s ease-out 0.1s,
+        visibility 0s 0.4s;
+    visibility: hidden;
+    z-index: 100;
 }
 
 %modal-inner {
-  opacity: 0;
-  transform: scale(.6);
-  transition: transform .3s cubic-bezier(.06, .47, .38, .99), opacity .3s cubic-bezier(.06, .47, .38, .99);
+    opacity: 0;
+    transform: scale(0.6);
+    transition:
+        transform 0.3s cubic-bezier(0.06, 0.47, 0.38, 0.99),
+        opacity 0.3s cubic-bezier(0.06, 0.47, 0.38, 0.99);
 }
 
 %modal-active {
-  opacity: 1;
-  transform: scale(1);
-  transition: transform .8s cubic-bezier(.26, .63, 0, .96);
+    opacity: 1;
+    transform: scale(1);
+    transition: transform 0.8s cubic-bezier(0.26, 0.63, 0, 0.96);
 }
 
 .modal {
-  @extend %modal;
+    @extend %modal;
 
-  &-content {
-    @extend %modal-inner;
-  }
+    &-content {
+        @extend %modal-inner;
+    }
 
-  &.is-active{
-    opacity: 1;
-    transition: opacity .3s ease;
-    visibility: visible;
+    &.is-active {
+        opacity: 1;
+        transition: opacity 0.3s ease;
+        visibility: visible;
 
-    /* .modal-content {
+        /* .modal-content {
       @extend %modal-active;
     } */
-  }
+    }
 }
 
 .modal.is-active .modal-content {
-  @extend %modal-active;
+    @extend %modal-active;
 }

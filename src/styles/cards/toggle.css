@@ -13,7 +13,9 @@
 .kg-toggle-card[data-kg-toggle-state="close"] .kg-toggle-content {
     height: 0;
     overflow: hidden;
-    transition: opacity .5s ease, top .35s ease;
+    transition:
+        opacity 0.5s ease,
+        top 0.35s ease;
     opacity: 0;
     top: -0.5em;
     position: relative;
@@ -22,7 +24,9 @@
 .kg-toggle-content {
     height: auto;
     opacity: 1;
-    transition: opacity 1s ease, top .35s ease;
+    transition:
+        opacity 1s ease,
+        top 0.35s ease;
     top: 0;
     position: relative;
 }
@@ -59,7 +63,7 @@
     margin-bottom: 0;
 }
 
-.kg-toggle-card li+li {
+.kg-toggle-card li + li {
     margin-top: 0.5em;
 }
 
@@ -90,6 +94,6 @@
     fill-rule: evenodd;
 }
 
-.kg-toggle-card+.kg-toggle-card {
+.kg-toggle-card + .kg-toggle-card {
     margin-top: 1em;
 }

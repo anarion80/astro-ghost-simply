@@ -1,44 +1,64 @@
 ---
-import { Image } from 'astro:assets';
-import { relativeUrl } from '../../utils/relativeUrl';
-import { t } from "@utils/use-lang";
+import { Image } from "astro:assets";
+import { relativeUrl } from "../../utils/relativeUrl";
 export interface Props {
-	post?: any;
-    storyTitle?: string,
-    divClass?: string,
+    post?: any;
+    storyTitle?: string;
+    divClass?: string;
 }
 
 const { post, storyTitle, divClass } = Astro.props;
 
 // console.log(post)
 // console.log(post.url)
-
 ---
-<div class={`flex relative godo-tracking ` + divClass}
+
+<div
+    class={`flex relative godo-tracking ` + divClass}
     data-event-category="Article"
     data-event-action={storyTitle}
     data-event-label={post.url}
-    data-event-non-interaction="true">
-
-    <a href={relativeUrl(post.url)} class="prev-next-image-link relative w-4/12 bg-gray-200 flex-none border border-gray-100" aria-label={post.title}>
-        {post.feature_image &&
-            <Image
-                src={post.feature_image}
-                alt={post.title}
-                class="absolute rounded inset-image blur-up lazyloaded"
-                widths={[300, 600]}
-                sizes={`(max-width: 1000px) 400px, 600px`}
-                width="300"
-                height="200"
-            />}
+    data-event-non-interaction="true"
+>
+    <a
+        href={relativeUrl(post.url)}
+        class="prev-next-image-link relative w-4/12 bg-gray-200 flex-none border border-gray-100"
+        aria-label={post.title}
+    >
+        {
+            post.feature_image && (
+                <Image
+                    src={post.feature_image}
+                    alt={post.title}
+                    class="absolute rounded inset-image blur-up lazyloaded"
+                    widths={[300, 600]}
+                    sizes={`(max-width: 1000px) 400px, 600px`}
+                    width="300"
+                    height="200"
+                />
+            )
+        }
     </a>
 
     <div class="prev-next-body pl-6 flex-auto">
         <a href={relativeUrl(post.url)}>
-            <div class="text-sm leading-none text-gray-500 mb-2 font-medium">{storyTitle}</div>
-            <h2 class="prev-next-title text-title mb-2 text-xl md:text-22">{post.title}</h2>
-            <p class="prev-next-excerpt text-base text-gray-500 lineClamp-2 leading-snug">{post.excerpt && post.excerpt.split(` `).splice(0,25).join(` `)}</p>
+            <div class="text-sm leading-none text-gray-500 mb-2 font-medium">
+                {storyTitle}
+            </div>
+            <h2 class="prev-next-title text-title mb-2 text-xl md:text-22">
+                {post.title}
+            </h2>
+            <p
+                class="prev-next-excerpt text-base text-gray-500 lineClamp-2 leading-snug"
+            >
+                {
+                    post.excerpt &&
+                        post.excerpt.split(` `).splice(0, 25).join(` `)
+                }
+            </p>
         </a>
     </div>
-    {/*{!-- <a href="{{url}}" aria-label="{{title}}" class="absolute inset-0 z-2"></a> --}*/}
+    {
+        /*{!-- <a href="{{url}}" aria-label="{{title}}" class="absolute inset-0 z-2"></a> --}*/
+    }
 </div>

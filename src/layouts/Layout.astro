@@ -1,114 +1,128 @@
 ---
-import { getSettings } from '../lib/api';
-import siteConfig from '@utils/siteConfig';
-import Header from '@components/Header.astro';
-import FooterDark from '@components/FooterDark.astro';
-import SvgIcons from '@components/SvgIcons';
-import { getContrastRatio, reduceBrightness, adjustColorForContrast } from '@utils/colors';
-import '../styles/main.css'
-import '../styles/ghost.css'
-import '@fontsource/pt-serif/latin-ext.css'
-import '@fontsource/pt-serif/400.css'
-import '@fontsource/pt-serif/400-italic.css'
-import '@fontsource/pt-serif/700.css'
-import '@fontsource/inter/latin-ext.css'
-import '@fontsource/inter/400.css'
-import '@fontsource/inter/500.css'
-import '@fontsource/inter/600.css'
-import '@fontsource/inter/700.css'
+import { getSettings } from "../lib/api";
+import siteConfig from "@utils/siteConfig";
+import Header from "@components/Header.astro";
+import FooterDark from "@components/FooterDark.astro";
+import SvgIcons from "@components/SvgIcons";
+import { getContrastRatio, adjustColorForContrast } from "@utils/colors";
+import "../styles/main.css";
+import "../styles/ghost.css";
+import "@fontsource/pt-serif/latin-ext.css";
+import "@fontsource/pt-serif/400.css";
+import "@fontsource/pt-serif/400-italic.css";
+import "@fontsource/pt-serif/700.css";
+import "@fontsource/inter/latin-ext.css";
+import "@fontsource/inter/400.css";
+import "@fontsource/inter/500.css";
+import "@fontsource/inter/600.css";
+import "@fontsource/inter/700.css";
 //import "../styles/global.css"
 //import "../css/global.css"
 
 export interface Props {
-	children?: any;
-	bodyClass?: string;
-	footer?: boolean;
-	isPost?: boolean;
-	isHome?: boolean;
-	title?: string;
+    children?: any;
+    bodyClass?: string;
+    footer?: boolean;
+    isPost?: boolean;
+    isHome?: boolean;
+    title?: string;
 }
 
-const { bodyClass, footer, isPost, isHome } = Astro.props;
+const { bodyClass, footer } = Astro.props;
 
 const site = await getSettings();
 
 let accentColor = site.accent_color;
 if (getContrastRatio("#FFFFFF", accentColor) < 4.5) {
-	accentColor = adjustColorForContrast("#FFFFFF", accentColor);
+    accentColor = adjustColorForContrast("#FFFFFF", accentColor);
 }
-const hasDropDown = siteConfig.menuDropdown ? true : false
+const hasDropDown = siteConfig.menuDropdown ? true : false;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang={site.lang}>
-	<head>
-		<meta charset="UTF-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<meta name="HandheldFriendly" content="True" />
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<style type="text/css" set:text={site.codeinjection_head}></style>
-		<slot name="head"/>
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="generator" content={Astro.generator} />
+        <meta name="HandheldFriendly" content="True" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <style type="text/css" set:text={site.codeinjection_head}></style>
+        <slot name="head" />
+    </head>
+    <body class={bodyClass}>
+        <div class="simply-viewport flexColumnTop">
+            <script>
+                /* to turn the Header transparent when hero picture is used (and back to normal when srolled down) */
+                const headerTransparency = () => {
+                    const hasCover = document.body.closest(".has-cover");
+                    const $jsHeader = document.querySelector(".js-header");
 
-	</head>
-	<body class={bodyClass}>
-		<div class="simply-viewport flexColumnTop">
-			<script>
-				/* to turn the Header transparent when hero picture is used (and back to normal when srolled down) */
-				const headerTransparency = () => {
-				const hasCover = document.body.closest('.has-cover')
-				const $jsHeader = document.querySelector('.js-header')
+                    window.addEventListener("scroll", () => {
+                        const lastScrollY = window.scrollY;
 
-				window.addEventListener('scroll', () => {
-					const lastScrollY = window.scrollY
+                        if (lastScrollY > 5) {
+                            $jsHeader &&
+                                $jsHeader.classList.add(
+                                    "shadow-header",
+                                    "header-bg"
+                                );
+                        } else {
+                            $jsHeader &&
+                                $jsHeader.classList.remove(
+                                    "shadow-header",
+                                    "header-bg"
+                                );
+                        }
 
-					if (lastScrollY > 5) {
-						$jsHeader && $jsHeader.classList.add('shadow-header', 'header-bg')
-					} else {
-						$jsHeader && $jsHeader.classList.remove('shadow-header', 'header-bg')
-					}
+                        if (!hasCover) return;
 
-					if (!hasCover) return
+                        lastScrollY >= 20
+                            ? document.body.classList.remove(
+                                  "is-head-transparent"
+                              )
+                            : document.body.classList.add(
+                                  "is-head-transparent"
+                              );
+                    });
+                };
 
-					lastScrollY >= 20 ? document.body.classList.remove('is-head-transparent') : document.body.classList.add('is-head-transparent')
-				})
-			}
+                headerTransparency();
+            </script>
+            <Header site={site} hasDropDown={hasDropDown} />
 
-			headerTransparency()
-			</script>
-			<Header site={site} hasDropDown={hasDropDown} />
+            <main class="simply-main relative min-h-lg"><slot /></main>
 
-			<main class="simply-main relative min-h-lg"><slot /></main>
-
-			{
-				footer &&
-				/* <Footer site={site} isPost={isPost}/> */
-				<FooterDark site={site}/>
-				/* <FooterNotMenu site={site} isPost={false}/> */
-			}
-
-		</div>
-		<div class="loadingBar top-0 fixed right-0 left-0 hidden"></div>
-		<SvgIcons />
-		<script>
-			import "../scripts/menu.js";
-		</script>
-	</body>
+            {
+                footer && (
+                    /* <Footer site={site} isPost={isPost}/> */ <FooterDark
+                        site={site}
+                    />
+                )
+                /* <FooterNotMenu site={site} isPost={false}/> */
+            }
+        </div>
+        <div class="loadingBar top-0 fixed right-0 left-0 hidden"></div>
+        <SvgIcons />
+        <script>
+            import "../scripts/menu.js";
+        </script>
+    </body>
 </html>
 <style type="text/css" set:text={site.codeinjection_foot}></style>
 <style set:text={`:root {--ghost-accent-color: ${accentColor};}`}></style>
 <script>
-	import resizeImageGalleries from '@utils/resizeImageGalleries';
-	import videoResponsive from "@utils/videoResponsive";
-	import toggle from "@utils/toggle";
-	import audio from "@utils/audio";
-	import video from "@utils/video";
-	import beforeAfter from "@utils/before-after"
+    import resizeImageGalleries from "@utils/resizeImageGalleries";
+    import videoResponsive from "@utils/videoResponsive";
+    import toggle from "@utils/toggle";
+    import audio from "@utils/audio";
+    import video from "@utils/video";
+    import beforeAfter from "@utils/before-after";
 
-	videoResponsive(); // responsive, bigger embedded videos from Ghost posts
-	resizeImageGalleries(); // proper sizes of images in galleries in Ghost posts
-	toggle(); // enable toggle for toggle card
-	audio(); // enable audio controls
-	video(); // enable video controls
-	beforeAfter();
+    videoResponsive(); // responsive, bigger embedded videos from Ghost posts
+    resizeImageGalleries(); // proper sizes of images in galleries in Ghost posts
+    toggle(); // enable toggle for toggle card
+    audio(); // enable audio controls
+    video(); // enable video controls
+    beforeAfter();
 </script>

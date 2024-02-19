@@ -1,10 +1,10 @@
-.custom-post-image .hh-author-name a{
-  color: #fff;
+.custom-post-image .hh-author-name a {
+    color: #fff;
 }
 
 .hh-author-name > a:hover {
-  color: var(--gray-900);
-  text-decoration: underline;
+    color: var(--gray-900);
+    text-decoration: underline;
 }
 
 /* Story card small
@@ -21,23 +21,22 @@
 /* ---------------------------------------------------------- */
 
 .ss1 {
-  .story-title {
-    @apply lg:text-4xl;
-  }
-  .story-image {
-    @apply lg:col-span-2 lg:h-96 lg:pt-0;
-  }
-  & > .not-feature-image {
-    @apply lg:col-span-full;
-  }
+    .story-title {
+        @apply lg:text-4xl;
+    }
+    .story-image {
+        @apply lg:col-span-2 lg:h-96 lg:pt-0;
+    }
+    & > .not-feature-image {
+        @apply lg:col-span-full;
+    }
 }
 
 .ss2 {
-  .story-image {
-    @apply lg:h-64;
-  }
-  .story-title {
-    @apply lg:text-3xl;
-  }
+    .story-image {
+        @apply lg:h-64;
+    }
+    .story-title {
+        @apply lg:text-3xl;
+    }
 }
-

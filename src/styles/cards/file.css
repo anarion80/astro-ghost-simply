@@ -30,7 +30,7 @@
     flex-direction: column;
     justify-content: space-between;
     margin: 4px 8px;
-    width: 100%
+    width: 100%;
 }
 
 .kg-file-card-title {
@@ -45,7 +45,7 @@
     opacity: 0.6;
 }
 
-.kg-file-card-title+.kg-file-card-caption {
+.kg-file-card-title + .kg-file-card-caption {
     margin-top: -3px;
 }
 
@@ -113,7 +113,7 @@
 }
 
 .kg-file-card-medium .kg-file-card-caption {
-    opacity: 1.0;
+    opacity: 1;
     font-weight: 500;
 }
 
@@ -123,7 +123,7 @@
 }
 
 .kg-file-card-small .kg-file-card-metadata {
-    font-size: 1.0em;
+    font-size: 1em;
     margin-top: 0;
 }
 
@@ -132,6 +132,6 @@
     height: 20px;
 }
 
-.kg-file-card+.kg-file-card {
+.kg-file-card + .kg-file-card {
     margin-top: 1em;
 }

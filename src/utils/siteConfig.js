@@ -16,8 +16,8 @@ export default {
     fontStrategy: `selfHosted`, // Used for specifying where fonts should come from ('selfHosted' || 'base64' || 'cdn')
 
     docsPath: `/docs`, // Used to specify a route for the docs. In Ghost, you would create posts with tag "#custom-kusi-docs" and then
-                       // they would be all available under /docs/[slug]
-                       // you will need to also update the folder name in src/pages to match the route
+    // they would be all available under /docs/[slug]
+    // you will need to also update the folder name in src/pages to match the route
 
     locale: `en`,
 
@@ -172,26 +172,27 @@ export default {
         key: "b65148c547c7646037343029a1",
         url: "https://ghost.nas.anarion.pl",
         debug: false,
-        searchOn: 'keyup',
-        loadOn: 'focus',
+        searchOn: "keyup",
+        loadOn: "focus",
         limit: 10,
         cacheMaxAge: 1800,
-        version: 'v3',
-        inputId: ['search-field'],
-        outputId: ['search-results'],
+        version: "v3",
+        inputId: ["search-field"],
+        outputId: ["search-results"],
         outputChildsType: false,
         // postsFields: ['title', 'slug', 'html'],
-        postsFields: ['title', 'slug'],
+        postsFields: ["title", "slug"],
         postsExtraFields: [],
         postsFormats: [],
-        indexedFields: ['title', 'slug', 'html'],
+        indexedFields: ["title", "slug", "html"],
         template: function (post) {
-            return `<a href="/${post.slug}/" class="block py-2 pr-3 pl-10"><svg class="icon icon--search" style="margin-left:-28px"><use xlink:href="#icon-search"></use></svg> ${post.title}</a>`
+            return `<a href="/${post.slug}/" class="block py-2 pr-3 pl-10"><svg class="icon icon--search" style="margin-left:-28px"><use xlink:href="#icon-search"></use></svg> ${post.title}</a>`;
         },
-        emptyTemplate: function () { },
-        customProcessing: function (post) { return post },
+        emptyTemplate: function () {},
+        customProcessing: function (post) {
+            return post;
+        },
         indexOptions: {},
         searchOptions: {},
-
     },
-}
+};

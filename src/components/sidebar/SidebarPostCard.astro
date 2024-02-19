@@ -1,58 +1,97 @@
 ---
-import { relativeUrl } from '../../utils/relativeUrl';
-import { Image } from 'astro:assets';
-import { getTags } from 'src/lib/api';
+import { relativeUrl } from "../../utils/relativeUrl";
+import { Image } from "astro:assets";
+import { getTags } from "src/lib/api";
 import { t } from "@utils/use-lang";
 
 export interface Props {
-	widgetTitle?: string;
-    widgetPosts?: any,
+    widgetTitle?: string;
+    widgetPosts?: any;
 }
 
 const { widgetTitle, widgetPosts } = Astro.props;
-const tags = await getTags({filter: 'visibility:public', limit: "10", order: "postCount DESC"})
-
+const tags = await getTags({
+    filter: "visibility:public",
+    limit: "10",
+    order: "postCount DESC",
+});
 ---
+
 <div class="sidebar-items mb-8 lg:sticky lg:top-32">
-    <h3 class="sidebar-title underscore is-center text-lg text-center font-medium text-title"><span>{widgetTitle}</span></h3>
+    <h3
+        class="sidebar-title underscore is-center text-lg text-center font-medium text-title"
+    >
+        <span>{widgetTitle}</span>
+    </h3>
 
-    {widgetPosts.map((item, i) => (
-        <div class={`sp-small relative ` + (i < widgetPosts.length - 1 ? `mb-5` : `mb-10`) + ` has-overlay godo-tracking`}
-            data-event-category="Sidebar"
-            data-event-action="Post"
-            data-event-label={item.url}
-            data-event-non-interaction="true">
-            {/* {!-- <div class="sp-n flex-none u-fontSizeLarger u-lineHeight1">0{{@number}}</div> --} */}
-            <a href={relativeUrl(item.url)} class="flex">
-                {item.feature_image &&
-                    <figure class="w-32 h-20 relative overflow-hidden rounded">
-                        <Image
-                            class="block w-full object-cover object-center inset-0 absolute h-full"
-                            src={item.feature_image}
-                            alt={item.title}
-                            width="128"
-                            height="80"
-                        />
-                        <span class="inset-0 bg-primary absolute flex items-center justify-center overlay-toggle">
-                            <svg class="icon h-6 w-6 text-white"><use xlink:href="#icon-arrow"></use></svg>
-                        </span>
-                    </figure>
+    {
+        widgetPosts.map((item, i) => (
+            <div
+                class={
+                    `sp-small relative ` +
+                    (i < widgetPosts.length - 1 ? `mb-5` : `mb-10`) +
+                    ` has-overlay godo-tracking`
                 }
+                data-event-category="Sidebar"
+                data-event-action="Post"
+                data-event-label={item.url}
+                data-event-non-interaction="true"
+            >
+                {/* {!-- <div class="sp-n flex-none u-fontSizeLarger u-lineHeight1">0{{@number}}</div> --} */}
+                <a href={relativeUrl(item.url)} class="flex">
+                    {item.feature_image && (
+                        <figure class="w-32 h-20 relative overflow-hidden rounded">
+                            <Image
+                                class="block w-full object-cover object-center inset-0 absolute h-full"
+                                src={item.feature_image}
+                                alt={item.title}
+                                width="128"
+                                height="80"
+                            />
+                            <span class="inset-0 bg-primary absolute flex items-center justify-center overlay-toggle">
+                                <svg class="icon h-6 w-6 text-white">
+                                    <use xlink:href="#icon-arrow" />
+                                </svg>
+                            </span>
+                        </figure>
+                    )}
 
-                <div class="pl-4 flex-1 overflow-hidden flex flex-col justify-center">
-                    <h3 class="sp-small-title text-base font-semibold mb-1 leading-tight text-title">{item.title}</h3>
+                    <div class="pl-4 flex-1 overflow-hidden flex flex-col justify-center">
+                        <h3 class="sp-small-title text-base font-semibold mb-1 leading-tight text-title">
+                            {item.title}
+                        </h3>
 
-                    <div class="hh-date flex items-center text-gray-500 text-sm">
-                        <time class="datetime capitalize" date-time={item.published_at} title={item.updated_at && `Updated ` + item.updated_at} >{item.published_at_pretty}</time>
+                        <div class="hh-date flex items-center text-gray-500 text-sm">
+                            <time
+                                class="datetime capitalize"
+                                date-time={item.published_at}
+                                title={
+                                    item.updated_at &&
+                                    `Updated ` + item.updated_at
+                                }
+                            >
+                                {item.published_at_pretty}
+                            </time>
+                        </div>
                     </div>
-                </div>
-            </a>
-        </div>
-    ))
+                </a>
+            </div>
+        ))
     }
-    <h3 class="uppercase text-sm mb-4 is-center text-center">{t(`Discover more of what matters to you`)}</h3>
+    <h3 class="uppercase text-sm mb-4 is-center text-center">
+        {t(`Discover more of what matters to you`)}
+    </h3>
     <div class="buttons">
-        {tags.map(item => <a href={relativeUrl(item.url)} class="button is-light font-medium text-sm capitalize">{item.name}</a>)}
+        {
+            tags.map(item => (
+                <a
+                    href={relativeUrl(item.url)}
+                    class="button is-light font-medium text-sm capitalize"
+                >
+                    {item.name}
+                </a>
+            ))
+        }
     </div>
     <hr />
 </div>

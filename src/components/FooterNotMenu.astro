@@ -1,50 +1,75 @@
 ---
-import Navigation from "./Navigation.astro";
-import { Image } from 'astro:assets';
+import { Image } from "astro:assets";
 import SocialMediaWidget from "./SocialMediaWidget.astro";
 import siteConfig from "@utils/siteConfig";
 import { t } from "@utils/use-lang";
 export interface Props {
-	site?: any;
-	isPost?: boolean;
+    site?: any;
+    isPost?: boolean;
 }
 
 const { site, isPost } = Astro.props;
-const image = site.logo ? site.localLogo : null
-const siteUrl = siteConfig.siteUrl
+const image = site.logo ? site.localLogo : null;
+const siteUrl = siteConfig.siteUrl;
 ---
-<footer class={`ooter-light py-10 lg:pt-16 text-center lg:text-left` + (isPost && ` bg-gray-150`)} >
+
+<footer
+    class={`ooter-light py-10 lg:pt-16 text-center lg:text-left` +
+        (isPost && ` bg-gray-150`)}
+>
     <section class="mx-auto max-w-extreme px-4">
         <div class="flex flex-col lg:flex-row justify-between">
             <div class="flex flex-col lg:flex-row lg:items-center">
                 <div class="footer-logo leading-none">
                     <a href={siteUrl} class="inline-block">
-                        {site.logo ?
-                            <Image
-                                src={image}
-                                class="max-h-8"
-                                alt={site.title}
-                                widths={[50, 80, 100]}
-                                sizes={`(max-width: 1000px) 400px, 200px`}
-                                width="190"
-                                height="30"
-                            />
-                            :
-                            <span class="font-bold text-title text-3xl">{site.title}</span>
+                        {
+                            site.logo ? (
+                                <Image
+                                    src={image}
+                                    class="max-h-8"
+                                    alt={site.title}
+                                    widths={[50, 80, 100]}
+                                    sizes={`(max-width: 1000px) 400px, 200px`}
+                                    width="190"
+                                    height="30"
+                                />
+                            ) : (
+                                <span class="font-bold text-title text-3xl">
+                                    {site.title}
+                                </span>
+                            )
                         }
                     </a>
                 </div>
 
                 {/* {{!-- Social Media --}} */}
-                <SocialMediaWidget site={site} divClass="footer-social-media social-media is-inline my-5 lg:my-0 lg:ml-10" />
+                <SocialMediaWidget
+                    site={site}
+                    divClass="footer-social-media social-media is-inline my-5 lg:my-0 lg:ml-10"
+                />
             </div>
 
             <div class="footer-copy lg:text-right text-sm">
-                            &copy; {new Date().getFullYear()} {site.title}. {t(`All rights reserved.`, `All rights reserved.`)}<br />
-                <a href="https://github.com/anarion80/astro-ghost-simply" title="Astro-Ghost-Simply">Created</a> with <a href="https://www.astro.build/" title="Astro"><svg class="icon icon-astro"><use xlink:href="#icon-astro"></use></svg></a><a href="https://reactjs.org/" title="ReactJS"><svg class="icon icon-react"><use xlink:href="#icon-react"></use></svg></a>and <a href="https://godofredo.ninja" title="Developer FullStack.">@GodoFredoNinja</a> styling.
+                &copy; {new Date().getFullYear()}
+                {site.title}. {
+                    t(`All rights reserved.`, `All rights reserved.`)
+                }<br />
+                <a
+                    href="https://github.com/anarion80/astro-ghost-simply"
+                    title="Astro-Ghost-Simply">Created</a
+                > with <a href="https://www.astro.build/" title="Astro"
+                    ><svg class="icon icon-astro"
+                        ><use xlink:href="#icon-astro"></use></svg
+                    ></a
+                ><a href="https://reactjs.org/" title="ReactJS"
+                    ><svg class="icon icon-react"
+                        ><use xlink:href="#icon-react"></use></svg
+                    ></a
+                >and <a
+                    href="https://godofredo.ninja"
+                    title="Developer FullStack.">@GodoFredoNinja</a
+                > styling.
             </div>
-
         </div>
-
     </section>
 </footer>

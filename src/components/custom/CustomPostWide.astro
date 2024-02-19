@@ -8,15 +8,33 @@ import MetaData from "@components/meta/MetaData.astro";
 
 const { post, nextPost, prevPost, relatedPosts } = Astro.props;
 
-const tags = post.tags?.map((item) => item.name);
-
+const tags = post.tags?.map(item => item.name);
 ---
-<MetaData slot="head" location={Astro.url.pathname} type="article" data={post} />
+
+<MetaData
+    slot="head"
+    location={Astro.url.pathname}
+    type="article"
+    data={post}
+/>
 <Layout footer={true} bodyClass="is-article is-article-wide" isPost={true}>
     <article class="post mb-10 pt-8 lg:pt-10 relative">
         <ArticleHeader post={post} />
-        { post.feature_image && <ArticleFeaturedImage article={post} figureClass="block mx-auto mt-12 max-w-1000" divClass="mx-auto w-full simply-zoom" zoomable={true} /> }
+        {
+            post.feature_image && (
+                <ArticleFeaturedImage
+                    article={post}
+                    figureClass="block mx-auto mt-12 max-w-1000"
+                    divClass="mx-auto w-full simply-zoom"
+                    zoomable={true}
+                />
+            )
+        }
         <ArticleBody post={post} nextPost={nextPost} prevPost={prevPost} />
     </article>
-    {(!tags.includes(`#podcast`) && !tags.includes(`#portfolio`)) && <ArticleRelated relatedPosts={relatedPosts} />}
+    {
+        !tags.includes(`#podcast`) && !tags.includes(`#portfolio`) && (
+            <ArticleRelated relatedPosts={relatedPosts} />
+        )
+    }
 </Layout>

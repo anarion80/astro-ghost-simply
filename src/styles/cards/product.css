@@ -33,7 +33,9 @@
 }
 
 .kg-product-card h4.kg-product-card-title {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+        "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+        "Helvetica Neue", sans-serif;
     text-decoration: none;
     font-weight: 700;
     font-size: 1.4em;
@@ -49,10 +51,12 @@
 .kg-product-card .kg-product-card-description p,
 .kg-product-card .kg-product-card-description ol,
 .kg-product-card .kg-product-card-description ul {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+        "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+        "Helvetica Neue", sans-serif;
     font-size: 0.95em;
     line-height: 1.5em;
-    opacity: .7;
+    opacity: 0.7;
     margin-bottom: 0;
 }
 
@@ -66,7 +70,7 @@
     margin-top: 0.95em;
 }
 
-.kg-product-card .kg-product-card-description li+li {
+.kg-product-card .kg-product-card-description li + li {
     margin-top: 0.5em;
 }
 
@@ -114,7 +118,9 @@
     display: flex;
     position: static;
     align-items: center;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+        "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+        "Helvetica Neue", sans-serif;
     font-size: 0.95em;
     font-weight: 600;
     line-height: 1em;

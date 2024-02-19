@@ -10,8 +10,9 @@ body {
 .kg-file-card-container,
 .kg-audio-player-container,
 .kg-video-player {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-    font-size: 100%
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    font-size: 100%;
 }
 
 blockquote:not(.pullquote):not(.kg-blockquote-alt) {
@@ -106,7 +107,6 @@ blockquote:not(.pullquote):not(.kg-blockquote-alt) {
 }
 
 @-webkit-keyframes a {
-
     0%,
     20%,
     40%,
@@ -146,7 +146,6 @@ blockquote:not(.pullquote):not(.kg-blockquote-alt) {
 }
 
 @keyframes a {
-
     0%,
     20%,
     40%,
@@ -186,7 +185,6 @@ blockquote:not(.pullquote):not(.kg-blockquote-alt) {
 }
 
 @-webkit-keyframes b {
-
     0%,
     60%,
     75%,
@@ -220,7 +218,6 @@ blockquote:not(.pullquote):not(.kg-blockquote-alt) {
 }
 
 @keyframes b {
-
     0%,
     60%,
     75%,
@@ -313,8 +310,7 @@ blockquote:not(.pullquote):not(.kg-blockquote-alt) {
     }
 }
 
-
-:not(pre)>code {
+:not(pre) > code {
     border-radius: 3px;
     white-space: normal;
     background: #e5eff5;
@@ -352,8 +348,15 @@ pre code * {
 
 code,
 pre {
-    font-family: Space Mono, SFMono-Regular, Menlo, Monaco, Consolas,
-        Liberation Mono, Courier New, monospace;
+    font-family:
+        Space Mono,
+        SFMono-Regular,
+        Menlo,
+        Monaco,
+        Consolas,
+        Liberation Mono,
+        Courier New,
+        monospace;
     white-space: pre;
     word-spacing: normal;
     word-break: normal;
@@ -373,12 +376,12 @@ pre[class*="language-"] {
     border-radius: 8px;
 }
 
-:not(pre)>code[class*="language-"],
+:not(pre) > code[class*="language-"],
 pre[class*="language-"] {
     border: 0;
 }
 
-:not(pre)>code[class*="language-"] {
+:not(pre) > code[class*="language-"] {
     padding: 0.3em 0.4em;
     border-radius: 0.3em;
     white-space: normal;
@@ -388,13 +391,15 @@ pre[class*="language-"] {
     font-size: 0.9em;
 }
 
-a>code[class*="language-"] {
+a > code[class*="language-"] {
     color: #3eb0ef;
 }
 
 .modal {
     opacity: 0;
-    transition: opacity 0.2s ease-out 0.1s, visibility 0s 0.4s;
+    transition:
+        opacity 0.2s ease-out 0.1s,
+        visibility 0s 0.4s;
     visibility: hidden;
     z-index: 8;
 }
@@ -402,7 +407,8 @@ a>code[class*="language-"] {
 .modal-content {
     opacity: 0;
     transform: scale(0.6);
-    transition: transform 0.3s cubic-bezier(0.06, 0.47, 0.38, 0.99),
+    transition:
+        transform 0.3s cubic-bezier(0.06, 0.47, 0.38, 0.99),
         opacity 0.3s cubic-bezier(0.06, 0.47, 0.38, 0.99);
 }
 
@@ -440,12 +446,13 @@ a>code[class*="language-"] {
     background: hsla(0, 0%, 66.7%, 0.35);
 }
 
-
 .header {
     color: var(--header-color);
     height: 4rem;
     transition: transform 0.3s;
-    box-shadow: 0 0 3px rgba(0, 0, 0, 0.03), 0 3px 46px rgba(0, 0, 0, 0.07);
+    box-shadow:
+        0 0 3px rgba(0, 0, 0, 0.03),
+        0 3px 46px rgba(0, 0, 0, 0.07);
 }
 
 .bg-header {
@@ -472,7 +479,9 @@ a>code[class*="language-"] {
 }
 
 .has-cover .header {
-    transition: background 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    transition:
+        background 0.3s ease-in-out,
+        box-shadow 0.3s ease-in-out;
 }
 
 .has-cover .simply-hero-cover {
@@ -489,7 +498,7 @@ a>code[class*="language-"] {
     color: #fff;
 }
 
-.is-head-transparent:not(.has-menu) .header-right>.button.is-white {
+.is-head-transparent:not(.has-menu) .header-right > .button.is-white {
     background-color: transparent;
     color: #fff;
 }
@@ -540,17 +549,20 @@ a>code[class*="language-"] {
     flex-direction: column;
 }
 
-.post-body>* {
+.post-body > * {
     margin-top: 1rem;
     margin-bottom: 1rem;
     min-width: 100%;
 }
 
-.post-body> :first-child {
+.post-body > :first-child {
     margin-top: 2.5rem;
 }
 
-.post-body a:not(.kg-bookmark-container):not(.kg-btn):not(.button):not(.anchor):not(.not-link):not(.gh-portal-close) {
+.post-body
+    a:not(.kg-bookmark-container):not(.kg-btn):not(.button):not(.anchor):not(
+        .not-link
+    ):not(.gh-portal-close) {
     text-decoration: underline;
     word-break: break-word;
 }
@@ -584,7 +596,7 @@ a>code[class*="language-"] {
     padding: 0.75rem 1.25rem;
 }
 
-.prev-next>div {
+.prev-next > div {
     min-height: 7.5rem;
 }
 
@@ -593,7 +605,7 @@ a>code[class*="language-"] {
         font-size: 1.125rem;
     }
 
-    .post-body>* {
+    .post-body > * {
         margin-top: 1.75rem;
     }
 
@@ -1185,7 +1197,7 @@ a>code[class*="language-"] {
 }
 
 .cc-window {
-    background-color: #FAF0E6;
+    background-color: #faf0e6;
     border-radius: 0.375em;
     bottom: 1em;
     box-shadow: 0 0 1em rgb(0 0 0/10%);
@@ -1227,18 +1239,18 @@ a>code[class*="language-"] {
     vertical-align: top;
 }
 
-.archive-date-01+.archive-date-01 .archive-label,
-.archive-date-02+.archive-date-02 .archive-label,
-.archive-date-03+.archive-date-03 .archive-label,
-.archive-date-04+.archive-date-04 .archive-label,
-.archive-date-05+.archive-date-05 .archive-label,
-.archive-date-06+.archive-date-06 .archive-label,
-.archive-date-07+.archive-date-07 .archive-label,
-.archive-date-08+.archive-date-08 .archive-label,
-.archive-date-09+.archive-date-09 .archive-label,
-.archive-date-10+.archive-date-10 .archive-label,
-.archive-date-11+.archive-date-11 .archive-label,
-.archive-date-12+.archive-date-12 .archive-label {
+.archive-date-01 + .archive-date-01 .archive-label,
+.archive-date-02 + .archive-date-02 .archive-label,
+.archive-date-03 + .archive-date-03 .archive-label,
+.archive-date-04 + .archive-date-04 .archive-label,
+.archive-date-05 + .archive-date-05 .archive-label,
+.archive-date-06 + .archive-date-06 .archive-label,
+.archive-date-07 + .archive-date-07 .archive-label,
+.archive-date-08 + .archive-date-08 .archive-label,
+.archive-date-09 + .archive-date-09 .archive-label,
+.archive-date-10 + .archive-date-10 .archive-label,
+.archive-date-11 + .archive-date-11 .archive-label,
+.archive-date-12 + .archive-date-12 .archive-label {
     display: none;
 }
 
@@ -1278,7 +1290,8 @@ a>code[class*="language-"] {
     position: absolute;
     top: 100%;
     transform: scale(0.9) translateY(-20px);
-    transition: all 0.3s cubic-bezier(0.4, 0.01, 0.165, 0.99),
+    transition:
+        all 0.3s cubic-bezier(0.4, 0.01, 0.165, 0.99),
         opacity 0.2s cubic-bezier(0.4, 0.01, 0.165, 0.99);
     visibility: hidden;
     z-index: 5;
@@ -1287,7 +1300,9 @@ a>code[class*="language-"] {
 .dropdown-content {
     background-color: var(--dropdown-bg);
     border-radius: 3px;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25), 0 0 1px rgba(0, 0, 0, 0.35);
+    box-shadow:
+        0 1px 2px rgba(0, 0, 0, 0.25),
+        0 0 1px rgba(0, 0, 0, 0.35);
     padding-bottom: 0.5rem;
     padding-top: 0.5rem;
     position: relative;
@@ -1548,11 +1563,11 @@ a.dropdown-item {
         -webkit-line-clamp: 4;
     }
 
-    .ss3+.ss4 {
+    .ss3 + .ss4 {
         padding-left: 0;
     }
 
-    .ss4+.ss4 {
+    .ss4 + .ss4 {
         padding-right: 0;
     }
 }
@@ -1823,7 +1838,7 @@ a.dropdown-item {
     box-shadow: 0 1px 7px rgba(0, 0, 0, 0.05);
 }
 
-.ss4+.ss3 {
+.ss4 + .ss3 {
     margin-bottom: 2.5rem;
 }
 
@@ -1840,23 +1855,33 @@ a.dropdown-item {
 }
 
 .story-cover-thumbnail {
-    padding-top: 90%
+    padding-top: 90%;
 }
 
 .story-cover-thumbnail .simply-cover-gradient {
-    transition: background-color .5s ease-in-out;
+    transition: background-color 0.5s ease-in-out;
     background-color: transparent;
-    background-image: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, .9)), color-stop(60%, rgba(255, 255, 255, 0)));
-    background-image: linear-gradient(to top, rgba(0, 0, 0, .9) 0%, rgba(255, 255, 255, 0) 60%)
+    background-image: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        from(rgba(0, 0, 0, 0.9)),
+        color-stop(60%, rgba(255, 255, 255, 0))
+    );
+    background-image: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.9) 0%,
+        rgba(255, 255, 255, 0) 60%
+    );
 }
 
 .story-cover:hover .story-cover-thumbnail .simply-cover-gradient {
-    background-color: rgba(0, 0, 0, .55)
+    background-color: rgba(0, 0, 0, 0.55);
 }
 
 @media only screen and (min-width: 766px) {
     .story-cover-thumbnail {
-        padding-top: 125%
+        padding-top: 125%;
     }
 }
 
@@ -1930,7 +1955,12 @@ a.dropdown-item {
 
 .post-body,
 .spc-des {
-    font-family: "PT Serif", Mercury SSm A, Mercury SSm B, Georgia, serif;
+    font-family:
+        "PT Serif",
+        Mercury SSm A,
+        Mercury SSm B,
+        Georgia,
+        serif;
 }
 
 .kg-bookmark-description,

@@ -1,32 +1,49 @@
 ---
-import Layout from '@layouts/Layout.astro'
-import StoryCardSmall from '@components/story/StoryCardSmall.astro'
-import MetaData from '@components/meta/MetaData.astro'
-import { getPosts } from '@lib/api'
+import Layout from "@layouts/Layout.astro";
+import StoryCardSmall from "@components/story/StoryCardSmall.astro";
+import MetaData from "@components/meta/MetaData.astro";
+import { getPosts } from "@lib/api";
 import { t } from "@utils/use-lang";
 
-const posts = await getPosts({filter: 'visibility:public+tag:-hash-portfolio+tag:-hash-podcast+tag:-hash-custom-kusi-doc', limit: "6"})
-
+const posts = await getPosts({
+    filter: "visibility:public+tag:-hash-portfolio+tag:-hash-podcast+tag:-hash-custom-kusi-doc",
+    limit: "6",
+});
 ---
 
 <>
     <MetaData location={Astro.url.href} />
-    <Layout isHome={true} footer={false} isPost={false} bodyClass="is-error-page bg-gray-200">
+    <Layout
+        isHome={true}
+        footer={false}
+        isPost={false}
+        bodyClass="is-error-page bg-gray-200"
+    >
         <section class="errorPage leading-none py-12 lg:py-vw8">
-            <div class="errorPage-wrap container mx-auto text-center text-gray-500">
-                <div class="errorPage-emoji font-bold text-title text-8xl lg:text-9xl">404</div>
-                <div class="errorPage-text mt-10">{t(`Unfortunately, this page doesn't exist`)}</div>
+            <div
+                class="errorPage-wrap container mx-auto text-center text-gray-500"
+            >
+                <div
+                    class="errorPage-emoji font-bold text-title text-8xl lg:text-9xl"
+                >
+                    404
+                </div>
+                <div class="errorPage-text mt-10">
+                    {t(`Unfortunately, this page doesn't exist`)}
+                </div>
             </div>
         </section>
 
         <div class="container mx-auto">
             <div class="max-w-1100 mx-auto pb-8">
                 <div class="row">
-                    {posts.map(item => (
-                        <div class="col s12 m6 l4">
-                            <StoryCardSmall post={item}/>
-                        </div>
-                    ))}
+                    {
+                        posts.map(item => (
+                            <div class="col s12 m6 l4">
+                                <StoryCardSmall post={item} />
+                            </div>
+                        ))
+                    }
                 </div>
             </div>
         </div>

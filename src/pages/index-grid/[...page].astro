@@ -1,18 +1,16 @@
 ---
-import Layout from '@layouts/Layout.astro';
+import Layout from "@layouts/Layout.astro";
 import Pagination from "@components/Pagination.astro";
 import siteConfig from "@utils/siteConfig";
 import MetaData from "@components/meta/MetaData.astro";
 import { getPosts } from "@lib/api";
 import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
-import StoryGrid from '@components/story/StoryGrid.astro';
-import StoryFeatured from '@components/story/StoryFeatured.astro';
-import { relativeUrl } from "@utils/relativeUrl";
+import StoryGrid from "@components/story/StoryGrid.astro";
+import StoryFeatured from "@components/story/StoryFeatured.astro";
 
 export const getStaticPaths = (async ({ paginate }) => {
     const posts = await getPosts({
-    filter:
-        "visibility:public+tag:-hash-portfolio+tag:-hash-podcast+tag:-hash-custom-kusi-doc",
+        filter: "visibility:public+tag:-hash-portfolio+tag:-hash-podcast+tag:-hash-custom-kusi-doc",
     });
     return paginate(posts, { pageSize: siteConfig.postsPerPage });
 }) satisfies GetStaticPaths;
@@ -20,16 +18,32 @@ export const getStaticPaths = (async ({ paginate }) => {
 export type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 const { page } = Astro.props;
-
 ---
+
 <MetaData location={Astro.url.pathname} />
-<Layout isHome={true} footer={true} isPost={false} bodyClass={`is-frontpage has-cover` + (page.currentPage === 1 && ` is-head-transparent`)}>
+<Layout
+    isHome={true}
+    footer={true}
+    isPost={false}
+    bodyClass={`is-frontpage has-cover` +
+        (page.currentPage === 1 && ` is-head-transparent`)}
+>
     {/* {!-- Featured Story --} */}
-    {page.data.filter(item => item.featured).length > 0 && <StoryFeatured post={page.data.filter(item => item.featured)[0]} />}
+    {
+        page.data.filter(item => item.featured).length > 0 && (
+            <StoryFeatured post={page.data.filter(item => item.featured)[0]} />
+        )
+    }
     <div class="site-post feed-entry-content py-12 px-4">
         <div class="mx-auto max-w-1100 feed-entry-wrap">
             <div class="row">
-                {page.data.map(item => <div class="col s12 m6 l4"><StoryGrid post={item} /></div>)}
+                {
+                    page.data.map(item => (
+                        <div class="col s12 m6 l4">
+                            <StoryGrid post={item} />
+                        </div>
+                    ))
+                }
                 <Pagination pageContext={page} />
             </div>
         </div>
