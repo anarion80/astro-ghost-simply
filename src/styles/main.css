@@ -108,7 +108,7 @@
 html {
     -webkit-text-size-adjust: 100%;
     font-family:
-        Inter,
+        Inter Variable,
         ui-sans-serif,
         system-ui,
         -apple-system,
@@ -391,7 +391,7 @@ video {
     --tw-backdrop-invert: ;
     --tw-backdrop-opacity: ;
     --tw-backdrop-saturate: ;
-    --tw-backdrop-sepia: 
+    --tw-backdrop-sepia:
 ;
 }
 
@@ -439,7 +439,7 @@ video {
     --tw-backdrop-invert: ;
     --tw-backdrop-opacity: ;
     --tw-backdrop-saturate: ;
-    --tw-backdrop-sepia: 
+    --tw-backdrop-sepia:
 ;
 }
 
@@ -487,7 +487,7 @@ video {
     --tw-backdrop-invert: ;
     --tw-backdrop-opacity: ;
     --tw-backdrop-saturate: ;
-    --tw-backdrop-sepia: 
+    --tw-backdrop-sepia:
 ;
 }
 
@@ -510,7 +510,7 @@ h5,
 h6,
 textarea {
     font-family:
-        Inter,
+        Inter Variable,
         ui-sans-serif,
         system-ui,
         -apple-system,
@@ -1155,7 +1155,7 @@ textarea[rows] {
 table {
     display: block;
     font-family:
-        Inter,
+        Inter Variable,
         ui-sans-serif,
         system-ui,
         -apple-system,
@@ -2992,7 +2992,7 @@ a > code[class*="language-"] {
 
 .font-sans {
     font-family:
-        Inter,
+        Inter Variable,
         ui-sans-serif,
         system-ui,
         -apple-system,
@@ -3949,4 +3949,34 @@ a > code[class*="language-"] {
     .xl\:gap-20 {
         gap: 5rem;
     }
+}
+
+/* inter-latin-ext-wght-normal */
+@font-face {
+    font-family: 'Inter Variable';
+    font-style: normal;
+    font-display: fallback;
+    font-weight: 400 500 600 700;
+    src: url(@fontsource-variable/inter/files/inter-latin-ext-wght-normal.woff2) format('woff2-variations');
+    unicode-range: U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+
+/* pt-serif-latin-ext-400-italic */
+@font-face {
+    font-family: 'PT Serif';
+    font-style: italic;
+    font-display: fallback;
+    font-weight: 400;
+    src: url(@fontsource/pt-serif/files/pt-serif-latin-ext-400-italic.woff2) format('woff2'), url(@fontsource/pt-serif/files/pt-serif-latin-ext-400-italic.woff) format('woff');
+    unicode-range: U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+
+/* pt-serif-latin-ext-700-italic */
+@font-face {
+    font-family: 'PT Serif';
+    font-style: italic;
+    font-display: fallback;
+    font-weight: 700;
+    src: url(@fontsource/pt-serif/files/pt-serif-latin-ext-700-italic.woff2) format('woff2'), url(@fontsource/pt-serif/files/pt-serif-latin-ext-700-italic.woff) format('woff');
+    unicode-range: U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
 }
